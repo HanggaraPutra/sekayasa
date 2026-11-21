@@ -8,12 +8,109 @@ const SEKA_CONFIG = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initSharedLayout();
   initOpeningIntro();
   initScrollReveal();
   initNavbarAndProgress();
   initHeroInteractiveBg();
   initDiagnosisWidget();
 });
+
+/* ==========================================================================
+   SHARED SINGLE-SOURCE LAYOUT (NAVBAR & FOOTER IDENTICAL ACROSS ALL PAGES)
+   ========================================================================== */
+function initSharedLayout() {
+  const path = window.location.pathname.split("/").pop() || "index.html";
+  const currentPage = path === "" ? "index.html" : path.toLowerCase();
+
+  const navItems = [
+    { href: "index.html", label: "Beranda" },
+    { href: "projects.html", label: "Karya &amp; Sistem" },
+    { href: "about.html", label: "Tentang Kami" },
+    { href: "contact.html", label: "Konsultasi" }
+  ];
+
+  // 1. Render Unified Slim Centered Oval Navbar + Scroll Progress Bar
+  const navMount = document.getElementById("seka-navbar");
+  if (navMount) {
+    const linksHtml = navItems
+      .map((item) => {
+        const isActive = currentPage === item.href ? ' class="active"' : "";
+        return `<a href="${item.href}"${isActive}>${item.label}</a>`;
+      })
+      .join("");
+
+    navMount.outerHTML = `
+      <div class="scroll-progress-bar" id="scroll-progress"></div>
+      <header class="site-nav">
+        <div class="container nav-inner">
+          <a href="index.html" class="nav-brand" aria-label="Seka Yasa Beranda">
+            <img src="assets/logo-mark.svg" alt="Seka Yasa" class="nav-logo-mark" />
+            <img src="assets/logo-text.svg" alt="SEKA YASA" class="nav-logo-text" />
+          </a>
+          <nav class="nav-links" aria-label="Menu Utama">
+            ${linksHtml}
+          </nav>
+          <a href="contact.html" class="btn btn-amber btn-sm">Hubungi Kami</a>
+        </div>
+      </header>
+    `;
+  }
+
+  // 2. Render Unified Footer
+  const footerMount = document.getElementById("seka-footer");
+  if (footerMount) {
+    footerMount.outerHTML = `
+      <footer class="site-footer">
+        <div class="container">
+          <div class="footer-top">
+            <div>
+              <a href="index.html" class="nav-brand">
+                <img src="assets/logo-mark.svg" alt="Seka Yasa" class="nav-logo-mark" />
+                <img src="assets/logo-text.svg" alt="SEKA YASA" class="nav-logo-text" />
+              </a>
+              <p class="footer-desc">
+                Seka Yasa — Software house, pengembangan aplikasi web, dan konsultan sistem informasi perusahaan di Surabaya.
+              </p>
+            </div>
+            <div class="footer-col">
+              <h4>Halaman</h4>
+              <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="projects.html">Karya &amp; Sistem</a></li>
+                <li><a href="about.html">Tentang Kami</a></li>
+                <li><a href="contact.html">Konsultasi &amp; Kontak</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Layanan</h4>
+              <ul>
+                <li><a href="projects.html#pos">Sistem Kasir (POS)</a></li>
+                <li><a href="projects.html#erp">Inventori &amp; Produksi (ERP)</a></li>
+                <li><a href="projects.html#sim">Manajemen Internal</a></li>
+                <li><a href="contact.html">Pengembangan Aplikasi Web</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <span>© 2026 Seka Yasa — Surabaya, Jawa Timur.</span>
+            <span>Tata • Titi • Tentrem</span>
+          </div>
+        </div>
+      </footer>
+    `;
+  }
+
+  // 3. Inject Matching Blueprint Grid & Kawung Layers on Inner Page Headers
+  const innerHeader = document.querySelector(".inner-header");
+  if (innerHeader && !innerHeader.querySelector(".hero-blueprint-grid")) {
+    const bgFragment = document.createRange().createContextualFragment(`
+      <div class="hero-blueprint-grid" aria-hidden="true"></div>
+      <div class="hero-kawung-layer" aria-hidden="true"></div>
+    `);
+    innerHeader.prepend(bgFragment);
+  }
+}
 
 /* ==========================================================================
    0. OPENING INTRO / SPLASH CURTAIN (SEKA YASA LOGO REVEAL)

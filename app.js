@@ -124,6 +124,16 @@ function initOpeningIntro() {
     return;
   }
 
+  // If already shown in this browsing session, remove intro immediately without replaying
+  if (sessionStorage.getItem("seka_intro_seen") === "1") {
+    intro.classList.add("is-done");
+    document.body.classList.remove("intro-active");
+    return;
+  }
+
+  // Mark as seen so returning to Beranda (index.html) won't replay the splash screen
+  sessionStorage.setItem("seka_intro_seen", "1");
+
   // 1. Choreograph all 25 amber & 25 dark Gunungan pieces bottom-to-top & center-outward
   function choreographPieces(selector, className, baseDelay, stepMs) {
     const els = Array.from(document.querySelectorAll(selector));

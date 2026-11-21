@@ -67,6 +67,15 @@ body.intro-active {
   overflow: hidden;
 }
 
+/* Zero-flicker instant skip when intro was already seen in this session */
+html.intro-seen .seka-intro {
+  display: none !important;
+}
+
+html.intro-seen body.intro-active {
+  overflow: auto !important;
+}
+
 /* ==========================================================================
    OPENING INTRO / SPLASH SCREEN (SEKA YASA GUNUNGAN & WORDMARK REVEAL)
    ========================================================================== */

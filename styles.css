@@ -424,11 +424,11 @@ button, input, textarea {
   top: 1.15rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 700px;
+  width: 840px;
   max-width: 92vw;
   height: 54px;
   z-index: 900;
-  padding: 0 0.5rem 0 1.25rem;
+  padding: 0 0.55rem 0 1.6rem;
   border-radius: 999px;
   background-color: rgba(26, 18, 8, 0.86);
   backdrop-filter: blur(16px);
@@ -484,7 +484,7 @@ button, input, textarea {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.45rem;
+  gap: 2.1rem;
   white-space: nowrap;
 }
 

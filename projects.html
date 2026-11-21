@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karya & Sistem — Seka Yasa Surabaya</title>
+  <meta name="description" content="Daftar karya dan sistem yang dikembangkan Seka Yasa: Inventori & Produksi (ERP), Sistem Kasir (POS), serta Sistem Informasi Manajemen Internal." />
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/logo-mark.svg" alt="Seka Yasa" class="nav-logo-mark" />
+        <img src="assets/logo-text.svg" alt="SEKA YASA" class="nav-logo-text" />
+      </a>
+
+      <nav class="nav-links" aria-label="Menu Utama">
+        <a href="index.html">Beranda</a>
+        <a href="projects.html" class="active">Karya &amp; Sistem</a>
+        <a href="about.html">Tentang Kami</a>
+        <a href="contact.html">Konsultasi</a>
+      </nav>
+
+      <a href="contact.html" class="btn btn-amber btn-sm">Hubungi Kami</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- PAGE HEADER -->
+    <section class="inner-header">
+      <img src="assets/logo-mark.svg" alt="" class="hero-gunungan-bg" aria-hidden="true" />
+      <div class="container inner-header-grid reveal-on-scroll is-visible">
+        <div>
+          <span class="section-index section-index-light">Karya &amp; Sistem</span>
+          <h1>Sistem operasional yang kami bangun sesuai kebutuhan lapangan.</h1>
+        </div>
+        <p>
+          Berikut tiga proyek utama yang kami kerjakan untuk membantu bisnis merapikan alur transaksi, stok gudang, produksi, hingga administrasi internal.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3 PROJECTS IN WIDE ASYMMETRIC ROWS -->
+    <section class="inner-content">
+      <div class="container">
+
+        <!-- PROYEK 01: ERP -->
+        <article class="project-row-block reveal-on-scroll" id="erp">
+          <div class="showcase-media">
+            <img src="assets/erp-complex-v2.jpg" alt="Sistem Inventori & Produksi (ERP)" />
+          </div>
+          <div>
+            <span class="section-index">01 / Inventori &amp; Produksi (ERP)</span>
+            <h2 class="split-title" style="font-size: 2rem;">Sistem ERP Gudang, Pembelian, &amp; Produksi</h2>
+            <p class="split-desc">
+              Dibangun untuk perusahaan yang membutuhkan keterhubungan data antara pembelian bahan baku ke supplier, pencatatan stok multi-gudang, hingga proses produksi barang jadi.
+            </p>
+
+            <div class="project-detail-table">
+              <div class="detail-line">
+                <strong>Kondisi Awal</strong>
+                <span>Pencatatan stok gudang, surat pesanan (PO), dan pemakaian bahan produksi masih terpisah di Excel sehingga sering terjadi selisih stok fisik dan keterlambatan belanja bahan.</span>
+              </div>
+              <div class="detail-line">
+                <strong>Solusi Sistem</strong>
+                <span>Aplikasi web ERP dengan modul persetujuan PO, pemotongan bahan baku otomatis berdasarkan resep/komposisi produksi (BOM), serta pengingat stok minimum.</span>
+              </div>
+              <div class="detail-line">
+                <strong>Hasil di Lapangan</strong>
+                <span>Alur keluar-masuk barang terlacak jelas, stok opname jauh lebih cepat, dan Harga Pokok Produksi (HPP) terhitung otomatis setiap produksi selesai.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYEK 02: POS -->
+        <article class="project-row-block reveal-on-scroll" id="pos">
+          <div class="showcase-media">
+            <img src="assets/pos-complex-v2.jpg" alt="Sistem Kasir (POS) Multi-Cabang" />
+          </div>
+          <div>
+            <span class="section-index">02 / Sistem Kasir (POS)</span>
+            <h2 class="split-title" style="font-size: 2rem;">Sistem Kasir Terintegrasi &amp; Pantauan Multi-Cabang</h2>
+            <p class="split-desc">
+              Dirancang untuk bisnis retail, grosir, dan F&amp;B yang membutuhkan proses transaksi cepat di meja kasir sekaligus pengawasan stok dan omzet cabang secara terpusat.
+            </p>
+
+            <div class="project-detail-table">
+              <div class="detail-line">
+                <strong>Kondisi Awal</strong>
+                <span>Pemilik usaha harus menunggu kiriman rekap manual dari tiap cabang pada malam hari, harga khusus grosir/member sering salah input, dan kas sering selisih.</span>
+              </div>
+              <div class="detail-line">
+                <strong>Solusi Sistem</strong>
+                <span>Sistem POS untuk tablet dan komputer kasir yang langsung memotong stok cabang saat struk dicetak, mendukung harga bertingkat, serta pencocokan kas saat tutup shift.</span>
+              </div>
+              <div class="detail-line">
+                <strong>Hasil di Lapangan</strong>
+                <span>Omzet harian, stok tersisa, dan margin laba kotor dari seluruh cabang dapat dipantau langsung oleh pemilik kapan saja dari ponsel maupun laptop.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROYEK 03: MANAJEMEN INTERNAL -->
+        <article class="project-row-block reveal-on-scroll" id="sim">
+          <div class="showcase-media">
+            <img src="assets/sim-complex-v2.jpg" alt="Sistem Informasi Manajemen Keuangan, Piutang (AR/AP) & HRIS Payroll" />
+          </div>
+          <div>
+            <span class="section-index">03 / Manajemen Internal</span>
+            <h2 class="split-title" style="font-size: 2rem;">Sistem Informasi Keuangan, Piutang (AR/AP), &amp; HRIS Internal</h2>
+            <p class="split-desc">
+              Menyatukan administrasi internal perusahaan agar pemilik bisnis memiliki gambaran posisi keuangan yang jujur dan tim admin tidak lagi habis waktu untuk rekap bulanan.
+            </p>
+
+            <div class="project-detail-table">
+              <div class="detail-line">
+                <strong>Kondisi Awal</strong>
+                <span>Tagihan piutang pelanggan sering terlewat jatuh temponya, sementara perhitungan gaji, lembur, dan komisi karyawan memakan waktu berhari-hari setiap akhir bulan.</span>
+              </div>
+              <div class="detail-line">
+                <strong>Solusi Sistem</strong>
+                <span>Portal manajemen internal dengan laporan Laba-Rugi &amp; arus kas, jadwal umur piutang (<em>AR Aging Schedule</em>), rekapitulasi absensi dan penggajian otomatis, serta pembagian hak akses tiap divisi.</span>
+              </div>
+              <div class="detail-line">
+                <strong>Hasil di Lapangan</strong>
+                <span>Tutup buku dan pembuatan slip gaji bulanan selesai jauh lebih singkat, serta posisi kas dan piutang perusahaan terpantau setiap hari.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="index.html" class="nav-brand">
+            <img src="assets/logo-mark.svg" alt="Seka Yasa" class="nav-logo-mark" />
+            <img src="assets/logo-text.svg" alt="SEKA YASA" class="nav-logo-text" />
+          </a>
+          <p class="footer-desc">
+            Seka Yasa — Software house, pengembangan aplikasi web, dan konsultan sistem informasi perusahaan di Surabaya.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Halaman</h4>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="projects.html">Karya &amp; Sistem</a></li>
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="contact.html">Konsultasi &amp; Kontak</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Layanan</h4>
+          <ul>
+            <li><a href="projects.html#pos">Sistem Kasir (POS)</a></li>
+            <li><a href="projects.html#erp">Inventori &amp; Produksi (ERP)</a></li>
+            <li><a href="projects.html#sim">Manajemen Internal</a></li>
+            <li><a href="contact.html">Pengembangan Aplikasi Web</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Seka Yasa — Surabaya, Jawa Timur.</span>
+        <span>Tata • Titi • Tentrem</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

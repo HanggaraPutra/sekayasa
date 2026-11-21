@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="8" fill="#1A1917"/>
+  <!-- 4 Saka Guru outer frame -->
+  <rect x="10" y="10" width="44" height="44" stroke="#F6F2EA" stroke-width="1.75" stroke-opacity="0.35"/>
+  <!-- Kawung geometric intersecting petals & S-Y axis -->
+  <path d="M18 18C28 18 32 22 32 32C32 42 36 46 46 46" stroke="#B85435" stroke-width="3" stroke-linecap="square"/>
+  <path d="M46 18C36 18 32 22 32 32M32 32V50" stroke="#F6F2EA" stroke-width="2.5" stroke-linecap="square"/>
+  <!-- 4 Saka Guru pillar points -->
+  <rect x="15" y="15" width="6" height="6" fill="#F6F2EA"/>
+  <rect x="43" y="15" width="6" height="6" fill="#F6F2EA"/>
+  <rect x="15" y="43" width="6" height="6" fill="#F6F2EA"/>
+  <rect x="43" y="43" width="6" height="6" fill="#B85435"/>
+</svg>
+

@@ -283,9 +283,149 @@ button, input, textarea {
   padding-top: 8rem;
   padding-bottom: 5rem;
   background-color: var(--espresso);
-  background-image: radial-gradient(circle at 78% 35%, rgba(119, 82, 41, 0.32) 0%, transparent 55%);
+  background-image:
+    radial-gradient(circle at 80% 30%, rgba(119, 82, 41, 0.36) 0%, transparent 52%),
+    radial-gradient(circle at 18% 78%, rgba(247, 176, 95, 0.08) 0%, transparent 45%);
   color: var(--text-on-dark);
   overflow: hidden;
+  position: relative;
+}
+
+/* Layer 1: Architectural Blueprint Grid & Intersection Crosshairs (+) */
+.hero-blueprint-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 72 0 L 0 0 0 72' fill='none' stroke='%23F7B05F' stroke-width='0.6' stroke-opacity='0.11'/%3E%3Cpath d='M -4 0 L 4 0 M 0 -4 L 0 4' fill='none' stroke='%23F7B05F' stroke-width='1' stroke-opacity='0.26'/%3E%3C/svg%3E");
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.35) 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 85% at 50% 45%, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.35) 72%, transparent 100%);
+}
+
+/* Layer 2: Slowly Drifting Javanese Kawung Monoline Pattern on Right Edge */
+.hero-kawung-layer {
+  position: absolute;
+  top: -72px;
+  right: -72px;
+  bottom: -72px;
+  width: 48%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23F7B05F' stroke-width='1'%3E%3Ccircle cx='0' cy='0' r='36'/%3E%3Ccircle cx='72' cy='0' r='36'/%3E%3Ccircle cx='0' cy='72' r='36'/%3E%3Ccircle cx='72' cy='72' r='36'/%3E%3Ccircle cx='36' cy='36' r='4.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 72px 72px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 1) 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 1) 100%);
+  animation: kawungDrift 42s linear infinite;
+}
+
+@keyframes kawungDrift {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(72px, 72px, 0); }
+}
+
+/* Layer 3: Interactive Warm Drafting-Lamp Cursor Spotlight */
+.hero-cursor-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    540px circle at var(--mx, 30%) var(--my, 42%),
+    rgba(247, 176, 95, 0.14) 0%,
+    rgba(119, 82, 41, 0.09) 38%,
+    transparent 70%
+  );
+}
+
+/* Layer 4: Quiet Architectural Signal Pulses Gliding Along Grid Lines */
+.hero-signal-tracks {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.signal-line {
+  position: absolute;
+  display: block;
+}
+
+.signal-line.line-h1 {
+  top: 216px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(247, 176, 95, 0.07);
+}
+
+.signal-line.line-h1 i {
+  position: absolute;
+  top: -1px;
+  left: -140px;
+  width: 130px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(247, 176, 95, 0.85), transparent);
+  animation: glideRight 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.signal-line.line-h2 {
+  bottom: 144px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(247, 176, 95, 0.06);
+}
+
+.signal-line.line-h2 i {
+  position: absolute;
+  top: -1px;
+  right: -140px;
+  width: 110px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(247, 176, 95, 0.65), transparent);
+  animation: glideLeft 11s cubic-bezier(0.4, 0, 0.2, 1) infinite 2.5s;
+}
+
+.signal-line.line-v1 {
+  top: 0;
+  left: 288px;
+  width: 1px;
+  height: 100%;
+  background: rgba(247, 176, 95, 0.06);
+}
+
+.signal-line.line-v1 i {
+  position: absolute;
+  left: -1px;
+  top: -120px;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(180deg, transparent, rgba(247, 176, 95, 0.7), transparent);
+  animation: glideDown 9.5s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.2s;
+}
+
+@keyframes glideRight {
+  0% { transform: translateX(0); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateX(115vw); opacity: 0; }
+}
+
+@keyframes glideLeft {
+  0% { transform: translateX(0); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateX(-115vw); opacity: 0; }
+}
+
+@keyframes glideDown {
+  0% { transform: translateY(0); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateY(115vh); opacity: 0; }
 }
 
 .hero-gunungan-bg {
@@ -294,9 +434,11 @@ button, input, textarea {
   top: 50%;
   transform: translateY(-50%);
   width: 480px;
-  opacity: 0.055;
+  opacity: 0.075;
+  z-index: 1;
   pointer-events: none;
   user-select: none;
+  transition: transform 0.25s ease-out;
 }
 
 .hero-grid {

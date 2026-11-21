@@ -10,8 +10,26 @@ const SEKA_CONFIG = {
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initNavbarAndProgress();
+  initHeroInteractiveBg();
   initDiagnosisWidget();
 });
+
+/* ==========================================================================
+   1B. HERO INTERACTIVE WARM SPOTLIGHT FOLLOWING CURSOR
+   ========================================================================== */
+function initHeroInteractiveBg() {
+  const hero = document.getElementById("hero-stage");
+  const glow = document.getElementById("hero-cursor-glow");
+  if (!hero || !glow) return;
+
+  hero.addEventListener("mousemove", (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    glow.style.setProperty("--mx", `${x.toFixed(2)}%`);
+    glow.style.setProperty("--my", `${y.toFixed(2)}%`);
+  });
+}
 
 /* ==========================================================================
    1. SMOOTH SCROLL REVEAL (INTERSECTION OBSERVER)

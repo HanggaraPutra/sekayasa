@@ -27,11 +27,90 @@ function initOpeningIntro() {
     return;
   }
 
-  // Compute exact SVG path length for crisp calligraphic stroke tracing of SEKA YASA
-  const wordmarkPath = document.getElementById("seka-wordmark-path");
-  if (wordmarkPath && typeof wordmarkPath.getTotalLength === "function") {
-    const exactLen = Math.ceil(wordmarkPath.getTotalLength());
-    wordmarkPath.style.setProperty("--path-len", exactLen);
+  // 1. Choreograph all 25 amber & 25 dark Gunungan pieces bottom-to-top & center-outward
+  function choreographPieces(selector, className, baseDelay, stepMs) {
+    const els = Array.from(document.querySelectorAll(selector));
+    if (!els.length) return;
+
+    const measured = els.map((el) => {
+      let cx = 101;
+      let cy = 150;
+      try {
+        const b = el.getBBox();
+        cx = b.x + b.width / 2;
+        cy = b.y + b.height / 2;
+      } catch (_) {}
+      return { el, cx, cy };
+    });
+
+    // Sort bottom-to-top (higher cy first), then center-to-outward
+    measured.sort((a, b) => {
+      const rowDiff = Math.round((b.cy - a.cy) / 18);
+      if (rowDiff !== 0) return rowDiff;
+      return Math.abs(a.cx - 101) - Math.abs(b.cx - 101);
+    });
+
+    measured.forEach((item, idx) => {
+      const dx = item.cx < 96 ? -14 : item.cx > 106 ? 14 : 0;
+      const dy = item.cy > 165 ? 14 : -12;
+      const delay = (baseDelay + idx * stepMs).toFixed(3);
+
+      // Wrap elements that have an SVG transform="matrix(...)" so CSS transform never overrides their matrix
+      let targetEl = item.el;
+      if (item.el.hasAttribute("transform") && item.el.parentNode) {
+        const wrapper = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        item.el.parentNode.insertBefore(wrapper, item.el);
+        wrapper.appendChild(item.el);
+        targetEl = wrapper;
+      }
+
+      targetEl.style.setProperty("--tx", `${dx}px`);
+      targetEl.style.setProperty("--ty", `${dy}px`);
+      targetEl.style.setProperty("--delay", `${delay}s`);
+      targetEl.classList.add(className);
+    });
+  }
+
+  choreographPieces(".svg-amber-aksara path, .svg-amber-aksara rect", "svg-piece-amber", 0.30, 0.026);
+  choreographPieces(".svg-dark-foreground path, .svg-dark-foreground rect", "svg-piece-dark", 1.12, 0.018);
+
+  // 2. Split SEKA YASA wordmark into individual calligraphic letter strokes sorted left-to-right
+  const masterWordmark = document.getElementById("seka-wordmark-path");
+  if (masterWordmark && masterWordmark.parentNode) {
+    const svgNS = "http://www.w3.org/2000/svg";
+    const dAttr = masterWordmark.getAttribute("d") || "";
+    const subpaths = dAttr.match(/M[^M]+/g) || [];
+    const parentSvg = masterWordmark.parentNode;
+
+    if (subpaths.length > 1) {
+      const created = subpaths.map((subD) => {
+        const p = document.createElementNS(svgNS, "path");
+        p.setAttribute("d", subD.trim());
+        parentSvg.appendChild(p);
+        let x = 0;
+        let len = 800;
+        try {
+          x = p.getBBox().x;
+          len = Math.ceil(p.getTotalLength());
+        } catch (_) {}
+        return { p, x, len };
+      });
+
+      // Remove original merged path
+      masterWordmark.remove();
+
+      // Sort strictly left-to-right so S -> E -> K -> A   Y -> A -> S -> A traces cleanly
+      created.sort((a, b) => a.x - b.x);
+
+      created.forEach((item, i) => {
+        const traceDelay = (1.18 + i * 0.068).toFixed(3);
+        const fillDelay = (1.58 + i * 0.068).toFixed(3);
+        item.p.style.setProperty("--len", item.len);
+        item.p.style.setProperty("--d-trace", `${traceDelay}s`);
+        item.p.style.setProperty("--d-fill", `${fillDelay}s`);
+        item.p.classList.add("wordmark-letter-stroke");
+      });
+    }
   }
 
   let dismissed = false;
@@ -47,8 +126,8 @@ function initOpeningIntro() {
     }, 900);
   }
 
-  // Auto-open curtain after full SVG Gunungan assembly & calligraphic wordmark trace (~2.85s)
-  const autoTimer = setTimeout(dismissIntro, 2850);
+  // Auto-open curtain cleanly after intricate Gunungan construction + per-letter wordmark settle (~3.25s)
+  const autoTimer = setTimeout(dismissIntro, 3250);
 
   skipBtn?.addEventListener("click", (e) => {
     e.stopPropagation();

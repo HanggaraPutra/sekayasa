@@ -31,7 +31,9 @@
   --line-light: rgba(119, 82, 41, 0.18);
   --line-dark: rgba(247, 176, 95, 0.18);
 
+  --font-display: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-label: 'Space Grotesk', sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -593,11 +595,13 @@ button, input, textarea {
 
 .section-index {
   display: block;
-  font-size: 0.84rem;
+  font-family: var(--font-label);
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--soga);
-  letter-spacing: 0.04em;
-  margin-bottom: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.15rem;
 }
 
 .section-index-light {
@@ -813,28 +817,32 @@ button, input, textarea {
 }
 
 .hero-location {
-  font-size: 0.9rem;
+  font-family: var(--font-label);
+  font-size: 0.94rem;
   font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--amber);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.35rem;
   display: block;
 }
 
 .hero-headline {
-  font-size: clamp(2.25rem, 3.6vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.18;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.85rem, 4.8vw, 4.6rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.65rem;
   color: var(--text-on-dark);
 }
 
 .hero-lead {
-  font-size: 1.12rem;
+  font-size: 1.2rem;
   color: var(--text-on-dark-muted);
-  line-height: 1.75;
-  margin-bottom: 2.5rem;
-  max-width: 680px;
+  line-height: 1.72;
+  margin-bottom: 2.6rem;
+  max-width: 660px;
 }
 
 .hero-lead strong {
@@ -917,39 +925,41 @@ button, input, textarea {
 }
 
 .split-title {
-  font-size: clamp(1.75rem, 2.5vw, 2.4rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 3.2vw, 3.15rem);
   font-weight: 700;
-  line-height: 1.24;
-  letter-spacing: -0.015em;
-  margin-bottom: 1rem;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.15rem;
 }
 
 .split-desc {
-  font-size: 1rem;
+  font-size: 1.08rem;
   color: var(--text-secondary);
-  line-height: 1.68;
+  line-height: 1.7;
 }
 
 /* Clean Editorial Row List on the Right (Compact & To-The-Point) */
 .problem-list {
   border-top: 1px solid var(--line-light);
-  max-width: 720px;
+  max-width: 740px;
   width: 100%;
   justify-self: end;
 }
 
 .problem-row {
-  padding: 1.85rem 0;
+  padding: 2rem 0;
   border-bottom: 1px solid var(--line-light);
   display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 1.25rem;
+  grid-template-columns: 56px 1fr;
+  gap: 1.35rem;
   align-items: baseline;
 }
 
 .problem-idx {
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
   color: var(--soga);
 }
 
@@ -959,30 +969,33 @@ button, input, textarea {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
 }
 
 .problem-body h3 {
-  font-size: 1.28rem;
+  font-family: var(--font-display);
+  font-size: 1.48rem;
   font-weight: 700;
-  line-height: 1.3;
+  letter-spacing: -0.02em;
+  line-height: 1.24;
   color: var(--text-primary);
 }
 
 .problem-body p {
-  font-size: 0.98rem;
+  font-size: 1.04rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 560px;
+  line-height: 1.62;
+  max-width: 580px;
   margin-bottom: 0;
 }
 
 .problem-scope {
+  font-family: var(--font-label);
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--soga);
   background-color: var(--soga-tint);
-  padding: 0.22rem 0.7rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 6px;
   white-space: nowrap;
 }
@@ -1039,17 +1052,19 @@ button, input, textarea {
 }
 
 .showcase-info h3 {
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.6vw, 2.35rem);
   font-weight: 700;
-  line-height: 1.28;
-  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  margin-bottom: 1.1rem;
 }
 
 .showcase-info p {
-  font-size: 1.04rem;
+  font-size: 1.08rem;
   color: var(--text-secondary);
   line-height: 1.72;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.65rem;
 }
 
 .scope-list {
@@ -1103,25 +1118,28 @@ button, input, textarea {
 }
 
 .approach-item h3 {
-  font-size: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1.48rem;
   font-weight: 700;
-  margin-bottom: 0.35rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.45rem;
 }
 
 .approach-item p {
-  font-size: 0.98rem;
+  font-size: 1.04rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 540px;
+  line-height: 1.64;
+  max-width: 560px;
 }
 
 .approach-step-label {
   display: block;
-  font-size: 0.82rem;
+  font-family: var(--font-label);
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--soga);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   margin-bottom: 0.35rem;
 }
 
@@ -1156,17 +1174,19 @@ button, input, textarea {
 }
 
 .closing-grid h2 {
-  font-size: clamp(1.95rem, 3vw, 2.65rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 3.4vw, 3.25rem);
   font-weight: 700;
-  line-height: 1.24;
-  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  line-height: 1.14;
+  margin-bottom: 1.1rem;
 }
 
 .closing-grid p {
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   color: var(--text-on-dark-muted);
   max-width: 540px;
-  margin-bottom: 2rem;
+  margin-bottom: 2.15rem;
 }
 
 .closing-action {
@@ -1265,15 +1285,17 @@ button, input, textarea {
 }
 
 .inner-header h1 {
-  font-size: clamp(2.1rem, 3.4vw, 3.1rem);
-  font-weight: 700;
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-size: clamp(2.45rem, 3.8vw, 3.65rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 .inner-header p {
-  font-size: 1.08rem;
+  font-size: 1.14rem;
   color: var(--text-on-dark-muted);
-  line-height: 1.7;
+  line-height: 1.72;
 }
 
 .inner-content {

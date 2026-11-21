@@ -8,11 +8,53 @@ const SEKA_CONFIG = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initOpeningIntro();
   initScrollReveal();
   initNavbarAndProgress();
   initHeroInteractiveBg();
   initDiagnosisWidget();
 });
+
+/* ==========================================================================
+   0. OPENING INTRO / SPLASH CURTAIN (SEKA YASA LOGO REVEAL)
+   ========================================================================== */
+function initOpeningIntro() {
+  const intro = document.getElementById("seka-intro");
+  const skipBtn = document.getElementById("intro-skip");
+
+  if (!intro) {
+    document.body.classList.remove("intro-active");
+    return;
+  }
+
+  let dismissed = false;
+
+  function dismissIntro() {
+    if (dismissed) return;
+    dismissed = true;
+    intro.classList.add("is-leaving");
+    document.body.classList.remove("intro-active");
+
+    setTimeout(() => {
+      intro.classList.add("is-done");
+    }, 900);
+  }
+
+  // Auto-open curtain after logo reveal finishes (~2.1s)
+  const autoTimer = setTimeout(dismissIntro, 2100);
+
+  skipBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    clearTimeout(autoTimer);
+    dismissIntro();
+  });
+
+  // Also allow clicking anywhere on splash to skip immediately
+  intro.addEventListener("click", () => {
+    clearTimeout(autoTimer);
+    dismissIntro();
+  });
+}
 
 /* ==========================================================================
    1B. HERO INTERACTIVE WARM SPOTLIGHT FOLLOWING CURSOR

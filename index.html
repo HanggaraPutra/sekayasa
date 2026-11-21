@@ -11,7 +11,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="intro-active">
+  <!-- OPENING INTRO / SPLASH ANIMATION (SEKA YASA LOGO REVEAL) -->
+  <div class="seka-intro" id="seka-intro" aria-label="Animasi Pembuka Seka Yasa">
+    <div class="intro-grid-bg" aria-hidden="true"></div>
+    <div class="intro-stage">
+      <div class="intro-mark-wrap">
+        <div class="intro-glow" aria-hidden="true"></div>
+        <img src="assets/logo-mark.svg" alt="Lambang Seka Yasa" class="intro-logo-mark" />
+      </div>
+      <div class="intro-rule" aria-hidden="true"></div>
+      <div class="intro-text-mask">
+        <img src="assets/logo-text.svg" alt="SEKA YASA" class="intro-logo-text" />
+      </div>
+      <div class="intro-tagline-mask">
+        <span class="intro-tagline">SURABAYA &nbsp;•&nbsp; TATA &nbsp;•&nbsp; TITI &nbsp;•&nbsp; TENTREM</span>
+      </div>
+    </div>
+    <button type="button" class="intro-skip" id="intro-skip">Lewati →</button>
+  </div>
+
   <div class="scroll-progress-bar" id="scroll-progress"></div>
 
   <!-- NAVIGATION BAR -->

@@ -65,6 +65,52 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Tactile Micro Paper-Grain Texture (gives warm printed stationery depth to light surfaces) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.038;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrain)'/%3E%3C/svg%3E");
+}
+
+/* Subtle Architectural Kawung Monoline Section Seam (1px Javanese Geometry) */
+.kawung-seam {
+  background-color: var(--cream);
+  padding: 0.35rem 0;
+  position: relative;
+}
+
+.kawung-seam.seam-alt {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-alt) 100%);
+}
+
+.kawung-seam.seam-alt-rev {
+  background: linear-gradient(180deg, var(--cream-alt) 0%, var(--cream) 100%);
+}
+
+.kawung-seam-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.kawung-hairline {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(119, 82, 41, 0.24) 18%, rgba(119, 82, 41, 0.24) 82%, transparent 100%);
+}
+
+.kawung-motif {
+  flex-shrink: 0;
+  display: block;
+  color: var(--soga);
+  opacity: 0.78;
+}
+
 body.intro-active {
   overflow: hidden;
 }
@@ -918,7 +964,7 @@ button, input, textarea {
    ========================================================================== */
 .stage-problems {
   background-color: var(--cream);
-  border-bottom: 1px solid var(--line-light);
+  background-image: radial-gradient(ellipse 75% 60% at 50% 0%, rgba(247, 176, 95, 0.07) 0%, transparent 70%);
 }
 
 .asymmetric-split {
@@ -1036,7 +1082,9 @@ button, input, textarea {
    ========================================================================== */
 .stage-showcases {
   background-color: var(--cream-alt);
-  border-bottom: 1px solid var(--line-light);
+  background-image:
+    radial-gradient(ellipse 65% 50% at 15% 20%, rgba(247, 176, 95, 0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 85% 85%, rgba(119, 82, 41, 0.06) 0%, transparent 65%);
 }
 
 .stage-top-bar {
@@ -1137,6 +1185,7 @@ button, input, textarea {
    ========================================================================== */
 .stage-approach {
   background-color: var(--cream);
+  background-image: radial-gradient(ellipse 65% 55% at 80% 50%, rgba(247, 176, 95, 0.07) 0%, transparent 70%);
 }
 
 .approach-steps {

@@ -27,6 +27,13 @@ function initOpeningIntro() {
     return;
   }
 
+  // Compute exact SVG path length for crisp calligraphic stroke tracing of SEKA YASA
+  const wordmarkPath = document.getElementById("seka-wordmark-path");
+  if (wordmarkPath && typeof wordmarkPath.getTotalLength === "function") {
+    const exactLen = Math.ceil(wordmarkPath.getTotalLength());
+    wordmarkPath.style.setProperty("--path-len", exactLen);
+  }
+
   let dismissed = false;
 
   function dismissIntro() {
@@ -40,8 +47,8 @@ function initOpeningIntro() {
     }, 900);
   }
 
-  // Auto-open curtain after logo reveal finishes (~2.1s)
-  const autoTimer = setTimeout(dismissIntro, 2100);
+  // Auto-open curtain after full SVG Gunungan assembly & calligraphic wordmark trace (~2.85s)
+  const autoTimer = setTimeout(dismissIntro, 2850);
 
   skipBtn?.addEventListener("click", (e) => {
     e.stopPropagation();

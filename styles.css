@@ -123,52 +123,107 @@ body.intro-active {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .intro-glow {
   position: absolute;
-  width: 220px;
-  height: 220px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(247, 176, 95, 0.24) 0%, rgba(119, 82, 41, 0.08) 48%, transparent 70%);
+  background: radial-gradient(circle, rgba(247, 176, 95, 0.25) 0%, rgba(119, 82, 41, 0.08) 48%, transparent 70%);
   opacity: 0;
-  transform: scale(0.7);
-  animation: introGlowIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+  transform: scale(0.65);
+  animation: introGlowIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
 }
 
-.intro-logo-mark {
-  height: 132px;
-  width: auto;
+/* Inline Animated Gunungan SVG (Group 128.svg) */
+.intro-svg-mark {
+  width: 150px;
+  height: auto;
   position: relative;
   z-index: 2;
+  overflow: visible;
+}
+
+/* Step 1: Foundation bar draws out from center */
+.svg-base-bar {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scaleX(0);
   opacity: 0;
-  transform: translateY(24px) scale(0.92);
-  animation: introMarkRise 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.12s forwards;
+  animation: svgExpandX 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards;
+}
+
+.svg-base-dark {
+  animation-delay: 0.25s;
+}
+
+/* Step 2: Vertical Golden Amber slab unfolds upward */
+.svg-amber-slab {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  opacity: 0;
+  animation: svgUnfoldUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.18s forwards;
+}
+
+/* Step 3: Lower Aksara strokes rise into place */
+.svg-part-lower {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: svgAssembleUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.42s forwards;
+}
+
+/* Step 4: Upper Gunungan spire descends/locks onto lower aksara */
+.svg-part-upper {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.96);
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: svgAssembleUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.62s forwards;
+}
+
+/* Step 5: Foreground Deep Espresso layer snaps into its 3D offset */
+.svg-dark-foreground {
+  opacity: 0;
+  transform: translate(-8px, -8px);
+  animation: svgSnapForeground 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.92s forwards;
 }
 
 .intro-rule {
-  width: 180px;
+  width: 210px;
   height: 1.5px;
   background: linear-gradient(90deg, transparent, var(--amber), transparent);
-  margin-bottom: 1.35rem;
+  margin-bottom: 1.15rem;
   transform: scaleX(0);
   opacity: 0;
-  animation: introRuleExpand 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.52s forwards;
+  animation: introRuleExpand 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards;
 }
 
+/* Step 6: SEKA YASA Calligraphic Wordmark — Gold Stroke Draw -> Crisp White Fill */
 .intro-text-mask {
-  overflow: hidden;
-  padding: 0.2rem 0.5rem;
-  margin-bottom: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  margin-bottom: 0.65rem;
 }
 
-.intro-logo-text {
-  height: 36px;
-  width: auto;
-  opacity: 0;
-  transform: translateY(110%);
-  animation: introSlideUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.68s forwards;
+.intro-svg-wordmark {
+  width: min(320px, 72vw);
+  height: auto;
+  overflow: visible;
+}
+
+.svg-wordmark-path {
+  fill: rgba(255, 255, 255, 0);
+  stroke: var(--amber);
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--path-len, 6500);
+  stroke-dashoffset: var(--path-len, 6500);
+  animation:
+    wordmarkTrace 1.25s cubic-bezier(0.4, 0, 0.2, 1) 1.05s forwards,
+    wordmarkFillIn 0.55s ease 1.85s forwards;
 }
 
 .intro-tagline-mask {
@@ -177,13 +232,40 @@ body.intro-active {
 
 .intro-tagline {
   display: inline-block;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.24em;
   color: var(--amber);
   opacity: 0;
   transform: translateY(100%);
-  animation: introSlideUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.92s forwards;
+  animation: introSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.75s forwards;
+}
+
+@keyframes svgExpandX {
+  to { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes svgUnfoldUp {
+  to { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes svgAssembleUp {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes svgSnapForeground {
+  to { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes wordmarkTrace {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes wordmarkFillIn {
+  to {
+    fill: rgba(255, 255, 255, 1);
+    stroke-opacity: 0.15;
+  }
 }
 
 .intro-skip {

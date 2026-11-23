@@ -12,7 +12,7 @@ Karakteristik desain ini dibangun di atas konsep **"Warm Javanese Modern Studio"
 ### 7 Prinsip Anti-AI Slop & Craft Floor:
 1. **Dilarang memakai *Capsule Pill Badge* generik di atas setiap judul:** Gunakan teks indeks arsitektural polos berukuran kecil (`01 · Masalah di Lapangan & Arsitektur Solusi`).
 2. **Dilarang memakai pola "3 Kartu Kotak Kembar" berulang-ulang:** Gunakan **Interactive Problem → Solution Architecture Explorer**, **12-Column Asymmetric Bento Grid (7:5 & 5:7)**, serta **Wide Alternating Showcases**.
-3. **Tipografi Ramping & 3 Tingkat Hirarki Ukuran (Besar, Sedang, Kecil):** Gunakan pasangan font **`Bricolage Grotesque`** (`400`, `500`, `600` — tanpa bobot `800` yang terlalu tebal) untuk judul dan **`Plus Jakarta Sans`** (`400`, `500`, `600`) untuk teks bacaan dan antarmuka.
+3. **Tipografi Ramping & 3 Tingkat Hirarki Ukuran (Besar, Sedang, Kecil):** Gunakan pasangan font **`Manrope`** (`400`, `500`, `600` — tanpa bobot `800` yang terlalu tebal) untuk judul dan **`Plus Jakarta Sans`** (`400`, `500`, `600`) untuk teks bacaan dan antarmuka.
 4. **Satu Oval Floating Navbar Terpadu dengan Mega-Menu:** Seluruh elemen navigasi (Logo di kiri, 5 Menu utama + *Interactive Mega-Menu Dropdown* di tengah, dan tombol CTA *Konsultasi* di kanan) menyatu di dalam **1 bar oval melayang** (`max-width: 1240px; height: 54px; border-radius: 999px`) yang konsisten di semua halaman.
 5. **Setiap Halaman Memiliki Komponen Eksplorasi Aktif:** Pengunjung tidak sekadar membaca teks statis, melainkan dapat berinteraksi dengan *Hero System Preview Switcher*, *Problem → Solution Architecture Explorer*, *Industry Solutions Switcher*, *Case Study Category Filter*, *Interactive FAQ Accordion*, serta *3-Click System Configurator*.
 6. **Sentuhan Karakter Jawa Modern yang Halus (*Tactile Javanese Craft*):**
@@ -46,7 +46,7 @@ Karakteristik desain ini dibangun di atas konsep **"Warm Javanese Modern Studio"
 
 ## 3. Sistem Tipografi Ramping 3-Tingkat (Besar, Sedang, Kecil)
 
-* **`--font-display`**: `'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif` (Bobot ramping `400` dan `500` untuk judul utama, `600` hanya untuk aksen kecil).
+* **`--font-display`**: `'Manrope', 'Plus Jakarta Sans', sans-serif` (Bobot ramping `400` dan `500` untuk judul utama, `600` hanya untuk aksen kecil).
 * **`--font-sans`**: `'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif` (Bobot `400`, `500`, `600`, dilengkapi `font-variant-numeric: tabular-nums` untuk indeks dan tabel data).
 
 | Tingkat Hirarki | Elemen | Ukuran (`font-size`) | Ketebalan (`font-weight`) | `line-height` & `letter-spacing` |

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
   <script>
     if (sessionStorage.getItem("seka_intro_seen") === "1") {
       document.documentElement.classList.add("intro-seen");
@@ -252,129 +252,111 @@
     </section>
 
     <!-- ==================================================================
-         BAGIAN 2 / 6: MASALAH OPERASIONAL & ARSITEKTUR SOLUSI INTERAKTIF
+         BAGIAN 2 / 6: KEUNGGULAN BERSAMA SEKA YASA (TENANG, JELAS & HUMANIZED)
          ================================================================== -->
     <section class="full-stage stage-problems" id="masalah-operasional">
-      <div class="container centered-section-wrap">
-        <div class="centered-header reveal-on-scroll">
-          <span class="section-index">01 · Masalah di Lapangan &amp; Arsitektur Solusi</span>
-          <h2 class="split-title">
-            Tiga kendala operasional yang paling sering kami bereskan.
-          </h2>
+      <div class="container">
+        <div class="benefits-header-split reveal-on-scroll">
+          <div>
+            <span class="section-index">01 · Keunggulan Bersama Seka Yasa</span>
+            <h2 class="split-title">
+              Bebaskan waktu Anda dari urusan rekap manual dan data yang tercecer.
+            </h2>
+          </div>
           <p class="split-desc">
-            Pilih salah satu kendala di bawah ini untuk melihat bagaimana sistem Seka Yasa merapikan alur datanya dari hulu ke hilir.
+            Bisnis yang terus berkembang tidak seharusnya membuat Anda makin sibuk mengecek nota satu per satu. Kami bantu rapikan alur kasir, gudang, produksi, sampai keuangan agar tim bekerja lebih ringan dan Anda bisa memantau usaha dengan tenang.
           </p>
         </div>
 
-        <div class="problem-solver-grid reveal-on-scroll delay-1">
-          <!-- Left: Interactive Problem Selector Cards -->
-          <div class="problem-selector-list" role="tablist" aria-label="Pilih Kendala Operasional">
-            <button type="button" class="problem-select-card active" data-prob-key="pos">
-              <span class="problem-idx">01</span>
-              <div class="problem-body">
-                <div class="problem-head-row">
-                  <h3>Kasir &amp; stok gudang tidak sinkron</h3>
-                  <span class="problem-scope">Sistem Kasir (POS)</span>
-                </div>
-                <p>
-                  Penjualan cabang belum otomatis memotong stok dan masih harus direkap manual setiap malam.
-                </p>
-              </div>
-            </button>
-
-            <button type="button" class="problem-select-card" data-prob-key="erp">
-              <span class="problem-idx">02</span>
-              <div class="problem-body">
-                <div class="problem-head-row">
-                  <h3>Stok fisik gudang sering selisih</h3>
-                  <span class="problem-scope">Inventori &amp; Produksi (ERP)</span>
-                </div>
-                <p>
-                  Barang masuk, PO supplier, dan bahan produksi tercatat terpisah sehingga sisa stok serta HPP tidak akurat.
-                </p>
-              </div>
-            </button>
-
-            <button type="button" class="problem-select-card" data-prob-key="sim">
-              <span class="problem-idx">03</span>
-              <div class="problem-body">
-                <div class="problem-head-row">
-                  <h3>Rekap keuangan, piutang, &amp; gaji terlalu lama</h3>
-                  <span class="problem-scope">Manajemen Internal</span>
-                </div>
-                <p>
-                  Data tersebar di banyak file Excel, membuat penagihan piutang dan tutup buku bulanan memakan waktu berhari-hari.
-                </p>
-              </div>
-            </button>
-          </div>
-
-          <!-- Right: Live Animated SVG Node-Flow Architecture Panel (Opsi 1) -->
-          <div class="solution-arch-panel" aria-live="polite">
-            <div class="arch-panel-head">
-              <div>
-                <span class="arch-panel-tag" id="arch-sol-tag">Arsitektur Solusi 01 · POS Multi-Cabang</span>
-                <h3 class="arch-panel-title" id="arch-sol-title">Menghubungkan setiap struk penjualan cabang langsung ke stok gudang dan kas utama.</h3>
-              </div>
-              <span class="arch-live-badge"><i aria-hidden="true"></i>Live Flow</span>
-            </div>
-
-            <!-- Interactive SVG Node-Flow Topology -->
-            <div class="arch-svg-stage">
-              <svg id="arch-nodeflow-svg" class="arch-nodeflow-svg" viewBox="0 0 640 236" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Alur Arsitektur Sistem Seka Yasa">
-                <!-- Animated Dashed Connectors -->
-                <path d="M168 118 H234" stroke="#F7B05F" stroke-width="1.6" stroke-opacity="0.72" class="arch-flow-line" />
-                <path d="M408 118 C436 118 436 62 464 62" stroke="#F7B05F" stroke-width="1.6" stroke-opacity="0.72" class="arch-flow-line" />
-                <path d="M408 118 C436 118 436 174 464 174" stroke="#F7B05F" stroke-width="1.6" stroke-opacity="0.72" class="arch-flow-line" />
-
-                <!-- Moving Golden Light Signals -->
-                <circle r="3.6" fill="#F7B05F">
-                  <animateMotion dur="1.9s" repeatCount="indefinite" path="M168 118 H234" />
-                </circle>
-                <circle r="3.6" fill="#F7B05F">
-                  <animateMotion dur="2.1s" repeatCount="indefinite" path="M408 118 C436 118 436 62 464 62" />
-                </circle>
-                <circle r="3.6" fill="#F7B05F">
-                  <animateMotion dur="2.1s" begin="0.45s" repeatCount="indefinite" path="M408 118 C436 118 436 174 464 174" />
-                </circle>
-
-                <!-- Node 01: Input Lapangan -->
-                <rect x="8" y="68" width="160" height="100" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(247,176,95,0.34)" />
-                <text x="22" y="92" fill="#F7B05F" font-size="10" font-weight="600" letter-spacing="0.08em">01 · INPUT LAPANGAN</text>
-                <text id="svg-in-title" x="22" y="116" fill="#F7F3EC" font-size="13.5" font-weight="500">Terminal Kasir POS</text>
-                <text id="svg-in-sub" x="22" y="137" fill="#C4B5A2" font-size="10.8">Cabang A &amp; B · Barcode</text>
-                <text id="svg-in-metric" x="22" y="155" fill="#E8DCC8" font-size="10.2">Harga Retail &amp; Grosir</text>
-
-                <!-- Node 02: Mesin Proses & Validasi (Hub) -->
-                <rect x="234" y="56" width="174" height="124" rx="14" fill="rgba(247,176,95,0.11)" stroke="#F7B05F" stroke-width="1.35" />
-                <circle cx="390" cy="76" r="4" fill="#F7B05F" class="arch-pulse-ring" />
-                <text x="250" y="81" fill="#F7B05F" font-size="10" font-weight="600" letter-spacing="0.08em">02 · ENGINE SEKA YASA</text>
-                <text id="svg-mid-title" x="250" y="108" fill="#F7F3EC" font-size="14" font-weight="600">Mesin Auto-Deduct</text>
-                <text id="svg-mid-sub" x="250" y="130" fill="#E8DCC8" font-size="10.8">Potong SKU &amp; Resep BOM</text>
-                <line x1="250" y1="145" x2="392" y2="145" stroke="rgba(247,176,95,0.24)" stroke-width="1" />
-                <text id="svg-mid-badge" x="250" y="164" fill="#F7B05F" font-size="10.4" font-weight="500">Validasi &amp; Kunci Shift Kasir</text>
-
-                <!-- Node 03A: Output Operasional -->
-                <rect x="464" y="16" width="168" height="92" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(247,176,95,0.34)" />
-                <text x="478" y="39" fill="#F7B05F" font-size="10" font-weight="600" letter-spacing="0.08em">03A · OUTPUT GUDANG</text>
-                <text id="svg-out1-title" x="478" y="63" fill="#F7F3EC" font-size="13" font-weight="500">Kartu Stok Cabang</text>
-                <text id="svg-out1-metric" x="478" y="84" fill="#C4B5A2" font-size="10.8">Terpotong detik itu juga</text>
-
-                <!-- Node 03B: Output Manajemen -->
-                <rect x="464" y="128" width="168" height="92" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(247,176,95,0.34)" />
-                <text x="478" y="151" fill="#F7B05F" font-size="10" font-weight="600" letter-spacing="0.08em">03B · PANTAUAN PUSAT</text>
-                <text id="svg-out2-title" x="478" y="175" fill="#F7F3EC" font-size="13" font-weight="500">Dashboard Omzet HQ</text>
-                <text id="svg-out2-metric" x="478" y="196" fill="#C4B5A2" font-size="10.8">Margin &amp; kas real-time</text>
+        <!-- 4 Kartu Manfaat Utama (Grid 2x2 Lega, Ikon Monoline Tenang) -->
+        <div class="benefits-grid-2x2">
+          <!-- Manfaat 1 -->
+          <article class="benefit-card reveal-on-scroll">
+            <div class="benefit-icon-box" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+                <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+                <path d="M16 16h5v5"/>
               </svg>
             </div>
-
-            <p class="arch-summary-strip" id="arch-sol-summary">
-              Pemilik memantau omzet, margin laba kotor, dan sisa stok seluruh cabang secara real-time tanpa menunggu rekap manual tiap malam.
+            <h3>Kerja tim lebih ringan, tanpa input berulang</h3>
+            <p>
+              Begitu kasir mencetak struk atau gudang menerima barang, stok dan catatan keuangan otomatis ikut berubah. Staf Anda tidak perlu lagi menyalin ulang angka dari nota ke Excel setiap malam.
             </p>
+          </article>
 
-            <div class="arch-panel-footer">
-              <span class="arch-status-pill"><i aria-hidden="true"></i>Dirancang mengikuti SOP lapangan</span>
-              <a href="services.html#pos" class="btn btn-amber" id="arch-sol-link" style="padding: 0.6rem 1.15rem; font-size: 0.82rem;">Pelajari Modul POS →</a>
+          <!-- Manfaat 2 -->
+          <article class="benefit-card reveal-on-scroll delay-1">
+            <div class="benefit-icon-box" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <polyline points="12 7 12 12 15.5 14"/>
+              </svg>
+            </div>
+            <h3>Pantau usaha secara langsung, dari mana saja</h3>
+            <p>
+              Tidak perlu menunggu rekap akhir hari atau menelepon tiap cabang satu per satu. Omzet, sisa barang yang mulai menipis, hingga posisi kas bisa Anda cek sendiri kapan saja dari ponsel maupun laptop.
+            </p>
+          </article>
+
+          <!-- Manfaat 3 -->
+          <article class="benefit-card reveal-on-scroll">
+            <div class="benefit-icon-box" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="21" x2="4" y2="14"/>
+                <line x1="4" y1="10" x2="4" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12" y2="3"/>
+                <line x1="20" y1="21" x2="20" y2="16"/>
+                <line x1="20" y1="12" x2="20" y2="3"/>
+                <line x1="2" y1="14" x2="6" y2="14"/>
+                <line x1="10" y1="8" x2="14" y2="8"/>
+                <line x1="18" y1="16" x2="22" y2="16"/>
+              </svg>
+            </div>
+            <h3>Sistem mengikuti cara kerja Anda, bukan sebaliknya</h3>
+            <p>
+              Setiap usaha punya aturan main sendiri—entah itu harga grosir bertingkat, takaran resep dapur, atau hitungan komisi tim. Kami bangun sistemnya mengikuti kebiasaan baik yang sudah berjalan di bisnis Anda.
+            </p>
+          </article>
+
+          <!-- Manfaat 4 -->
+          <article class="benefit-card reveal-on-scroll delay-1">
+            <div class="benefit-icon-box" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
+            <h3>Angka lebih jujur, data terjaga, dan didampingi penuh</h3>
+            <p>
+              Setiap staf hanya membuka data sesuai bagiannya dan seluruh data dicadangkan otomatis. Tim kami di Surabaya juga ikut mendampingi langsung—dari merapikan data Excel lama sampai staf Anda benar-benar lancar.
+            </p>
+          </article>
+        </div>
+
+        <!-- Strip 3 Poin Ringkas Tenang di Bawah -->
+        <div class="benefits-trust-strip reveal-on-scroll">
+          <div class="trust-strip-item">
+            <span class="trust-strip-num">01</span>
+            <div>
+              <h4>Mulai dari yang paling dibutuhkan</h4>
+              <p>Bisa mulai dari kasir atau gudang dulu, lalu ditambah saat bisnis berkembang.</p>
+            </div>
+          </div>
+          <div class="trust-strip-item">
+            <span class="trust-strip-num">02</span>
+            <div>
+              <h4>Semua bagian bicara dalam satu data</h4>
+              <p>Kasir, gudang, produksi, dan keuangan saling terhubung agar angka selalu sejalan.</p>
+            </div>
+          </div>
+          <div class="trust-strip-item">
+            <span class="trust-strip-num">03</span>
+            <div>
+              <h4>Bebas biaya langganan per-akun</h4>
+              <p>Tambah staf baru atau buka cabang berikutnya tanpa biaya bulanan yang membengkak.</p>
             </div>
           </div>
         </div>
@@ -398,17 +380,17 @@
     </div>
 
     <!-- ==================================================================
-         BAGIAN 3 / 6: 12-COLUMN ASYMMETRIC BENTO GRID (STANDAR REKAYASA)
+         BAGIAN 3 / 6: 12-COLUMN ASYMMETRIC BENTO GRID (FONDASI TEKNIS)
          ================================================================== -->
     <section class="full-stage stage-bento">
       <div class="container">
         <div class="centered-header reveal-on-scroll">
-          <span class="section-index">02 · Standar Rekayasa Software House</span>
+          <span class="section-index">02 · Fondasi Teknis di Balik Layar</span>
           <h2 class="split-title">
-            Dibangun untuk beban operasional nyata, bukan sekadar tampilan.
+            Dirancang kokoh untuk dipakai tim Anda bertahun-tahun ke depan.
           </h2>
           <p class="split-desc">
-            Setiap sistem kami rancang di atas fondasi database terpusat, kontrol hak akses berjenjang, serta fleksibilitas modul yang tumbuh bersama bisnis Anda.
+            Di balik tampilan yang sederhana bagi staf, setiap sistem kami ditopang arsitektur yang rapi, aman, dan siap tumbuh mengikuti skala perusahaan Anda.
           </p>
         </div>
 
@@ -416,10 +398,10 @@
           <!-- Bento Cell 1 (7 Cols) -->
           <article class="bento-card bento-span-7 reveal-on-scroll">
             <div>
-              <span class="bento-eyebrow">01 · Arsitektur Modular &amp; Terpusat</span>
-              <h3>Mulai dari modul paling mendesak, perluas tanpa bongkar ulang.</h3>
+              <span class="bento-eyebrow">01 · Satu Basis Data Terpusat</span>
+              <h3>Bangun bertahap tanpa perlu bongkar ulang sistem di kemudian hari.</h3>
               <p>
-                Anda tidak harus membangun seluruh sistem sekaligus. Mulai dari merapikan kasir atau stok gudang terlebih dahulu, lalu sambungkan modul pembelian (PO), produksi (BOM), hingga laporan keuangan dan HRIS di atas satu basis data yang sama.
+                Ketika usaha Anda siap menambah modul pembelian supplier, produksi (BOM), atau penggajian karyawan, semuanya langsung tersambung ke data barang dan transaksi yang sudah berjalan—bukan membuat aplikasi baru yang terpisah.
               </p>
             </div>
             <div class="bento-visual-strip">
@@ -433,45 +415,45 @@
           <!-- Bento Cell 2 (5 Cols Dark) -->
           <article class="bento-card bento-dark bento-span-5 reveal-on-scroll delay-1">
             <div>
-              <span class="bento-eyebrow">02 · Keamanan &amp; Hak Akses (RBAC)</span>
-              <h3>Setiap staf hanya melihat data sesuai wewenangnya.</h3>
+              <span class="bento-eyebrow">02 · Jejak Audit Transaksi (Audit Trail)</span>
+              <h3>Setiap koreksi stok atau pembatalan nota selalu tercatat rapi.</h3>
               <p>
-                Pembagian hak akses berjenjang untuk kasir, admin gudang, supervisor, staf keuangan, hingga direksi—dilengkapi pencatatan riwayat perubahan data (<em>audit trail</em>) untuk mencegah manipulasi transaksi.
+                Anda bisa melihat dengan jelas siapa yang mengubah data, kapan waktunya, dan apa nilai sebelumnya—membantu mencegah selisih yang tidak jelas sumbernya.
               </p>
             </div>
             <div class="bento-visual-strip">
-              <span class="bento-chip amber-chip">Role-Based Access</span>
-              <span class="bento-chip">Log Audit Transaksi</span>
+              <span class="bento-chip amber-chip">Otorisasi Supervisor</span>
+              <span class="bento-chip">Riwayat Perubahan Lengkap</span>
             </div>
           </article>
 
           <!-- Bento Cell 3 (5 Cols) -->
           <article class="bento-card bento-span-5 reveal-on-scroll">
             <div>
-              <span class="bento-eyebrow">03 · Efisiensi Biaya Jangka Panjang</span>
-              <h3>Bebas dari biaya langganan per-akun yang terus membengkak.</h3>
+              <span class="bento-eyebrow">03 · Ringan di Semua Perangkat</span>
+              <h3>Bisa dipakai di komputer kasir, tablet gudang, sampai ponsel Anda.</h3>
               <p>
-                Berbeda dengan aplikasi SaaS bulanan yang membatasi jumlah pengguna atau mengenakan tarif per-kasir, sistem yang kami bangun memungkinkan Anda menambah staf dan cabang baru dengan leluasa.
+                Tanpa perlu membeli perangkat mahal. Seluruh laporan penjualan, kartu stok, dan piutang juga bisa diunduh ke format Excel atau PDF resmi perusahaan kapan saja.
               </p>
             </div>
             <div class="bento-visual-strip">
-              <a href="services.html#perbandingan" class="link-arrow" style="margin-top: 0;">Lihat tabel perbandingan SaaS vs Custom →</a>
+              <a href="services.html#perbandingan" class="link-arrow" style="margin-top: 0;">Lihat perbandingan SaaS vs Custom →</a>
             </div>
           </article>
 
           <!-- Bento Cell 4 (7 Cols) -->
           <article class="bento-card bento-span-7 reveal-on-scroll delay-1">
             <div>
-              <span class="bento-eyebrow">04 · Pendampingan Lapangan</span>
-              <h3>Didampingi langsung dari migrasi Excel hingga tim lancar beroperasi.</h3>
+              <span class="bento-eyebrow">04 · Mitra Teknis Jangka Panjang</span>
+              <h3>Didampingi tim yang mudah dihubungi, bukan sekadar serah terima selesai.</h3>
               <p>
-                Sistem yang baik sering gagal karena staf bingung menggunakannya. Tim kami di Surabaya membantu merapikan master data awal, menyusun panduan SOP singkat, dan melatih admin maupun kasir Anda secara langsung.
+                Kami tidak menghilang setelah sistem berjalan. Jika ada staf baru yang perlu dilatih, aturan pajak berubah, atau Anda ingin menambah laporan khusus untuk direksi, tim Seka Yasa Surabaya siap membantu.
               </p>
             </div>
             <div class="bento-visual-strip">
-              <span class="bento-chip">Migrasi Master Data</span>
-              <span class="bento-chip">Pelatihan Admin &amp; Kasir</span>
-              <span class="bento-chip">Garansi &amp; Dukungan Teknis</span>
+              <span class="bento-chip">Garansi Pemeliharaan</span>
+              <span class="bento-chip">Pelatihan Staf Baru</span>
+              <span class="bento-chip">Dukungan Tim Surabaya</span>
             </div>
           </article>
         </div>

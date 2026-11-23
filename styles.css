@@ -1169,6 +1169,45 @@ button, input, textarea {
   display: block;
 }
 
+/* Floating Clickable Pagination Dots Inside Image */
+.carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background-color: rgba(20, 13, 5, 0.58);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(247, 176, 95, 0.24);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.carousel-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background-color: rgba(247, 243, 236, 0.42);
+  cursor: pointer;
+  transition: width 0.32s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.22s ease, opacity 0.22s ease;
+}
+
+.carousel-dot:hover {
+  background-color: rgba(247, 243, 236, 0.85);
+}
+
+.carousel-dot.active {
+  width: 22px;
+  background-color: var(--amber);
+}
+
 .hero-image-caption {
   display: flex;
   justify-content: space-between;

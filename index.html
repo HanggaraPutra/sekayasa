@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5" />
   <script>
     if (sessionStorage.getItem("seka_intro_seen") === "1") {
       document.documentElement.classList.add("intro-seen");
@@ -227,16 +227,18 @@
                 </div>
                 <span class="hero-frame-title" id="hero-frame-title">Overview Multi-Gudang, Rak &amp; Produksi (ERP)</span>
               </div>
-              <div class="showcase-bar-actions">
-                <span class="hero-frame-meta" id="hero-frame-meta">Multi-Warehouse · PO &amp; BOM</span>
-                <span class="showcase-slide-count" id="hero-slide-count">01 / 03</span>
-              </div>
+              <span class="hero-frame-meta" id="hero-frame-meta">Multi-Warehouse · PO &amp; BOM</span>
             </div>
             <div class="hero-stage-main auto-carousel-viewport">
               <div class="auto-carousel-track" id="hero-carousel-track">
                 <div class="auto-carousel-slide"><img src="assets/erp-complex-v2.jpg" alt="Overview Multi-Gudang, Rak & Produksi (ERP)" /></div>
                 <div class="auto-carousel-slide"><img src="assets/erp-purchasing-po.png" alt="Purchasing, Purchase Order (PO) & Penerimaan Barang" /></div>
                 <div class="auto-carousel-slide"><img src="assets/erp-bom-hpp.png" alt="Work Order Produksi, Resep (BOM) & Kalkulasi HPP" /></div>
+              </div>
+              <div class="carousel-dots" id="hero-carousel-dots" role="tablist" aria-label="Navigasi layar Hero">
+                <button type="button" class="carousel-dot active" data-dot="0" aria-label="Layar 1"></button>
+                <button type="button" class="carousel-dot" data-dot="1" aria-label="Layar 2"></button>
+                <button type="button" class="carousel-dot" data-dot="2" aria-label="Layar 3"></button>
               </div>
             </div>
           </div>
@@ -500,7 +502,6 @@
                   <div class="hero-frame-dots" aria-hidden="true"><span></span><span></span><span></span></div>
                   <span class="showcase-slide-title" data-gal-title>Overview Multi-Gudang, Rak &amp; Produksi</span>
                 </div>
-                <span class="showcase-slide-count" data-gal-count>01 / 03</span>
               </div>
               <div class="showcase-main-stage auto-carousel-viewport">
                 <div class="auto-carousel-track" data-gal-track>
@@ -513,6 +514,11 @@
                   <div class="auto-carousel-slide" data-title="Work Order Produksi, Resep (BOM) & Kalkulasi HPP">
                     <img src="assets/erp-bom-hpp.png" alt="Work Order Produksi, Resep (BOM) & Kalkulasi HPP" loading="lazy" />
                   </div>
+                </div>
+                <div class="carousel-dots" data-gal-dots role="tablist" aria-label="Navigasi layar ERP">
+                  <button type="button" class="carousel-dot active" data-dot="0" aria-label="Layar 1"></button>
+                  <button type="button" class="carousel-dot" data-dot="1" aria-label="Layar 2"></button>
+                  <button type="button" class="carousel-dot" data-dot="2" aria-label="Layar 3"></button>
                 </div>
               </div>
             </div>
@@ -552,7 +558,6 @@
                   <div class="hero-frame-dots" aria-hidden="true"><span></span><span></span><span></span></div>
                   <span class="showcase-slide-title" data-gal-title>Terminal Kasir Penjualan (POS) &amp; Harga Grosir</span>
                 </div>
-                <span class="showcase-slide-count" data-gal-count>01 / 03</span>
               </div>
               <div class="showcase-main-stage auto-carousel-viewport">
                 <div class="auto-carousel-track" data-gal-track>
@@ -566,6 +571,11 @@
                     <img src="assets/pos-complex-v2.jpg" alt="Overview Backoffice & Analitik Multi-Cabang" loading="lazy" />
                   </div>
                 </div>
+                <div class="carousel-dots" data-gal-dots role="tablist" aria-label="Navigasi layar POS">
+                  <button type="button" class="carousel-dot active" data-dot="0" aria-label="Layar 1"></button>
+                  <button type="button" class="carousel-dot" data-dot="1" aria-label="Layar 2"></button>
+                  <button type="button" class="carousel-dot" data-dot="2" aria-label="Layar 3"></button>
+                </div>
               </div>
             </div>
           </article>
@@ -578,7 +588,6 @@
                   <div class="hero-frame-dots" aria-hidden="true"><span></span><span></span><span></span></div>
                   <span class="showcase-slide-title" data-gal-title>Dashboard Arus Kas, Laba-Rugi &amp; Keuangan</span>
                 </div>
-                <span class="showcase-slide-count" data-gal-count>01 / 03</span>
               </div>
               <div class="showcase-main-stage auto-carousel-viewport">
                 <div class="auto-carousel-track" data-gal-track>
@@ -591,6 +600,11 @@
                   <div class="auto-carousel-slide" data-title="HRIS Absensi, Lembur & Otomasi Penggajian (Payroll)">
                     <img src="assets/sim-hris-payroll.png" alt="HRIS Absensi, Lembur & Otomasi Penggajian (Payroll)" loading="lazy" />
                   </div>
+                </div>
+                <div class="carousel-dots" data-gal-dots role="tablist" aria-label="Navigasi layar SIM">
+                  <button type="button" class="carousel-dot active" data-dot="0" aria-label="Layar 1"></button>
+                  <button type="button" class="carousel-dot" data-dot="1" aria-label="Layar 2"></button>
+                  <button type="button" class="carousel-dot" data-dot="2" aria-label="Layar 3"></button>
                 </div>
               </div>
             </div>
@@ -703,6 +717,6 @@
   <!-- SHARED FOOTER (RENDERED AUTOMATICALLY BY app.js) -->
   <div id="seka-footer"></div>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

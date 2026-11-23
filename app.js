@@ -410,7 +410,7 @@ function initHeroPreviewSwitcher() {
   const heroBox = document.getElementById("hero-image-box");
   const titleEl = document.getElementById("hero-frame-title");
   const metaEl = document.getElementById("hero-frame-meta");
-  const countEl = document.getElementById("hero-slide-count");
+  const dotsWrap = document.getElementById("hero-carousel-dots");
 
   if (!tabs.length || !track) return;
 
@@ -454,27 +454,27 @@ function initHeroPreviewSwitcher() {
       .join("");
     activeSlideIdx = 0;
     track.style.transform = "translate3d(0%, 0, 0)";
-    // Force reflow so subsequent auto-rolls animate smoothly
     void track.offsetWidth;
     track.classList.remove("no-transition");
-    updateHeader();
+    updateHeaderAndDots();
   }
 
-  function updateHeader() {
+  function updateHeaderAndDots() {
     const group = sysData[activeSysKey];
     const slide = group.slides[activeSlideIdx];
     if (titleEl) titleEl.textContent = slide.title;
     if (metaEl) metaEl.textContent = group.meta;
-    if (countEl) {
-      countEl.textContent = `${String(activeSlideIdx + 1).padStart(2, "0")} / ${String(group.slides.length).padStart(2, "0")}`;
-    }
+    dotsWrap?.querySelectorAll(".carousel-dot").forEach((dot, i) => {
+      dot.classList.toggle("active", i === activeSlideIdx);
+      dot.setAttribute("aria-selected", i === activeSlideIdx ? "true" : "false");
+    });
   }
 
   function goToSlide(idx) {
     const total = sysData[activeSysKey].slides.length;
     activeSlideIdx = (idx + total) % total;
     track.style.transform = `translate3d(-${activeSlideIdx * 100}%, 0, 0)`;
-    updateHeader();
+    updateHeaderAndDots();
   }
 
   function startAutoRoll() {
@@ -483,6 +483,14 @@ function initHeroPreviewSwitcher() {
       if (!isPaused) goToSlide(activeSlideIdx + 1);
     }, 3400);
   }
+
+  dotsWrap?.querySelectorAll(".carousel-dot").forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const idx = Number(dot.getAttribute("data-dot"));
+      goToSlide(idx);
+      startAutoRoll();
+    });
+  });
 
   tabs.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -767,7 +775,7 @@ function initShowcaseGalleries() {
   galleries.forEach((gallery) => {
     const track = gallery.querySelector("[data-gal-track]");
     const slides = Array.from(gallery.querySelectorAll(".auto-carousel-slide"));
-    const countEl = gallery.querySelector("[data-gal-count]");
+    const dots = Array.from(gallery.querySelectorAll("[data-gal-dots] .carousel-dot"));
     const titleEl = gallery.querySelector("[data-gal-title]");
     const intervalMs = Number(gallery.getAttribute("data-interval")) || 3600;
 
@@ -775,23 +783,37 @@ function initShowcaseGalleries() {
 
     let idx = 0;
     let paused = false;
+    let timer = null;
 
     function goTo(nextIdx) {
       idx = (nextIdx + slides.length) % slides.length;
       track.style.transform = `translate3d(-${idx * 100}%, 0, 0)`;
       const activeTitle = slides[idx].getAttribute("data-title") || "";
       if (titleEl && activeTitle) titleEl.textContent = activeTitle;
-      if (countEl) {
-        countEl.textContent = `${String(idx + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
-      }
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === idx);
+        dot.setAttribute("aria-selected", i === idx ? "true" : "false");
+      });
     }
+
+    function startTimer() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => {
+        if (!paused) goTo(idx + 1);
+      }, intervalMs);
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        goTo(Number(dot.getAttribute("data-dot")));
+        startTimer();
+      });
+    });
 
     gallery.addEventListener("mouseenter", () => { paused = true; });
     gallery.addEventListener("mouseleave", () => { paused = false; });
 
-    setInterval(() => {
-      if (!paused) goTo(idx + 1);
-    }, intervalMs);
+    startTimer();
   });
 }
 

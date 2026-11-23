@@ -402,176 +402,108 @@ function initHeroInteractiveBg() {
 }
 
 /* ==========================================================================
-   4. HERO INTERACTIVE 3-SYSTEM x 3-SCREEN PREVIEW SWITCHER (ON INDEX.HTML)
+   4. HERO INTERACTIVE 3-SYSTEM AUTO-ROLLING CAROUSEL (ON INDEX.HTML)
    ========================================================================== */
 function initHeroPreviewSwitcher() {
   const tabs = document.querySelectorAll("[data-hero-sys]");
-  const imgEl = document.getElementById("hero-preview-img");
+  const track = document.getElementById("hero-carousel-track");
+  const heroBox = document.getElementById("hero-image-box");
   const titleEl = document.getElementById("hero-frame-title");
   const metaEl = document.getElementById("hero-frame-meta");
   const countEl = document.getElementById("hero-slide-count");
-  const thumbsWrap = document.getElementById("hero-sub-thumbs");
-  const prevBtn = document.getElementById("hero-slide-prev");
-  const nextBtn = document.getElementById("hero-slide-next");
-  const zoomBtn = document.getElementById("hero-slide-zoom");
-  const stageMain = document.getElementById("hero-stage-main");
 
-  if (!tabs.length || !imgEl) return;
+  if (!tabs.length || !track) return;
 
   const sysData = {
     erp: {
       meta: "Multi-Warehouse · PO & BOM",
       slides: [
-        {
-          src: "assets/erp-complex-v2.jpg",
-          short: "01 · Multi-Gudang & Rak",
-          title: "Overview Multi-Gudang, Rak & Produksi (ERP)"
-        },
-        {
-          src: "assets/erp-purchasing-po.png",
-          short: "02 · Purchasing & PO Supplier",
-          title: "Purchasing, Purchase Order (PO) & Penerimaan Barang"
-        },
-        {
-          src: "assets/erp-bom-hpp.png",
-          short: "03 · Work Order, BOM & HPP",
-          title: "Work Order Produksi, Resep (BOM) & Kalkulasi HPP"
-        }
+        { src: "assets/erp-complex-v2.jpg", title: "Overview Multi-Gudang, Rak & Produksi (ERP)" },
+        { src: "assets/erp-purchasing-po.png", title: "Purchasing, Purchase Order (PO) & Penerimaan Barang" },
+        { src: "assets/erp-bom-hpp.png", title: "Work Order Produksi, Resep (BOM) & Kalkulasi HPP" }
       ]
     },
     pos: {
       meta: "Penjualan · Pembelian & Shift",
       slides: [
-        {
-          src: "assets/pos-kasir-penjualan.png",
-          short: "01 · Kasir Penjualan & Grosir",
-          title: "Terminal Kasir Penjualan (POS), Harga Grosir & QRIS"
-        },
-        {
-          src: "assets/pos-pembelian-shift.png",
-          short: "02 · Pembelian & Tutup Shift",
-          title: "Pembelian Stok Cabang, Mutasi Barang & Tutup Shift"
-        },
-        {
-          src: "assets/pos-complex-v2.jpg",
-          short: "03 · Analitik Multi-Cabang",
-          title: "Overview Backoffice & Analitik Penjualan Multi-Cabang"
-        }
+        { src: "assets/pos-kasir-penjualan.png", title: "Terminal Kasir Penjualan (POS), Harga Grosir & QRIS" },
+        { src: "assets/pos-pembelian-shift.png", title: "Pembelian Stok Cabang, Mutasi Barang & Tutup Shift" },
+        { src: "assets/pos-complex-v2.jpg", title: "Overview Backoffice & Analitik Penjualan Multi-Cabang" }
       ]
     },
     sim: {
       meta: "Arus Kas · AR Aging & Payroll",
       slides: [
-        {
-          src: "assets/sim-complex-v2.jpg",
-          short: "01 · Arus Kas & Laba-Rugi",
-          title: "Dashboard Arus Kas, Laba-Rugi & Keuangan Korporat"
-        },
-        {
-          src: "assets/sim-piutang-ar.png",
-          short: "02 · Faktur & Piutang (AR)",
-          title: "Faktur Penjualan & Jadwal Umur Piutang (AR/AP Aging)"
-        },
-        {
-          src: "assets/sim-hris-payroll.png",
-          short: "03 · HRIS & Otomasi Payroll",
-          title: "HRIS Absensi, Lembur & Otomasi Penggajian (Payroll)"
-        }
+        { src: "assets/sim-complex-v2.jpg", title: "Dashboard Arus Kas, Laba-Rugi & Keuangan Korporat" },
+        { src: "assets/sim-piutang-ar.png", title: "Faktur Penjualan & Jadwal Umur Piutang (AR/AP Aging)" },
+        { src: "assets/sim-hris-payroll.png", title: "HRIS Absensi, Lembur & Otomasi Penggajian (Payroll)" }
       ]
     }
   };
 
   let activeSysKey = "erp";
   let activeSlideIdx = 0;
+  let isPaused = false;
+  let timer = null;
 
-  function renderSubThumbs() {
-    if (!thumbsWrap) return;
-    const slides = sysData[activeSysKey].slides;
-    thumbsWrap.innerHTML = slides
-      .map(
-        (s, i) => `
-          <button type="button" class="showcase-thumb-btn ${i === activeSlideIdx ? "active" : ""}" data-hero-sub="${i}">
-            <img src="${s.src}" alt="${s.short}" />
-            <span>${s.short}</span>
-          </button>
-        `
-      )
+  function renderSlidesForSystem(key) {
+    const group = sysData[key];
+    track.classList.add("no-transition");
+    track.innerHTML = group.slides
+      .map((s) => `<div class="auto-carousel-slide"><img src="${s.src}" alt="${s.title}" /></div>`)
       .join("");
-
-    thumbsWrap.querySelectorAll("[data-hero-sub]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const idx = Number(btn.getAttribute("data-hero-sub"));
-        selectSubSlide(idx);
-      });
-    });
+    activeSlideIdx = 0;
+    track.style.transform = "translate3d(0%, 0, 0)";
+    // Force reflow so subsequent auto-rolls animate smoothly
+    void track.offsetWidth;
+    track.classList.remove("no-transition");
+    updateHeader();
   }
 
-  function selectSubSlide(idx, instant = false) {
+  function updateHeader() {
     const group = sysData[activeSysKey];
-    const total = group.slides.length;
-    activeSlideIdx = (idx + total) % total;
     const slide = group.slides[activeSlideIdx];
-
-    if (instant || imgEl.getAttribute("src") === slide.src) {
-      imgEl.src = slide.src;
-      imgEl.alt = slide.title;
-    } else {
-      imgEl.classList.add("is-switching");
-      setTimeout(() => {
-        imgEl.src = slide.src;
-        imgEl.alt = slide.title;
-        imgEl.classList.remove("is-switching");
-      }, 115);
-    }
-
     if (titleEl) titleEl.textContent = slide.title;
     if (metaEl) metaEl.textContent = group.meta;
-    if (countEl) countEl.textContent = `${String(activeSlideIdx + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+    if (countEl) {
+      countEl.textContent = `${String(activeSlideIdx + 1).padStart(2, "0")} / ${String(group.slides.length).padStart(2, "0")}`;
+    }
+  }
 
-    thumbsWrap?.querySelectorAll("[data-hero-sub]").forEach((btn, i) => {
-      btn.classList.toggle("active", i === activeSlideIdx);
-    });
+  function goToSlide(idx) {
+    const total = sysData[activeSysKey].slides.length;
+    activeSlideIdx = (idx + total) % total;
+    track.style.transform = `translate3d(-${activeSlideIdx * 100}%, 0, 0)`;
+    updateHeader();
+  }
+
+  function startAutoRoll() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => {
+      if (!isPaused) goToSlide(activeSlideIdx + 1);
+    }, 3400);
   }
 
   tabs.forEach((btn) => {
     btn.addEventListener("click", () => {
       const key = btn.getAttribute("data-hero-sys");
-      if (!sysData[key]) return;
+      if (!sysData[key] || key === activeSysKey) return;
       activeSysKey = key;
-      activeSlideIdx = 0;
       tabs.forEach((b) => {
         const isMatch = b === btn;
         b.classList.toggle("active", isMatch);
         b.setAttribute("aria-selected", isMatch ? "true" : "false");
       });
-      renderSubThumbs();
-      selectSubSlide(0);
+      renderSlidesForSystem(key);
+      startAutoRoll();
     });
   });
 
-  prevBtn?.addEventListener("click", () => selectSubSlide(activeSlideIdx - 1));
-  nextBtn?.addEventListener("click", () => selectSubSlide(activeSlideIdx + 1));
+  heroBox?.addEventListener("mouseenter", () => { isPaused = true; });
+  heroBox?.addEventListener("mouseleave", () => { isPaused = false; });
 
-  // Connect Hero preview to the shared Lightbox modal
-  const openHeroLightbox = () => {
-    if (window.__sekaOpenLightbox) {
-      window.__sekaOpenLightbox({
-        step(delta) {
-          selectSubSlide(activeSlideIdx + delta, true);
-        },
-        getCurrent() {
-          const slides = sysData[activeSysKey].slides;
-          const s = slides[activeSlideIdx];
-          return { idx: activeSlideIdx, total: slides.length, src: s.src, title: s.title };
-        }
-      });
-    }
-  };
-  zoomBtn?.addEventListener("click", openHeroLightbox);
-  stageMain?.addEventListener("click", openHeroLightbox);
-
-  renderSubThumbs();
-  selectSubSlide(0, true);
+  renderSlidesForSystem("erp");
+  startAutoRoll();
 }
 
 /* ==========================================================================
@@ -826,159 +758,40 @@ function initDiagnosisWidget() {
 }
 
 /* ==========================================================================
-   9. INTERACTIVE 3-IMAGE SHOWCASE GALLERIES + FULLSCREEN LIGHTBOX (INDEX.HTML)
+   9. AUTO-ROLLING 3-SCREEN SHOWCASE CAROUSELS (SECTION 03 ON INDEX.HTML)
    ========================================================================== */
 function initShowcaseGalleries() {
-  const galleries = document.querySelectorAll("[data-showcase-gallery]");
+  const galleries = document.querySelectorAll("[data-auto-showcase]");
   if (!galleries.length) return;
 
-  // Create shared Fullscreen Lightbox modal once
-  let lightbox = document.getElementById("seka-lightbox");
-  if (!lightbox) {
-    lightbox = document.createElement("div");
-    lightbox.id = "seka-lightbox";
-    lightbox.className = "seka-lightbox";
-    lightbox.setAttribute("role", "dialog");
-    lightbox.setAttribute("aria-modal", "true");
-    lightbox.setAttribute("aria-label", "Pratinjau Layar Penuh Sistem Seka Yasa");
-    lightbox.innerHTML = `
-      <div class="seka-lightbox-dialog">
-        <div class="seka-lightbox-head">
-          <div class="showcase-bar-meta">
-            <span class="showcase-slide-count" id="lb-count">01 / 03</span>
-            <span id="lb-title">Tampilan Sistem</span>
-          </div>
-          <div class="showcase-bar-actions">
-            <button type="button" class="showcase-icon-btn" id="lb-prev" aria-label="Layar sebelumnya">‹</button>
-            <button type="button" class="showcase-icon-btn" id="lb-next" aria-label="Layar berikutnya">›</button>
-            <button type="button" class="showcase-zoom-btn" id="lb-close" aria-label="Tutup">✕ Tutup</button>
-          </div>
-        </div>
-        <div class="seka-lightbox-body">
-          <img id="lb-img" src="" alt="" />
-        </div>
-      </div>
-    `;
-    document.body.appendChild(lightbox);
-  }
-
-  const lbImg = document.getElementById("lb-img");
-  const lbTitle = document.getElementById("lb-title");
-  const lbCount = document.getElementById("lb-count");
-  let activeGalleryCtrl = null;
-
-  function syncLightbox() {
-    if (!activeGalleryCtrl) return;
-    const item = activeGalleryCtrl.getCurrent();
-    if (!item) return;
-    lbImg.src = item.src;
-    lbImg.alt = item.title;
-    lbTitle.textContent = item.title;
-    lbCount.textContent = `${String(item.idx + 1).padStart(2, "0")} / ${String(item.total).padStart(2, "0")}`;
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove("is-open");
-    document.body.style.overflow = "";
-    activeGalleryCtrl = null;
-  }
-
-  window.__sekaOpenLightbox = (ctrl) => {
-    activeGalleryCtrl = ctrl;
-    syncLightbox();
-    lightbox.classList.add("is-open");
-    document.body.style.overflow = "hidden";
-  };
-
-  document.getElementById("lb-close")?.addEventListener("click", closeLightbox);
-  document.getElementById("lb-prev")?.addEventListener("click", () => {
-    activeGalleryCtrl?.step(-1);
-    syncLightbox();
-  });
-  document.getElementById("lb-next")?.addEventListener("click", () => {
-    activeGalleryCtrl?.step(1);
-    syncLightbox();
-  });
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (!lightbox.classList.contains("is-open")) return;
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") {
-      activeGalleryCtrl?.step(-1);
-      syncLightbox();
-    }
-    if (e.key === "ArrowRight") {
-      activeGalleryCtrl?.step(1);
-      syncLightbox();
-    }
-  });
-
   galleries.forEach((gallery) => {
-    const thumbs = Array.from(gallery.querySelectorAll("[data-gal-thumb]"));
-    const mainImg = gallery.querySelector("[data-gal-main]");
+    const track = gallery.querySelector("[data-gal-track]");
+    const slides = Array.from(gallery.querySelectorAll(".auto-carousel-slide"));
     const countEl = gallery.querySelector("[data-gal-count]");
     const titleEl = gallery.querySelector("[data-gal-title]");
-    const prevBtn = gallery.querySelector("[data-gal-prev]");
-    const nextBtn = gallery.querySelector("[data-gal-next]");
-    const zoomTriggers = gallery.querySelectorAll("[data-gal-zoom]");
+    const intervalMs = Number(gallery.getAttribute("data-interval")) || 3600;
 
-    if (!thumbs.length || !mainImg) return;
+    if (!track || slides.length < 2) return;
 
-    let currentIdx = Math.max(0, thumbs.findIndex((t) => t.classList.contains("active")));
+    let idx = 0;
+    let paused = false;
 
-    function selectSlide(nextIdx) {
-      currentIdx = (nextIdx + thumbs.length) % thumbs.length;
-      const target = thumbs[currentIdx];
-      const src = target.getAttribute("data-src");
-      const title = target.getAttribute("data-title") || "";
-
-      thumbs.forEach((btn, i) => btn.classList.toggle("active", i === currentIdx));
-
-      if (mainImg.getAttribute("src") !== src) {
-        mainImg.classList.add("is-switching");
-        setTimeout(() => {
-          mainImg.src = src;
-          mainImg.alt = title;
-          mainImg.classList.remove("is-switching");
-        }, 120);
-      }
+    function goTo(nextIdx) {
+      idx = (nextIdx + slides.length) % slides.length;
+      track.style.transform = `translate3d(-${idx * 100}%, 0, 0)`;
+      const activeTitle = slides[idx].getAttribute("data-title") || "";
+      if (titleEl && activeTitle) titleEl.textContent = activeTitle;
       if (countEl) {
-        countEl.textContent = `${String(currentIdx + 1).padStart(2, "0")} / ${String(thumbs.length).padStart(2, "0")}`;
+        countEl.textContent = `${String(idx + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
       }
-      if (titleEl) titleEl.textContent = title;
     }
 
-    const ctrl = {
-      step(delta) {
-        selectSlide(currentIdx + delta);
-      },
-      getCurrent() {
-        const t = thumbs[currentIdx];
-        return {
-          idx: currentIdx,
-          total: thumbs.length,
-          src: t.getAttribute("data-src"),
-          title: t.getAttribute("data-title") || ""
-        };
-      }
-    };
+    gallery.addEventListener("mouseenter", () => { paused = true; });
+    gallery.addEventListener("mouseleave", () => { paused = false; });
 
-    thumbs.forEach((btn, idx) => {
-      btn.addEventListener("click", () => selectSlide(idx));
-    });
-    prevBtn?.addEventListener("click", () => selectSlide(currentIdx - 1));
-    nextBtn?.addEventListener("click", () => selectSlide(currentIdx + 1));
-
-    zoomTriggers.forEach((el) => {
-      el.addEventListener("click", () => {
-        activeGalleryCtrl = ctrl;
-        syncLightbox();
-        lightbox.classList.add("is-open");
-        document.body.style.overflow = "hidden";
-      });
-    });
+    setInterval(() => {
+      if (!paused) goTo(idx + 1);
+    }, intervalMs);
   });
 }
 

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
   <script>
     if (sessionStorage.getItem("seka_intro_seen") === "1") {
       document.documentElement.classList.add("intro-seen");
@@ -207,15 +207,15 @@
           <div class="hero-preview-tabs" role="tablist" aria-label="Pilih Pratinjau Sistem Seka Yasa">
             <button type="button" class="hero-tab-btn active" data-hero-sys="erp" role="tab" aria-selected="true">
               <span class="tab-dot"></span>
-              <span>ERP Gudang &amp; Produksi (3 Layar)</span>
+              <span>ERP Gudang &amp; Produksi</span>
             </button>
             <button type="button" class="hero-tab-btn" data-hero-sys="pos" role="tab" aria-selected="false">
               <span class="tab-dot"></span>
-              <span>Sistem Kasir POS (3 Layar)</span>
+              <span>Sistem Kasir (POS) Multi-Cabang</span>
             </button>
             <button type="button" class="hero-tab-btn" data-hero-sys="sim" role="tab" aria-selected="false">
               <span class="tab-dot"></span>
-              <span>Manajemen &amp; HRIS (3 Layar)</span>
+              <span>Manajemen Internal (Keuangan &amp; HRIS)</span>
             </button>
           </div>
 
@@ -225,32 +225,19 @@
                 <div class="hero-frame-dots" aria-hidden="true">
                   <span></span><span></span><span></span>
                 </div>
-                <span class="showcase-slide-count" id="hero-slide-count">01 / 03</span>
                 <span class="hero-frame-title" id="hero-frame-title">Overview Multi-Gudang, Rak &amp; Produksi (ERP)</span>
               </div>
               <div class="showcase-bar-actions">
-                <span class="hero-frame-meta" id="hero-frame-meta">Multi-Warehouse · BOM &amp; HPP</span>
-                <button type="button" class="showcase-icon-btn" id="hero-slide-prev" aria-label="Layar sebelumnya">‹</button>
-                <button type="button" class="showcase-icon-btn" id="hero-slide-next" aria-label="Layar berikutnya">›</button>
-                <button type="button" class="showcase-zoom-btn" id="hero-slide-zoom" aria-label="Perbesar layar">⤢ Perbesar</button>
+                <span class="hero-frame-meta" id="hero-frame-meta">Multi-Warehouse · PO &amp; BOM</span>
+                <span class="showcase-slide-count" id="hero-slide-count">01 / 03</span>
               </div>
             </div>
-            <div class="hero-stage-main" id="hero-stage-main" title="Klik untuk memperbesar tampilan layar">
-              <img id="hero-preview-img" src="assets/erp-complex-v2.jpg" alt="Tampilan Dashboard Inventori & Produksi (ERP) Seka Yasa" />
-            </div>
-            <div class="showcase-thumb-strip hero-sub-thumbs" id="hero-sub-thumbs" role="tablist" aria-label="3 Layar Modul Aktif">
-              <button type="button" class="showcase-thumb-btn active" data-hero-sub="0">
-                <img src="assets/erp-complex-v2.jpg" alt="Multi-Gudang ERP" />
-                <span>01 · Multi-Gudang &amp; Rak</span>
-              </button>
-              <button type="button" class="showcase-thumb-btn" data-hero-sub="1">
-                <img src="assets/erp-purchasing-po.png" alt="Purchasing PO ERP" />
-                <span>02 · Purchasing &amp; PO Supplier</span>
-              </button>
-              <button type="button" class="showcase-thumb-btn" data-hero-sub="2">
-                <img src="assets/erp-bom-hpp.png" alt="Work Order BOM & HPP ERP" />
-                <span>03 · Work Order, BOM &amp; HPP</span>
-              </button>
+            <div class="hero-stage-main auto-carousel-viewport">
+              <div class="auto-carousel-track" id="hero-carousel-track">
+                <div class="auto-carousel-slide"><img src="assets/erp-complex-v2.jpg" alt="Overview Multi-Gudang, Rak & Produksi (ERP)" /></div>
+                <div class="auto-carousel-slide"><img src="assets/erp-purchasing-po.png" alt="Purchasing, Purchase Order (PO) & Penerimaan Barang" /></div>
+                <div class="auto-carousel-slide"><img src="assets/erp-bom-hpp.png" alt="Work Order Produksi, Resep (BOM) & Kalkulasi HPP" /></div>
+              </div>
             </div>
           </div>
         </div>
@@ -505,36 +492,28 @@
         </div>
 
         <div class="wide-showcase-list">
-          <!-- Showcase 1: ERP (3 Images Gallery + Scroll Zoom) -->
+          <!-- Showcase 1: ERP (Auto-Sliding 3 Screens + Scroll Zoom) -->
           <article class="wide-showcase-item reveal-on-scroll">
-            <div class="showcase-media scroll-zoom-media" data-scroll-zoom data-showcase-gallery>
+            <div class="showcase-media scroll-zoom-media" data-scroll-zoom data-auto-showcase data-interval="3600">
               <div class="showcase-gallery-bar">
                 <div class="showcase-bar-meta">
-                  <span class="showcase-slide-count" data-gal-count>01 / 03</span>
+                  <div class="hero-frame-dots" aria-hidden="true"><span></span><span></span><span></span></div>
                   <span class="showcase-slide-title" data-gal-title>Overview Multi-Gudang, Rak &amp; Produksi</span>
                 </div>
-                <div class="showcase-bar-actions">
-                  <button type="button" class="showcase-icon-btn" data-gal-prev aria-label="Layar sebelumnya">‹</button>
-                  <button type="button" class="showcase-icon-btn" data-gal-next aria-label="Layar berikutnya">›</button>
-                  <button type="button" class="showcase-zoom-btn" data-gal-zoom aria-label="Perbesar layar">⤢ Perbesar</button>
+                <span class="showcase-slide-count" data-gal-count>01 / 03</span>
+              </div>
+              <div class="showcase-main-stage auto-carousel-viewport">
+                <div class="auto-carousel-track" data-gal-track>
+                  <div class="auto-carousel-slide" data-title="Overview Multi-Gudang, Rak & Produksi">
+                    <img src="assets/erp-complex-v2.jpg" alt="Overview Multi-Gudang, Rak & Produksi (ERP Seka Yasa)" />
+                  </div>
+                  <div class="auto-carousel-slide" data-title="Purchasing, Purchase Order (PO) & Penerimaan Barang">
+                    <img src="assets/erp-purchasing-po.png" alt="Purchasing, Purchase Order (PO) & Penerimaan Barang" loading="lazy" />
+                  </div>
+                  <div class="auto-carousel-slide" data-title="Work Order Produksi, Resep (BOM) & Kalkulasi HPP">
+                    <img src="assets/erp-bom-hpp.png" alt="Work Order Produksi, Resep (BOM) & Kalkulasi HPP" loading="lazy" />
+                  </div>
                 </div>
-              </div>
-              <div class="showcase-main-stage" data-gal-zoom title="Klik untuk memperbesar tampilan layar">
-                <img data-gal-main src="assets/erp-complex-v2.jpg" alt="Overview Multi-Gudang, Rak & Produksi (ERP Seka Yasa)" />
-              </div>
-              <div class="showcase-thumb-strip" role="tablist" aria-label="Pilihan Layar Modul ERP">
-                <button type="button" class="showcase-thumb-btn active" data-gal-thumb data-src="assets/erp-complex-v2.jpg" data-title="Overview Multi-Gudang, Rak & Produksi">
-                  <img src="assets/erp-complex-v2.jpg" alt="Thumbnail Multi-Gudang ERP" loading="lazy" />
-                  <span>01 · Multi-Gudang</span>
-                </button>
-                <button type="button" class="showcase-thumb-btn" data-gal-thumb data-src="assets/erp-purchasing-po.png" data-title="Purchasing, Purchase Order (PO) & Penerimaan Barang">
-                  <img src="assets/erp-purchasing-po.png" alt="Thumbnail Purchasing PO Supplier ERP" loading="lazy" />
-                  <span>02 · PO &amp; Supplier</span>
-                </button>
-                <button type="button" class="showcase-thumb-btn" data-gal-thumb data-src="assets/erp-bom-hpp.png" data-title="Work Order Produksi, Resep (BOM) & Kalkulasi HPP">
-                  <img src="assets/erp-bom-hpp.png" alt="Thumbnail Work Order BOM & HPP ERP" loading="lazy" />
-                  <span>03 · BOM &amp; HPP</span>
-                </button>
               </div>
             </div>
             <div class="showcase-info">
@@ -552,7 +531,7 @@
             </div>
           </article>
 
-          <!-- Showcase 2: POS (3 Images Gallery + Scroll Zoom) -->
+          <!-- Showcase 2: POS (Auto-Sliding 3 Screens + Scroll Zoom) -->
           <article class="wide-showcase-item reverse reveal-on-scroll">
             <div class="showcase-info">
               <span class="section-index">Proyek 02 — Sistem Kasir (POS) &amp; Backoffice</span>
@@ -567,68 +546,52 @@
               </ul>
               <a href="projects.html#pos" class="link-arrow">Pelajari studi kasus POS ini →</a>
             </div>
-            <div class="showcase-media scroll-zoom-media" data-scroll-zoom data-showcase-gallery>
+            <div class="showcase-media scroll-zoom-media" data-scroll-zoom data-auto-showcase data-interval="4100">
               <div class="showcase-gallery-bar">
                 <div class="showcase-bar-meta">
-                  <span class="showcase-slide-count" data-gal-count>01 / 03</span>
+                  <div class="hero-frame-dots" aria-hidden="true"><span></span><span></span><span></span></div>
                   <span class="showcase-slide-title" data-gal-title>Terminal Kasir Penjualan (POS) &amp; Harga Grosir</span>
                 </div>
-                <div class="showcase-bar-actions">
-                  <button type="button" class="showcase-icon-btn" data-gal-prev aria-label="Layar sebelumnya">‹</button>
-                  <button type="button" class="showcase-icon-btn" data-gal-next aria-label="Layar berikutnya">›</button>
-                  <button type="button" class="showcase-zoom-btn" data-gal-zoom aria-label="Perbesar layar">⤢ Perbesar</button>
+                <span class="showcase-slide-count" data-gal-count>01 / 03</span>
+              </div>
+              <div class="showcase-main-stage auto-carousel-viewport">
+                <div class="auto-carousel-track" data-gal-track>
+                  <div class="auto-carousel-slide" data-title="Terminal Kasir Penjualan (POS) & Harga Grosir">
+                    <img src="assets/pos-kasir-penjualan.png" alt="Layar Terminal Kasir Penjualan POS Seka Yasa" />
+                  </div>
+                  <div class="auto-carousel-slide" data-title="Pembelian Stok, Mutasi Cabang & Rekonsiliasi Shift">
+                    <img src="assets/pos-pembelian-shift.png" alt="Pembelian Stok, Mutasi Cabang & Rekonsiliasi Shift" loading="lazy" />
+                  </div>
+                  <div class="auto-carousel-slide" data-title="Overview Backoffice & Analitik Multi-Cabang">
+                    <img src="assets/pos-complex-v2.jpg" alt="Overview Backoffice & Analitik Multi-Cabang" loading="lazy" />
+                  </div>
                 </div>
-              </div>
-              <div class="showcase-main-stage" data-gal-zoom title="Klik untuk memperbesar tampilan layar">
-                <img data-gal-main src="assets/pos-kasir-penjualan.png" alt="Layar Terminal Kasir Penjualan POS Seka Yasa" />
-              </div>
-              <div class="showcase-thumb-strip" role="tablist" aria-label="Pilihan Layar Modul POS">
-                <button type="button" class="showcase-thumb-btn active" data-gal-thumb data-src="assets/pos-kasir-penjualan.png" data-title="Terminal Kasir Penjualan (POS) & Harga Grosir">
-                  <img src="assets/pos-kasir-penjualan.png" alt="Thumbnail Kasir Penjualan POS" loading="lazy" />
-                  <span>01 · Kasir Penjualan</span>
-                </button>
-                <button type="button" class="showcase-thumb-btn" data-gal-thumb data-src="assets/pos-pembelian-shift.png" data-title="Pembelian Stok, Mutasi Cabang & Rekonsiliasi Shift">
-                  <img src="assets/pos-pembelian-shift.png" alt="Thumbnail Pembelian Stok & Shift POS" loading="lazy" />
-                  <span>02 · Pembelian &amp; Shift</span>
-                </button>
-                <button type="button" class="showcase-thumb-btn" data-gal-thumb data-src="assets/pos-complex-v2.jpg" data-title="Overview Backoffice & Analitik Multi-Cabang">
-                  <img src="assets/pos-complex-v2.jpg" alt="Thumbnail Overview Multi-Cabang POS" loading="lazy" />
-                  <span>03 · Analitik HQ</span>
-                </button>
               </div>
             </div>
           </article>
 
-          <!-- Showcase 3: SIM & HRIS (3 Images Gallery + Scroll Zoom) -->
+          <!-- Showcase 3: SIM & HRIS (Auto-Sliding 3 Screens + Scroll Zoom) -->
           <article class="wide-showcase-item reveal-on-scroll">
-            <div class="showcase-media scroll-zoom-media" data-scroll-zoom data-showcase-gallery>
+            <div class="showcase-media scroll-zoom-media" data-scroll-zoom data-auto-showcase data-interval="3850">
               <div class="showcase-gallery-bar">
                 <div class="showcase-bar-meta">
-                  <span class="showcase-slide-count" data-gal-count>01 / 03</span>
+                  <div class="hero-frame-dots" aria-hidden="true"><span></span><span></span><span></span></div>
                   <span class="showcase-slide-title" data-gal-title>Dashboard Arus Kas, Laba-Rugi &amp; Keuangan</span>
                 </div>
-                <div class="showcase-bar-actions">
-                  <button type="button" class="showcase-icon-btn" data-gal-prev aria-label="Layar sebelumnya">‹</button>
-                  <button type="button" class="showcase-icon-btn" data-gal-next aria-label="Layar berikutnya">›</button>
-                  <button type="button" class="showcase-zoom-btn" data-gal-zoom aria-label="Perbesar layar">⤢ Perbesar</button>
+                <span class="showcase-slide-count" data-gal-count>01 / 03</span>
+              </div>
+              <div class="showcase-main-stage auto-carousel-viewport">
+                <div class="auto-carousel-track" data-gal-track>
+                  <div class="auto-carousel-slide" data-title="Dashboard Arus Kas, Laba-Rugi & Keuangan">
+                    <img src="assets/sim-complex-v2.jpg" alt="Dashboard Keuangan, Arus Kas & Laba Rugi Seka Yasa" />
+                  </div>
+                  <div class="auto-carousel-slide" data-title="Faktur Penjualan & Jadwal Umur Piutang (AR Aging)">
+                    <img src="assets/sim-piutang-ar.png" alt="Faktur Penjualan & Jadwal Umur Piutang (AR Aging)" loading="lazy" />
+                  </div>
+                  <div class="auto-carousel-slide" data-title="HRIS Absensi, Lembur & Otomasi Penggajian (Payroll)">
+                    <img src="assets/sim-hris-payroll.png" alt="HRIS Absensi, Lembur & Otomasi Penggajian (Payroll)" loading="lazy" />
+                  </div>
                 </div>
-              </div>
-              <div class="showcase-main-stage" data-gal-zoom title="Klik untuk memperbesar tampilan layar">
-                <img data-gal-main src="assets/sim-complex-v2.jpg" alt="Dashboard Keuangan, Arus Kas & Laba Rugi Seka Yasa" />
-              </div>
-              <div class="showcase-thumb-strip" role="tablist" aria-label="Pilihan Layar Modul SIM & HRIS">
-                <button type="button" class="showcase-thumb-btn active" data-gal-thumb data-src="assets/sim-complex-v2.jpg" data-title="Dashboard Arus Kas, Laba-Rugi & Keuangan">
-                  <img src="assets/sim-complex-v2.jpg" alt="Thumbnail Keuangan & Laba Rugi" loading="lazy" />
-                  <span>01 · Arus Kas &amp; Laba</span>
-                </button>
-                <button type="button" class="showcase-thumb-btn" data-gal-thumb data-src="assets/sim-piutang-ar.png" data-title="Faktur Penjualan & Jadwal Umur Piutang (AR Aging)">
-                  <img src="assets/sim-piutang-ar.png" alt="Thumbnail Piutang AR Aging" loading="lazy" />
-                  <span>02 · Piutang AR/AP</span>
-                </button>
-                <button type="button" class="showcase-thumb-btn" data-gal-thumb data-src="assets/sim-hris-payroll.png" data-title="HRIS Absensi, Lembur & Otomasi Penggajian (Payroll)">
-                  <img src="assets/sim-hris-payroll.png" alt="Thumbnail HRIS & Payroll" loading="lazy" />
-                  <span>03 · HRIS &amp; Payroll</span>
-                </button>
               </div>
             </div>
             <div class="showcase-info">
@@ -740,6 +703,6 @@
   <!-- SHARED FOOTER (RENDERED AUTOMATICALLY BY app.js) -->
   <div id="seka-footer"></div>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

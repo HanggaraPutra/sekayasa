@@ -296,41 +296,71 @@
             </button>
           </div>
 
-          <!-- Right: Live Solution Architecture Flow Explorer -->
+          <!-- Right: Live Animated SVG Node-Flow Architecture Panel (Opsi 1) -->
           <div class="solution-arch-panel" aria-live="polite">
             <div class="arch-panel-head">
-              <span class="arch-panel-tag" id="arch-sol-tag">Arsitektur Solusi · POS Multi-Cabang</span>
-              <h3 class="arch-panel-title" id="arch-sol-title">Sinkronisasi Transaksi Kasir ke Stok Gudang &amp; Laporan Pusat</h3>
+              <div>
+                <span class="arch-panel-tag" id="arch-sol-tag">Arsitektur Solusi 01 · POS Multi-Cabang</span>
+                <h3 class="arch-panel-title" id="arch-sol-title">Menghubungkan setiap struk penjualan cabang langsung ke stok gudang dan kas utama.</h3>
+              </div>
+              <span class="arch-live-badge"><i aria-hidden="true"></i>Live Flow</span>
             </div>
 
-            <div class="arch-flow-diagram">
-              <div class="arch-flow-node">
-                <span class="arch-node-step">01 · Input Lapangan</span>
-                <div class="arch-node-text" id="arch-node-input">
-                  <strong>Terminal Kasir &amp; Harga Bertingkat</strong>
-                  <span>Transaksi ritel/grosir, scan barcode, &amp; pencatatan modal shift kasir di tiap cabang.</span>
-                </div>
-              </div>
+            <!-- Interactive SVG Node-Flow Topology -->
+            <div class="arch-svg-stage">
+              <svg id="arch-nodeflow-svg" class="arch-nodeflow-svg" viewBox="0 0 640 236" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Alur Arsitektur Sistem Seka Yasa">
+                <!-- Animated Dashed Connectors -->
+                <path d="M168 118 H234" stroke="#F7B05F" stroke-width="1.6" stroke-opacity="0.72" class="arch-flow-line" />
+                <path d="M408 118 C436 118 436 62 464 62" stroke="#F7B05F" stroke-width="1.6" stroke-opacity="0.72" class="arch-flow-line" />
+                <path d="M408 118 C436 118 436 174 464 174" stroke="#F7B05F" stroke-width="1.6" stroke-opacity="0.72" class="arch-flow-line" />
 
-              <div class="arch-flow-node">
-                <span class="arch-node-step">02 · Mesin Proses &amp; Validasi</span>
-                <div class="arch-node-text" id="arch-node-process">
-                  <strong>Auto-Deduct Stok &amp; Resep (BOM)</strong>
-                  <span>Pemotongan stok SKU atau bahan baku F&amp;B otomatis begitu struk tercetak di kasir.</span>
-                </div>
-              </div>
+                <!-- Moving Golden Light Signals -->
+                <circle r="3.6" fill="#F7B05F">
+                  <animateMotion dur="1.9s" repeatCount="indefinite" path="M168 118 H234" />
+                </circle>
+                <circle r="3.6" fill="#F7B05F">
+                  <animateMotion dur="2.1s" repeatCount="indefinite" path="M408 118 C436 118 436 62 464 62" />
+                </circle>
+                <circle r="3.6" fill="#F7B05F">
+                  <animateMotion dur="2.1s" begin="0.45s" repeatCount="indefinite" path="M408 118 C436 118 436 174 464 174" />
+                </circle>
 
-              <div class="arch-flow-node">
-                <span class="arch-node-step">03 · Output Manajemen</span>
-                <div class="arch-node-text" id="arch-node-output">
-                  <strong>Dashboard Konsolidasi Multi-Cabang</strong>
-                  <span>Pantauan omzet real-time, selisih kas shift, &amp; margin laba kotor antar-cabang dari HP/Laptop.</span>
-                </div>
-              </div>
+                <!-- Node 01: Input Lapangan -->
+                <rect x="8" y="68" width="160" height="100" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(247,176,95,0.34)" />
+                <text x="22" y="92" fill="#F7B05F" font-size="10" font-weight="600" letter-spacing="0.08em">01 · INPUT LAPANGAN</text>
+                <text id="svg-in-title" x="22" y="116" fill="#F7F3EC" font-size="13.5" font-weight="500">Terminal Kasir POS</text>
+                <text id="svg-in-sub" x="22" y="137" fill="#C4B5A2" font-size="10.8">Cabang A &amp; B · Barcode</text>
+                <text id="svg-in-metric" x="22" y="155" fill="#E8DCC8" font-size="10.2">Harga Retail &amp; Grosir</text>
+
+                <!-- Node 02: Mesin Proses & Validasi (Hub) -->
+                <rect x="234" y="56" width="174" height="124" rx="14" fill="rgba(247,176,95,0.11)" stroke="#F7B05F" stroke-width="1.35" />
+                <circle cx="390" cy="76" r="4" fill="#F7B05F" class="arch-pulse-ring" />
+                <text x="250" y="81" fill="#F7B05F" font-size="10" font-weight="600" letter-spacing="0.08em">02 · ENGINE SEKA YASA</text>
+                <text id="svg-mid-title" x="250" y="108" fill="#F7F3EC" font-size="14" font-weight="600">Mesin Auto-Deduct</text>
+                <text id="svg-mid-sub" x="250" y="130" fill="#E8DCC8" font-size="10.8">Potong SKU &amp; Resep BOM</text>
+                <line x1="250" y1="145" x2="392" y2="145" stroke="rgba(247,176,95,0.24)" stroke-width="1" />
+                <text id="svg-mid-badge" x="250" y="164" fill="#F7B05F" font-size="10.4" font-weight="500">Validasi &amp; Kunci Shift Kasir</text>
+
+                <!-- Node 03A: Output Operasional -->
+                <rect x="464" y="16" width="168" height="92" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(247,176,95,0.34)" />
+                <text x="478" y="39" fill="#F7B05F" font-size="10" font-weight="600" letter-spacing="0.08em">03A · OUTPUT GUDANG</text>
+                <text id="svg-out1-title" x="478" y="63" fill="#F7F3EC" font-size="13" font-weight="500">Kartu Stok Cabang</text>
+                <text id="svg-out1-metric" x="478" y="84" fill="#C4B5A2" font-size="10.8">Terpotong detik itu juga</text>
+
+                <!-- Node 03B: Output Manajemen -->
+                <rect x="464" y="128" width="168" height="92" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(247,176,95,0.34)" />
+                <text x="478" y="151" fill="#F7B05F" font-size="10" font-weight="600" letter-spacing="0.08em">03B · PANTAUAN PUSAT</text>
+                <text id="svg-out2-title" x="478" y="175" fill="#F7F3EC" font-size="13" font-weight="500">Dashboard Omzet HQ</text>
+                <text id="svg-out2-metric" x="478" y="196" fill="#C4B5A2" font-size="10.8">Margin &amp; kas real-time</text>
+              </svg>
             </div>
+
+            <p class="arch-summary-strip" id="arch-sol-summary">
+              Pemilik memantau omzet, margin laba kotor, dan sisa stok seluruh cabang secara real-time tanpa menunggu rekap manual tiap malam.
+            </p>
 
             <div class="arch-panel-footer">
-              <span class="arch-status-pill"><i></i> Dirancang mengikuti SOP lapangan</span>
+              <span class="arch-status-pill"><i aria-hidden="true"></i>Dirancang mengikuti SOP lapangan</span>
               <a href="services.html#pos" class="btn btn-amber" id="arch-sol-link" style="padding: 0.6rem 1.15rem; font-size: 0.82rem;">Pelajari Modul POS →</a>
             </div>
           </div>

@@ -1891,12 +1891,18 @@ button, input, textarea {
   color: var(--text-on-dark-muted);
 }
 
-.frame-dots {
+.hidden {
+  display: none !important;
+}
+
+.frame-dots,
+.hero-frame-dots {
   display: inline-flex;
   gap: 6px;
 }
 
-.frame-dots i {
+.frame-dots i,
+.hero-frame-dots span {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -1904,20 +1910,42 @@ button, input, textarea {
   display: inline-block;
 }
 
-.frame-dots i:first-child {
+.frame-dots i:first-child,
+.hero-frame-dots span:first-child {
   background-color: var(--amber);
 }
 
-.frame-status-tag {
+.hero-frame-title {
+  color: var(--text-on-dark);
+  font-weight: 500;
+}
+
+.frame-status-tag,
+.hero-frame-meta {
   color: var(--amber);
   font-weight: 500;
 }
 
-/* Interactive Problem -> Solution Architecture Explorer on Homepage */
+.tab-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.6;
+  display: inline-block;
+  margin-right: 0.45rem;
+}
+
+.hero-tab-btn {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Interactive Problem -> Solution Architecture Explorer (Opsi 1: Dark SVG Node-Flow) */
 .problem-solver-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 3rem;
+  grid-template-columns: 0.94fr 1.06fr;
+  gap: 2.5rem;
   align-items: stretch;
   width: 100%;
   margin-top: 1rem;
@@ -1972,75 +2000,138 @@ button, input, textarea {
 }
 
 .solution-arch-panel {
-  background-color: var(--white);
-  border: 1px solid var(--line-light);
+  background-color: #160F06;
+  background-image:
+    radial-gradient(circle at 86% 14%, rgba(247, 176, 95, 0.15), transparent 55%),
+    linear-gradient(to right, rgba(247, 176, 95, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(247, 176, 95, 0.045) 1px, transparent 1px),
+    linear-gradient(155deg, #160F06 0%, #1F1408 55%, #2B1B0B 100%);
+  background-size: 100% 100%, 28px 28px, 28px 28px, 100% 100%;
+  border: 1px solid rgba(247, 176, 95, 0.26);
   border-radius: var(--radius-md);
   padding: 2rem 2.2rem;
+  color: var(--text-on-dark);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1.25rem;
+  box-shadow: 0 24px 50px rgba(26, 18, 8, 0.16);
 }
 
 .arch-panel-head {
-  padding-bottom: 1.15rem;
-  margin-bottom: 1.35rem;
-  border-bottom: 1px solid var(--line-light);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(247, 176, 95, 0.16);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.arch-tag {
+.arch-tag,
+.arch-panel-tag {
   display: inline-block;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: var(--soga);
-  background-color: var(--soga-tint);
-  padding: 0.22rem 0.65rem;
-  border-radius: 6px;
-  margin-bottom: 0.55rem;
-}
-
-.arch-panel-head h3 {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 500;
-  line-height: 1.28;
-}
-
-.arch-flow-chain {
-  display: grid;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.arch-flow-node {
-  padding: 0.9rem 1.1rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--cream);
-  border: 1px solid var(--line-light);
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 0.85rem;
-  align-items: baseline;
-  font-size: 0.88rem;
-}
-
-.arch-node-role {
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--soga);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  color: var(--amber);
+  margin-bottom: 0.45rem;
 }
 
-.arch-panel-foot {
-  padding-top: 1.15rem;
-  border-top: 1px solid var(--line-light);
+.arch-panel-head h3,
+.arch-panel-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text-on-dark);
+}
+
+.arch-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--amber);
+  background-color: rgba(247, 176, 95, 0.12);
+  border: 1px solid rgba(247, 176, 95, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.arch-live-badge i,
+.arch-status-pill i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--amber);
+  display: inline-block;
+  box-shadow: 0 0 8px var(--amber);
+}
+
+.arch-svg-stage {
+  width: 100%;
+  padding: 0.35rem 0;
+}
+
+.arch-nodeflow-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  font-family: var(--font-sans);
+}
+
+.arch-flow-line {
+  stroke-dasharray: 5 5;
+  animation: archFlowDash 1.2s linear infinite;
+}
+
+.arch-pulse-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: archPulseRing 2s ease-in-out infinite;
+}
+
+@keyframes archFlowDash {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes archPulseRing {
+  0%, 100% { opacity: 0.45; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.22); }
+}
+
+.arch-summary-strip {
+  font-size: 0.86rem;
+  color: var(--text-on-dark-muted);
+  line-height: 1.6;
+  padding: 0.85rem 1.05rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(247, 176, 95, 0.14);
+}
+
+.arch-panel-foot,
+.arch-panel-footer {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(247, 176, 95, 0.16);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  font-size: 0.84rem;
-  color: var(--text-secondary);
+  font-size: 0.8rem;
+  color: var(--text-on-dark-muted);
+}
+
+.arch-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* Asymmetric 12-Column Bento Engineering Grid */
@@ -2055,7 +2146,8 @@ button, input, textarea {
   margin-top: 2.75rem;
 }
 
-.bento-cell {
+.bento-cell,
+.bento-card {
   background-color: var(--white);
   border: 1px solid var(--line-light);
   border-radius: var(--radius-md);
@@ -2063,10 +2155,12 @@ button, input, textarea {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1.35rem;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.bento-cell:hover {
+.bento-cell:hover,
+.bento-card:hover {
   transform: translateY(-2px);
   border-color: var(--soga);
 }
@@ -2074,13 +2168,29 @@ button, input, textarea {
 .bento-span-7 { grid-column: span 7; }
 .bento-span-5 { grid-column: span 5; }
 
-.bento-cell-dark {
+.bento-cell-dark,
+.bento-dark {
   background: linear-gradient(145deg, #160F06 0%, #2C1D0D 100%);
   color: var(--text-on-dark);
   border-color: rgba(247, 176, 95, 0.24);
 }
 
-.bento-cell h3 {
+.bento-eyebrow {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--soga);
+  margin-bottom: 0.55rem;
+}
+
+.bento-dark .bento-eyebrow {
+  color: var(--amber);
+}
+
+.bento-cell h3,
+.bento-card h3 {
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 500;
@@ -2088,15 +2198,62 @@ button, input, textarea {
   margin-bottom: 0.65rem;
 }
 
-.bento-cell p {
+.bento-dark h3 {
+  color: var(--text-on-dark);
+}
+
+.bento-cell p,
+.bento-card p {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.65;
-  max-width: 540px;
+  max-width: 560px;
 }
 
-.bento-cell-dark p {
+.bento-cell-dark p,
+.bento-dark p {
   color: var(--text-on-dark-muted);
+}
+
+.bento-visual-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-light);
+}
+
+.bento-dark .bento-visual-strip {
+  border-top-color: rgba(247, 176, 95, 0.16);
+}
+
+.bento-chip {
+  font-size: 0.76rem;
+  font-weight: 500;
+  padding: 0.3rem 0.72rem;
+  border-radius: 6px;
+  background-color: var(--cream);
+  border: 1px solid var(--line-light);
+  color: var(--text-primary);
+}
+
+.bento-chip.amber-chip {
+  background-color: var(--soga-tint);
+  border-color: rgba(119, 82, 41, 0.28);
+  color: var(--soga);
+  font-weight: 600;
+}
+
+.bento-dark .bento-chip {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(247, 176, 95, 0.2);
+  color: var(--text-on-dark);
+}
+
+.bento-dark .bento-chip.amber-chip {
+  background-color: rgba(247, 176, 95, 0.16);
+  border-color: rgba(247, 176, 95, 0.4);
+  color: var(--amber);
 }
 
 .bento-mini-diagram {
@@ -2137,10 +2294,21 @@ button, input, textarea {
   justify-content: space-between;
 }
 
+.service-pillar-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.service-pillar-card h2,
 .service-pillar-card h3 {
   font-family: var(--font-display);
   font-size: 1.48rem;
   font-weight: 500;
+  line-height: 1.24;
   margin-bottom: 0.65rem;
 }
 
@@ -2177,7 +2345,8 @@ button, input, textarea {
   margin-bottom: 2.25rem;
 }
 
-.industry-tab-btn {
+.industry-tab-btn,
+.case-filter-btn {
   padding: 0.65rem 1.35rem;
   border-radius: 999px;
   background-color: var(--white);
@@ -2189,12 +2358,14 @@ button, input, textarea {
   transition: all 0.18s ease;
 }
 
-.industry-tab-btn:hover {
+.industry-tab-btn:hover,
+.case-filter-btn:hover {
   border-color: var(--soga);
   color: var(--text-primary);
 }
 
-.industry-tab-btn.active {
+.industry-tab-btn.active,
+.case-filter-btn.active {
   background-color: var(--espresso);
   color: var(--amber);
   border-color: var(--espresso);
@@ -2208,7 +2379,21 @@ button, input, textarea {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 3rem;
-  align-items: center;
+  align-items: start;
+}
+
+.industry-detail-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.24;
+  margin-bottom: 0.75rem;
+}
+
+.industry-detail-box p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
 }
 
 /* Comparison Table (Manual vs SaaS vs Custom Seka Yasa) */
@@ -2284,13 +2469,22 @@ button, input, textarea {
   border-color: rgba(119, 82, 41, 0.32);
 }
 
-.ba-box strong {
+.ba-box strong,
+.ba-label {
   display: block;
   font-size: 0.74rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--soga);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
+}
+
+.ba-box p {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+  margin: 0;
 }
 
 /* Process Page: 5-Stage Lifecycle & Accordion FAQ */
@@ -2305,9 +2499,44 @@ button, input, textarea {
   border-radius: var(--radius-md);
   padding: 2rem 2.25rem;
   display: grid;
-  grid-template-columns: 90px 1.1fr 0.9fr;
+  grid-template-columns: 185px 1.1fr 0.85fr;
   gap: 2rem;
   align-items: start;
+}
+
+.lifecycle-num-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.lifecycle-step-tag {
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--soga);
+}
+
+.lifecycle-step-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.lifecycle-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.24rem;
+  font-weight: 500;
+  line-height: 1.28;
+  margin-bottom: 0.5rem;
+}
+
+.lifecycle-body p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
 }
 
 .lifecycle-num {
@@ -2325,13 +2554,22 @@ button, input, textarea {
   font-size: 0.84rem;
 }
 
-.lifecycle-deliverable strong {
+.lifecycle-deliverable span {
   display: block;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--soga);
   margin-bottom: 0.35rem;
+}
+
+.lifecycle-deliverable strong {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.45;
 }
 
 /* FAQ Accordion */

@@ -447,43 +447,79 @@ function initHeroPreviewSwitcher() {
 }
 
 /* ==========================================================================
-   5. INTERACTIVE PROBLEM -> SOLUTION ARCHITECTURE EXPLORER (ON INDEX.HTML)
+   5. INTERACTIVE PROBLEM -> SOLUTION ARCHITECTURE EXPLORER (OPSI 1 NODE-FLOW SVG)
    ========================================================================== */
 function initProblemArchitectureExplorer() {
   const cards = document.querySelectorAll("[data-prob-key]");
   const tagEl = document.getElementById("arch-sol-tag");
   const titleEl = document.getElementById("arch-sol-title");
-  const inputEl = document.getElementById("arch-node-input");
-  const procEl = document.getElementById("arch-node-process");
-  const outEl = document.getElementById("arch-node-output");
+  const summaryEl = document.getElementById("arch-sol-summary");
   const linkEl = document.getElementById("arch-sol-link");
+
+  const svgInTitle = document.getElementById("svg-in-title");
+  const svgInSub = document.getElementById("svg-in-sub");
+  const svgInMetric = document.getElementById("svg-in-metric");
+  const svgMidTitle = document.getElementById("svg-mid-title");
+  const svgMidSub = document.getElementById("svg-mid-sub");
+  const svgMidBadge = document.getElementById("svg-mid-badge");
+  const svgOut1Title = document.getElementById("svg-out1-title");
+  const svgOut1Metric = document.getElementById("svg-out1-metric");
+  const svgOut2Title = document.getElementById("svg-out2-title");
+  const svgOut2Metric = document.getElementById("svg-out2-metric");
 
   if (!cards.length || !titleEl) return;
 
   const solutions = {
     pos: {
-      tag: "Arsitektur Solusi 01 · Sistem Kasir & Multi-Outlet (POS)",
+      tag: "Arsitektur Solusi 01 · POS Multi-Cabang",
       title: "Menghubungkan setiap struk penjualan cabang langsung ke stok gudang dan kas utama.",
-      input: "Kasir scan/input pesanan di tablet atau PC (mendukung harga Retail, Grosir, & Reseller serta QRIS/Tunai).",
-      process: "Sistem otomatis memotong stok barang atau takaran resep cabang detik itu juga & mengunci hitungan kas per shift.",
-      output: "Pemilik memantau omzet, margin laba kotor, dan sisa stok seluruh cabang secara real-time tanpa menunggu rekap malam.",
-      href: "projects.html#pos"
+      inTitle: "Terminal Kasir POS",
+      inSub: "Cabang A & B · Barcode",
+      inMetric: "Harga Retail & Grosir",
+      midTitle: "Mesin Auto-Deduct",
+      midSub: "Potong SKU & Resep BOM",
+      midBadge: "Validasi & Kunci Shift Kasir",
+      out1Title: "Kartu Stok Cabang",
+      out1Metric: "Terpotong detik itu juga",
+      out2Title: "Dashboard Omzet HQ",
+      out2Metric: "Margin & kas real-time",
+      summary: "Pemilik memantau omzet, margin laba kotor, dan sisa stok seluruh cabang secara real-time tanpa menunggu rekap manual tiap malam.",
+      href: "services.html#pos",
+      linkText: "Pelajari Modul POS →"
     },
     erp: {
       tag: "Arsitektur Solusi 02 · Inventori & Produksi (ERP)",
       title: "Mengunci akurasi barang dari PO supplier datang, mutasi rak gudang, hingga HPP produksi.",
-      input: "Penerimaan barang dari supplier diverifikasi terhadap Purchase Order (PO) dan ditempatkan ke zona rak gudang.",
-      process: "Saat Surat Perintah Kerja (SPK) produksi berjalan, sistem memotong bahan baku sesuai komposisi BOM & menghitung HPP batch.",
-      output: "Selisih stok fisik hilang, peringatan stok minimum muncul otomatis sebelum bahan habis, dan HPP per produk akurat.",
-      href: "projects.html#erp"
+      inTitle: "PO & Barang Masuk",
+      inSub: "Supplier · Goods Receipt",
+      inMetric: "Verifikasi Qty & Batch",
+      midTitle: "Work Order & BOM",
+      midSub: "Alokasi Bahan & Waste",
+      midBadge: "Kalkulasi HPP per Batch",
+      out1Title: "Posisi Multi-Gudang",
+      out1Metric: "Alert stok minimum aktif",
+      out2Title: "HPP Aktual / Unit",
+      out2Metric: "Tersaji saat WO selesai",
+      summary: "Selisih stok fisik hilang, peringatan stok minimum muncul sebelum bahan habis, dan Harga Pokok Produksi (HPP) terhitung otomatis.",
+      href: "services.html#erp",
+      linkText: "Pelajari Modul ERP →"
     },
     sim: {
-      tag: "Arsitektur Solusi 03 · Manajemen Internal (Keuangan & HRIS)",
+      tag: "Arsitektur Solusi 03 · Manajemen Internal & HRIS",
       title: "Menyatukan arus kas, jadwal penagihan piutang jatuh tempo, dan penggajian dalam satu portal.",
-      input: "Data tagihan penjualan, pengeluaran operasional, serta log kehadiran/lembur staf tercatat di satu database.",
-      process: "Sistem mengelompokkan umur piutang (AR Aging 0–30 / >60 hari), memberi pengingat tagihan, dan mengakumulasi komponen gaji.",
-      output: "Tutup buku bulanan dan pembuatan slip gaji selesai dalam hitungan menit dengan hak akses yang aman per divisi.",
-      href: "projects.html#sim"
+      inTitle: "Invoice & Absensi",
+      inSub: "Tagihan B2B · Jam Kerja",
+      inMetric: "Kas & Lembur Terpusat",
+      midTitle: "Mesin AR/AP & Payroll",
+      midSub: "Umur Piutang & Komisi",
+      midBadge: "Otorisasi Hak Akses (RBAC)",
+      out1Title: "AR Aging Schedule",
+      out1Metric: "Pengingat jatuh tempo H-3",
+      out2Title: "Laba-Rugi & Slip Gaji",
+      out2Metric: "Tutup buku dalam menit",
+      summary: "Penagihan piutang lebih disiplin, tutup buku bulanan dan penerbitan slip gaji selesai dalam hitungan menit dengan hak akses aman per divisi.",
+      href: "services.html#sim",
+      linkText: "Pelajari Modul SIM & HRIS →"
     }
   };
 
@@ -496,10 +532,21 @@ function initProblemArchitectureExplorer() {
       cards.forEach((c) => c.classList.toggle("active", c === card));
       if (tagEl) tagEl.textContent = sol.tag;
       if (titleEl) titleEl.textContent = sol.title;
-      if (inputEl) inputEl.textContent = sol.input;
-      if (procEl) procEl.textContent = sol.process;
-      if (outEl) outEl.textContent = sol.output;
-      if (linkEl) linkEl.setAttribute("href", sol.href);
+      if (summaryEl) summaryEl.textContent = sol.summary;
+      if (svgInTitle) svgInTitle.textContent = sol.inTitle;
+      if (svgInSub) svgInSub.textContent = sol.inSub;
+      if (svgInMetric) svgInMetric.textContent = sol.inMetric;
+      if (svgMidTitle) svgMidTitle.textContent = sol.midTitle;
+      if (svgMidSub) svgMidSub.textContent = sol.midSub;
+      if (svgMidBadge) svgMidBadge.textContent = sol.midBadge;
+      if (svgOut1Title) svgOut1Title.textContent = sol.out1Title;
+      if (svgOut1Metric) svgOut1Metric.textContent = sol.out1Metric;
+      if (svgOut2Title) svgOut2Title.textContent = sol.out2Title;
+      if (svgOut2Metric) svgOut2Metric.textContent = sol.out2Metric;
+      if (linkEl) {
+        linkEl.setAttribute("href", sol.href);
+        linkEl.textContent = sol.linkText;
+      }
     });
   });
 }
@@ -514,8 +561,16 @@ function initIndustrySwitcher() {
 
   function activateIndustry(key) {
     buttons.forEach((btn) => btn.classList.toggle("active", btn.getAttribute("data-ind-tab") === key));
-    panels.forEach((panel) => panel.classList.toggle("hidden", panel.getAttribute("data-ind-panel") !== key));
+    panels.forEach((panel) => {
+      const isMatch = panel.getAttribute("data-ind-panel") === key;
+      panel.classList.toggle("active", isMatch);
+      panel.classList.toggle("hidden", !isMatch);
+    });
   }
+
+  // Initialize active state on page load
+  const initialActive = document.querySelector("[data-ind-tab].active")?.getAttribute("data-ind-tab") || "retail";
+  activateIndustry(initialActive);
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {

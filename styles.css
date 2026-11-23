@@ -2282,58 +2282,8 @@ button, input, textarea {
 }
 
 /* ==========================================================================
-   STAGE 2: HUMAN-CENTERED SECTION 01 (OPSI 1 FOTO MANUSIA vs OPSI 2 EDITORIAL)
+   STAGE 2: HUMAN-CENTERED SECTION 01 (OPEN 3-COL + HUMAN PHOTO SPLIT)
    ========================================================================== */
-.s01-preview-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-  margin-bottom: 3.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px dashed rgba(119, 82, 41, 0.25);
-}
-
-.s01-preview-label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
-}
-
-.s01-preview-pills {
-  display: inline-flex;
-  gap: 0.4rem;
-  padding: 0.3rem;
-  border-radius: 999px;
-  background-color: var(--cream-alt);
-  border: 1px solid var(--line-light);
-}
-
-.s01-opt-btn {
-  border: none;
-  background: transparent;
-  padding: 0.48rem 1.05rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.s01-opt-btn:hover {
-  color: var(--text-primary);
-}
-
-.s01-opt-btn.active {
-  background-color: var(--espresso);
-  color: var(--amber);
-  font-weight: 600;
-}
-
-/* --- OPSI 1: OPEN TOP 3 COLUMNS (NO BOXES / NO BORDERS) --- */
 .human-open-top {
   margin-bottom: 5.5rem;
 }
@@ -2535,66 +2485,6 @@ button, input, textarea {
   font-size: 0.88rem;
   color: var(--text-secondary);
   line-height: 1.62;
-}
-
-/* --- OPSI 2: PURE CALM EDITORIAL STATEMENT (NO CARDS, NO ICONS) --- */
-.editorial-calm-wrap {
-  max-width: 780px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 3.5rem 0 2.5rem;
-}
-
-.editorial-calm-headline {
-  font-family: var(--font-display);
-  font-size: clamp(2.15rem, 3.6vw, 3.2rem);
-  font-weight: 500;
-  line-height: 1.16;
-  letter-spacing: -0.028em;
-  color: var(--text-primary);
-  margin-bottom: 1.75rem;
-}
-
-.editorial-calm-lead {
-  font-size: 1.12rem;
-  font-weight: 400;
-  line-height: 1.78;
-  color: var(--text-primary);
-  margin-bottom: 1.25rem;
-}
-
-.editorial-calm-body {
-  font-size: 0.98rem;
-  font-weight: 400;
-  line-height: 1.78;
-  color: var(--text-secondary);
-  max-width: 660px;
-  margin: 0 auto 2.5rem;
-}
-
-.editorial-calm-meta {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.85rem;
-  font-size: 0.86rem;
-  font-weight: 500;
-  color: var(--soga);
-  padding: 0.85rem 1.6rem;
-  border-top: 1px solid var(--line-light);
-  border-bottom: 1px solid var(--line-light);
-  margin-bottom: 2rem;
-}
-
-.editorial-calm-meta i {
-  font-style: normal;
-  opacity: 0.5;
-}
-
-.editorial-calm-action {
-  display: flex;
-  justify-content: center;
 }
 
 @media (max-width: 960px) {

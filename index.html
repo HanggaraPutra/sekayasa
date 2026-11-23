@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seka Yasa — Pengembangan Sistem Kasir (POS), ERP, & Manajemen Internal | Surabaya</title>
-  <meta name="description" content="Seka Yasa adalah software house dan konsultan sistem informasi di Surabaya. Kami membangun Sistem Kasir (POS), Inventori & Produksi (ERP), serta Manajemen Internal." />
+  <title>Seka Yasa — Software House &amp; Konsultan Sistem Informasi (POS, ERP, HRIS) | Surabaya</title>
+  <meta name="description" content="Seka Yasa adalah software house dan konsultan IT di Surabaya. Kami merancang dan membangun Sistem Kasir (POS) Multi-Cabang, ERP Gudang & Produksi, serta Sistem Informasi Manajemen Internal." />
   <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -169,7 +169,7 @@
 
   <main>
     <!-- ==================================================================
-         BAGIAN 1 / 5: FULL-SCREEN HERO — PERKENALAN & FOKUS MASALAH KLIEN
+         BAGIAN 1 / 6: FULL-SCREEN HERO + INTERACTIVE SYSTEM PREVIEW SWITCHER
          ================================================================== -->
     <section class="full-stage hero-stage" id="hero-stage">
       <!-- Background Layers: Blueprint Grid, Drifting Kawung, Signal Pulses & Interactive Light -->
@@ -197,18 +197,37 @@
           </p>
 
           <div class="hero-cta-row">
-            <a href="projects.html" class="btn btn-amber btn-lg">Lihat Karya &amp; Sistem</a>
-            <a href="contact.html" class="btn btn-ghost-light btn-lg">Diskusikan Kebutuhan Anda</a>
+            <a href="services.html" class="btn btn-amber btn-lg">Jelajahi Layanan &amp; Solusi</a>
+            <a href="projects.html" class="btn btn-ghost-light btn-lg">Lihat Studi Kasus</a>
           </div>
         </div>
 
         <div class="hero-visual-center reveal-on-scroll delay-1 is-visible">
-          <div class="hero-image-box">
-            <img src="assets/erp-complex-v2.jpg" alt="Tampilan Dashboard Inventori & Produksi (ERP) Seka Yasa" />
+          <!-- Interactive System Preview Switcher Tabs -->
+          <div class="hero-preview-tabs" role="tablist" aria-label="Pilih Pratinjau Sistem Seka Yasa">
+            <button type="button" class="hero-tab-btn active" data-hero-sys="erp" role="tab" aria-selected="true">
+              <span class="tab-dot"></span>
+              <span>ERP Gudang &amp; Produksi</span>
+            </button>
+            <button type="button" class="hero-tab-btn" data-hero-sys="pos" role="tab" aria-selected="false">
+              <span class="tab-dot"></span>
+              <span>Sistem Kasir (POS) Multi-Cabang</span>
+            </button>
+            <button type="button" class="hero-tab-btn" data-hero-sys="sim" role="tab" aria-selected="false">
+              <span class="tab-dot"></span>
+              <span>Manajemen Internal (Keuangan &amp; HRIS)</span>
+            </button>
           </div>
-          <div class="hero-image-caption">
-            <span>Sistem Inventori, Gudang &amp; Produksi (ERP)</span>
-            <span>Multi-Warehouse · BOM &amp; HPP Tracking</span>
+
+          <div class="hero-image-box">
+            <div class="hero-frame-bar">
+              <div class="hero-frame-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="hero-frame-title" id="hero-frame-title">Sistem Inventori, Gudang &amp; Produksi (ERP)</span>
+              <span class="hero-frame-meta" id="hero-frame-meta">Multi-Warehouse · BOM &amp; HPP Tracking</span>
+            </div>
+            <img id="hero-preview-img" src="assets/erp-complex-v2.jpg" alt="Tampilan Dashboard Inventori & Produksi (ERP) Seka Yasa" />
           </div>
         </div>
       </div>
@@ -220,59 +239,101 @@
     </section>
 
     <!-- ==================================================================
-         BAGIAN 2 / 5: MASALAH OPERASIONAL (CENTERED HEADER + COMPACT LIST)
+         BAGIAN 2 / 6: MASALAH OPERASIONAL & ARSITEKTUR SOLUSI INTERAKTIF
          ================================================================== -->
     <section class="full-stage stage-problems" id="masalah-operasional">
       <div class="container centered-section-wrap">
         <div class="centered-header reveal-on-scroll">
-          <span class="section-index">01 · Masalah di Lapangan</span>
+          <span class="section-index">01 · Masalah di Lapangan &amp; Arsitektur Solusi</span>
           <h2 class="split-title">
-            Tiga kendala yang paling sering kami bereskan.
+            Tiga kendala operasional yang paling sering kami bereskan.
           </h2>
           <p class="split-desc">
-            Saat transaksi bertambah, pencatatan manual dan file yang terpisah mulai menyulitkan kontrol harian.
+            Pilih salah satu kendala di bawah ini untuk melihat bagaimana sistem Seka Yasa merapikan alur datanya dari hulu ke hilir.
           </p>
         </div>
 
-        <div class="problem-list problem-list-centered">
-          <article class="problem-row reveal-on-scroll delay-1">
-            <span class="problem-idx">01</span>
-            <div class="problem-body">
-              <div class="problem-head-row">
-                <h3>Kasir &amp; stok gudang tidak sinkron</h3>
-                <span class="problem-scope">Sistem Kasir (POS)</span>
+        <div class="problem-solver-grid reveal-on-scroll delay-1">
+          <!-- Left: Interactive Problem Selector Cards -->
+          <div class="problem-selector-list" role="tablist" aria-label="Pilih Kendala Operasional">
+            <button type="button" class="problem-select-card active" data-prob-key="pos">
+              <span class="problem-idx">01</span>
+              <div class="problem-body">
+                <div class="problem-head-row">
+                  <h3>Kasir &amp; stok gudang tidak sinkron</h3>
+                  <span class="problem-scope">Sistem Kasir (POS)</span>
+                </div>
+                <p>
+                  Penjualan cabang belum otomatis memotong stok dan masih harus direkap manual setiap malam.
+                </p>
               </div>
-              <p>
-                Penjualan cabang belum otomatis memotong stok dan masih harus direkap manual setiap malam.
-              </p>
-            </div>
-          </article>
+            </button>
 
-          <article class="problem-row reveal-on-scroll delay-2">
-            <span class="problem-idx">02</span>
-            <div class="problem-body">
-              <div class="problem-head-row">
-                <h3>Stok fisik gudang sering selisih</h3>
-                <span class="problem-scope">Inventori &amp; Produksi (ERP)</span>
+            <button type="button" class="problem-select-card" data-prob-key="erp">
+              <span class="problem-idx">02</span>
+              <div class="problem-body">
+                <div class="problem-head-row">
+                  <h3>Stok fisik gudang sering selisih</h3>
+                  <span class="problem-scope">Inventori &amp; Produksi (ERP)</span>
+                </div>
+                <p>
+                  Barang masuk, PO supplier, dan bahan produksi tercatat terpisah sehingga sisa stok serta HPP tidak akurat.
+                </p>
               </div>
-              <p>
-                Barang masuk, PO supplier, dan bahan produksi tercatat terpisah sehingga sisa stok serta HPP tidak akurat.
-              </p>
-            </div>
-          </article>
+            </button>
 
-          <article class="problem-row reveal-on-scroll delay-3">
-            <span class="problem-idx">03</span>
-            <div class="problem-body">
-              <div class="problem-head-row">
-                <h3>Rekap keuangan, piutang, &amp; gaji terlalu lama</h3>
-                <span class="problem-scope">Manajemen Internal</span>
+            <button type="button" class="problem-select-card" data-prob-key="sim">
+              <span class="problem-idx">03</span>
+              <div class="problem-body">
+                <div class="problem-head-row">
+                  <h3>Rekap keuangan, piutang, &amp; gaji terlalu lama</h3>
+                  <span class="problem-scope">Manajemen Internal</span>
+                </div>
+                <p>
+                  Data tersebar di banyak file Excel, membuat penagihan piutang dan tutup buku bulanan memakan waktu berhari-hari.
+                </p>
               </div>
-              <p>
-                Data tersebar di banyak file Excel, membuat penagihan piutang dan tutup buku bulanan memakan waktu berhari-hari.
-              </p>
+            </button>
+          </div>
+
+          <!-- Right: Live Solution Architecture Flow Explorer -->
+          <div class="solution-arch-panel" aria-live="polite">
+            <div class="arch-panel-head">
+              <span class="arch-panel-tag" id="arch-sol-tag">Arsitektur Solusi · POS Multi-Cabang</span>
+              <h3 class="arch-panel-title" id="arch-sol-title">Sinkronisasi Transaksi Kasir ke Stok Gudang &amp; Laporan Pusat</h3>
             </div>
-          </article>
+
+            <div class="arch-flow-diagram">
+              <div class="arch-flow-node">
+                <span class="arch-node-step">01 · Input Lapangan</span>
+                <div class="arch-node-text" id="arch-node-input">
+                  <strong>Terminal Kasir &amp; Harga Bertingkat</strong>
+                  <span>Transaksi ritel/grosir, scan barcode, &amp; pencatatan modal shift kasir di tiap cabang.</span>
+                </div>
+              </div>
+
+              <div class="arch-flow-node">
+                <span class="arch-node-step">02 · Mesin Proses &amp; Validasi</span>
+                <div class="arch-node-text" id="arch-node-process">
+                  <strong>Auto-Deduct Stok &amp; Resep (BOM)</strong>
+                  <span>Pemotongan stok SKU atau bahan baku F&amp;B otomatis begitu struk tercetak di kasir.</span>
+                </div>
+              </div>
+
+              <div class="arch-flow-node">
+                <span class="arch-node-step">03 · Output Manajemen</span>
+                <div class="arch-node-text" id="arch-node-output">
+                  <strong>Dashboard Konsolidasi Multi-Cabang</strong>
+                  <span>Pantauan omzet real-time, selisih kas shift, &amp; margin laba kotor antar-cabang dari HP/Laptop.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="arch-panel-footer">
+              <span class="arch-status-pill"><i></i> Dirancang mengikuti SOP lapangan</span>
+              <a href="services.html#pos" class="btn btn-amber" id="arch-sol-link" style="padding: 0.6rem 1.15rem; font-size: 0.82rem;">Pelajari Modul POS →</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -294,18 +355,99 @@
     </div>
 
     <!-- ==================================================================
-         BAGIAN 3 / 5: CUPLIKAN KARYA & SISTEM (WIDE ALTERNATING SHOWCASES)
+         BAGIAN 3 / 6: 12-COLUMN ASYMMETRIC BENTO GRID (STANDAR REKAYASA)
+         ================================================================== -->
+    <section class="full-stage stage-bento">
+      <div class="container">
+        <div class="centered-header reveal-on-scroll">
+          <span class="section-index">02 · Standar Rekayasa Software House</span>
+          <h2 class="split-title">
+            Dibangun untuk beban operasional nyata, bukan sekadar tampilan.
+          </h2>
+          <p class="split-desc">
+            Setiap sistem kami rancang di atas fondasi database terpusat, kontrol hak akses berjenjang, serta fleksibilitas modul yang tumbuh bersama bisnis Anda.
+          </p>
+        </div>
+
+        <div class="bento-grid-12">
+          <!-- Bento Cell 1 (7 Cols) -->
+          <article class="bento-card bento-span-7 reveal-on-scroll">
+            <div>
+              <span class="bento-eyebrow">01 · Arsitektur Modular &amp; Terpusat</span>
+              <h3>Mulai dari modul paling mendesak, perluas tanpa bongkar ulang.</h3>
+              <p>
+                Anda tidak harus membangun seluruh sistem sekaligus. Mulai dari merapikan kasir atau stok gudang terlebih dahulu, lalu sambungkan modul pembelian (PO), produksi (BOM), hingga laporan keuangan dan HRIS di atas satu basis data yang sama.
+              </p>
+            </div>
+            <div class="bento-visual-strip">
+              <span class="bento-chip amber-chip">Single Source of Truth DB</span>
+              <span class="bento-chip">Modul Kasir POS</span>
+              <span class="bento-chip">Modul Gudang &amp; BOM</span>
+              <span class="bento-chip">Modul Keuangan &amp; HRIS</span>
+            </div>
+          </article>
+
+          <!-- Bento Cell 2 (5 Cols Dark) -->
+          <article class="bento-card bento-dark bento-span-5 reveal-on-scroll delay-1">
+            <div>
+              <span class="bento-eyebrow">02 · Keamanan &amp; Hak Akses (RBAC)</span>
+              <h3>Setiap staf hanya melihat data sesuai wewenangnya.</h3>
+              <p>
+                Pembagian hak akses berjenjang untuk kasir, admin gudang, supervisor, staf keuangan, hingga direksi—dilengkapi pencatatan riwayat perubahan data (<em>audit trail</em>) untuk mencegah manipulasi transaksi.
+              </p>
+            </div>
+            <div class="bento-visual-strip">
+              <span class="bento-chip amber-chip">Role-Based Access</span>
+              <span class="bento-chip">Log Audit Transaksi</span>
+            </div>
+          </article>
+
+          <!-- Bento Cell 3 (5 Cols) -->
+          <article class="bento-card bento-span-5 reveal-on-scroll">
+            <div>
+              <span class="bento-eyebrow">03 · Efisiensi Biaya Jangka Panjang</span>
+              <h3>Bebas dari biaya langganan per-akun yang terus membengkak.</h3>
+              <p>
+                Berbeda dengan aplikasi SaaS bulanan yang membatasi jumlah pengguna atau mengenakan tarif per-kasir, sistem yang kami bangun memungkinkan Anda menambah staf dan cabang baru dengan leluasa.
+              </p>
+            </div>
+            <div class="bento-visual-strip">
+              <a href="services.html#perbandingan" class="link-arrow" style="margin-top: 0;">Lihat tabel perbandingan SaaS vs Custom →</a>
+            </div>
+          </article>
+
+          <!-- Bento Cell 4 (7 Cols) -->
+          <article class="bento-card bento-span-7 reveal-on-scroll delay-1">
+            <div>
+              <span class="bento-eyebrow">04 · Pendampingan Lapangan</span>
+              <h3>Didampingi langsung dari migrasi Excel hingga tim lancar beroperasi.</h3>
+              <p>
+                Sistem yang baik sering gagal karena staf bingung menggunakannya. Tim kami di Surabaya membantu merapikan master data awal, menyusun panduan SOP singkat, dan melatih admin maupun kasir Anda secara langsung.
+              </p>
+            </div>
+            <div class="bento-visual-strip">
+              <span class="bento-chip">Migrasi Master Data</span>
+              <span class="bento-chip">Pelatihan Admin &amp; Kasir</span>
+              <span class="bento-chip">Garansi &amp; Dukungan Teknis</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         BAGIAN 4 / 6: CUPLIKAN STUDI KASUS & SISTEM (WIDE SHOWCASES)
          ================================================================== -->
     <section class="full-stage stage-showcases">
       <div class="container">
         <div class="stage-top-bar reveal-on-scroll">
           <div>
-            <span class="section-index">02 / Karya &amp; Sistem Pilihan</span>
+            <span class="section-index">03 · Studi Kasus &amp; Sistem Pilihan</span>
             <h2 class="split-title">
               Dirancang agar mudah digunakan staf di lapangan dan jelas dipantau manajemen.
             </h2>
           </div>
-          <a href="projects.html" class="btn btn-outline-dark">Lihat Semua Karya (3 Proyek) →</a>
+          <a href="projects.html" class="btn btn-outline-dark">Lihat Detail Studi Kasus (3 Proyek) →</a>
         </div>
 
         <div class="wide-showcase-list">
@@ -325,7 +467,7 @@
                 <li>Purchasing &amp; PO</li>
                 <li>Kalkulasi HPP / BOM</li>
               </ul>
-              <a href="projects.html#erp" class="link-arrow">Pelajari detail sistem ini →</a>
+              <a href="projects.html#erp" class="link-arrow">Pelajari studi kasus ERP ini →</a>
             </div>
           </article>
 
@@ -342,7 +484,7 @@
                 <li>Sinkronisasi Stok &amp; Resep</li>
                 <li>Rekonsiliasi Shift Kasir</li>
               </ul>
-              <a href="projects.html#pos" class="link-arrow">Pelajari detail sistem ini →</a>
+              <a href="projects.html#pos" class="link-arrow">Pelajari studi kasus POS ini →</a>
             </div>
             <div class="showcase-media">
               <img src="assets/pos-complex-v2.jpg" alt="Sistem Kasir (POS) & Backoffice Multi-Cabang" />
@@ -365,7 +507,7 @@
                 <li>AR/AP Aging Schedule</li>
                 <li>HRIS &amp; Otomasi Payroll</li>
               </ul>
-              <a href="projects.html#sim" class="link-arrow">Pelajari detail sistem ini →</a>
+              <a href="projects.html#sim" class="link-arrow">Pelajari studi kasus SIM ini →</a>
             </div>
           </article>
         </div>
@@ -389,43 +531,43 @@
     </div>
 
     <!-- ==================================================================
-         BAGIAN 4 / 5: CARA KAMI BEKERJA (RINGKAS & TO THE POINT)
+         BAGIAN 5 / 6: CARA KAMI BEKERJA (RINGKAS + LINK KE PROCESS.HTML)
          ================================================================== -->
     <section class="full-stage stage-approach">
       <div class="container asymmetric-split">
         <div class="split-left reveal-on-scroll">
-          <span class="section-index">03 / Cara Kami Bekerja</span>
+          <span class="section-index">04 · Metodologi &amp; Cara Kerja</span>
           <h2 class="split-title">
             Dimulai dari alur kerja Anda, bukan langsung menyodorkan sistem.
           </h2>
           <p class="split-desc" style="margin-bottom: 1.5rem;">
-            Pengembangan dilakukan bertahap dan didampingi langsung hingga tim Anda terbiasa menggunakannya.
+            Pengembangan dilakukan bertahap dengan target luaran (*deliverables*) yang jelas di setiap fase hingga tim Anda terbiasa menggunakannya.
           </p>
-          <a href="about.html" class="btn btn-outline-dark">Tentang Seka Yasa →</a>
+          <a href="process.html" class="btn btn-outline-dark">Pelajari 5 Tahap Implementasi &amp; FAQ →</a>
         </div>
 
         <div class="approach-steps">
           <div class="approach-item reveal-on-scroll delay-1">
-            <span class="approach-step-label">01 — Pemetaan</span>
-            <h3>Diskusi masalah &amp; alur operasional</h3>
+            <span class="approach-step-label">01 — Audit &amp; Pemetaan Alur</span>
+            <h3>Diskusi masalah &amp; cetak biru operasional</h3>
             <p>
-              Memetakan kendala paling mendesak di lapangan agar sistem yang dibangun langsung tepat sasaran.
+              Memetakan kendala paling mendesak di lapangan dan menyusun spesifikasi modul agar sistem yang dibangun langsung tepat sasaran.
             </p>
           </div>
 
           <div class="approach-item reveal-on-scroll delay-2">
-            <span class="approach-step-label">02 — Pengembangan</span>
-            <h3>Bangun bertahap sesuai prioritas</h3>
+            <span class="approach-step-label">02 — Rekayasa Bertahap &amp; UAT</span>
+            <h3>Bangun sesuai prioritas &amp; uji dengan data nyata</h3>
             <p>
-              Mulai dari modul yang paling dibutuhkan dengan tampilan sederhana yang cepat dipahami staf.
+              Mulai dari modul inti dengan antarmuka yang bersih, lalu diuji langsung bersama staf menggunakan skenario transaksi harian Anda.
             </p>
           </div>
 
           <div class="approach-item reveal-on-scroll delay-3">
-            <span class="approach-step-label">03 — Pendampingan</span>
-            <h3>Pelatihan staf &amp; dukungan penuh</h3>
+            <span class="approach-step-label">03 — Migrasi, Pelatihan &amp; Garansi</span>
+            <h3>Pendampingan penuh saat sistem mulai berjalan</h3>
             <p>
-              Membantu migrasi data awal, melatih admin di lapangan, dan mendampingi saat sistem berjalan.
+              Membantu impor master data dari Excel, melatih admin dan kasir di lapangan, serta memberikan garansi pemeliharaan pasca-rilis.
             </p>
           </div>
         </div>
@@ -433,13 +575,13 @@
     </section>
 
     <!-- ==================================================================
-         BAGIAN 5 / 5: PENUTUP, AJAKAN DISKUSI & LOKASI SURABAYA
+         BAGIAN 6 / 6: PENUTUP, AJAKAN DISKUSI & LOKASI SURABAYA
          ================================================================== -->
     <section class="full-stage stage-closing">
       <img src="assets/logo-mark.svg" alt="" class="closing-watermark" aria-hidden="true" />
       <div class="container closing-grid reveal-on-scroll">
         <div>
-          <span class="section-index section-index-light">04 / Mulai Diskusi &amp; Lokasi</span>
+          <span class="section-index section-index-light">05 · Mulai Diskusi &amp; Lokasi</span>
           <h2>Ingin merapikan sistem operasional di bisnis Anda?</h2>
           <p>
             Ceritakan kondisi pencatatan usaha Anda saat ini. Kami melayani diskusi online maupun pertemuan langsung di Surabaya.

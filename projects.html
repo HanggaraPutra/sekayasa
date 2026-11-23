@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Karya & Sistem — Seka Yasa Surabaya</title>
-  <meta name="description" content="Daftar karya dan sistem yang dikembangkan Seka Yasa: Inventori & Produksi (ERP), Sistem Kasir (POS), serta Sistem Informasi Manajemen Internal." />
+  <title>Studi Kasus &amp; Karya Sistem — Seka Yasa Software House Surabaya</title>
+  <meta name="description" content="Studi kasus mendalam sistem yang dikembangkan Seka Yasa Surabaya: Inventori & Produksi (ERP), Sistem Kasir (POS) Multi-Cabang, serta Manajemen Keuangan & HRIS." />
   <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,106 +21,219 @@
       <img src="assets/logo-mark.svg" alt="" class="hero-gunungan-bg" aria-hidden="true" />
       <div class="container inner-header-grid reveal-on-scroll is-visible">
         <div>
-          <span class="section-index section-index-light">Karya &amp; Sistem</span>
-          <h1>Sistem operasional yang kami bangun sesuai kebutuhan lapangan.</h1>
+          <span class="section-index section-index-light">Studi Kasus &amp; Sistem</span>
+          <h1>Bedah arsitektur dan dampak operasional dari sistem yang kami bangun.</h1>
         </div>
         <p>
-          Berikut tiga proyek utama yang kami kerjakan untuk membantu bisnis merapikan alur transaksi, stok gudang, produksi, hingga administrasi internal.
+          Setiap studi kasus di bawah ini merinci kondisi awal sebelum digitalisasi, arsitektur modul yang diterapkan, serta perubahan nyata pada alur kerja harian klien.
         </p>
       </div>
     </section>
 
-    <!-- 3 PROJECTS IN WIDE ASYMMETRIC ROWS -->
+    <!-- FILTERABLE DEEP CASE STUDIES -->
     <section class="inner-content">
       <div class="container">
+        <!-- Interactive Category Filter Pills -->
+        <div class="case-filter-bar reveal-on-scroll is-visible" role="tablist" aria-label="Filter Kategori Studi Kasus">
+          <button type="button" class="case-filter-btn active" data-case-filter="all">Semua Studi Kasus (3)</button>
+          <button type="button" class="case-filter-btn" data-case-filter="erp">Inventori &amp; Produksi (ERP)</button>
+          <button type="button" class="case-filter-btn" data-case-filter="pos">Sistem Kasir (POS) Multi-Cabang</button>
+          <button type="button" class="case-filter-btn" data-case-filter="sim">Manajemen Keuangan &amp; HRIS</button>
+        </div>
 
-        <!-- PROYEK 01: ERP -->
-        <article class="project-row-block reveal-on-scroll" id="erp">
-          <div class="showcase-media">
-            <img src="assets/erp-complex-v2.jpg" alt="Sistem Inventori & Produksi (ERP)" />
-          </div>
+        <!-- ==============================================================
+             PROYEK 01: ERP GUDANG, PEMBELIAN & PRODUKSI
+             ============================================================== -->
+        <article class="project-row-block reveal-on-scroll" id="erp" data-case-cat="erp">
           <div>
-            <span class="section-index">01 / Inventori &amp; Produksi (ERP)</span>
-            <h2 class="split-title" style="font-size: 2rem;">Sistem ERP Gudang, Pembelian, &amp; Produksi</h2>
+            <div class="showcase-media" style="margin-bottom: 1.25rem;">
+              <img src="assets/erp-complex-v2.jpg" alt="Sistem Inventori & Produksi (ERP)" />
+            </div>
+            <ul class="scope-list">
+              <li>Multi-Warehouse &amp; Rack Tracking</li>
+              <li>Purchase Order (PO) Workflow</li>
+              <li>Bill of Materials (BOM) &amp; Work Order</li>
+              <li>Kalkulasi HPP Aktual per Batch</li>
+            </ul>
+          </div>
+
+          <div>
+            <span class="section-index">Studi Kasus 01 · Manufaktur &amp; Distribusi (ERP)</span>
+            <h2 class="split-title" style="font-size: 2rem;">Sistem ERP Gudang, Pembelian Supplier &amp; Produksi</h2>
             <p class="split-desc">
-              Dibangun untuk perusahaan yang membutuhkan keterhubungan data antara pembelian bahan baku ke supplier, pencatatan stok multi-gudang, hingga proses produksi barang jadi.
+              Dibangun untuk perusahaan yang membutuhkan keterhubungan data secara utuh antara pembelian bahan baku ke supplier, posisi stok lintas gudang, hingga perhitungan biaya produksi barang jadi.
             </p>
+
+            <div class="before-after-strip">
+              <div class="ba-box ba-before">
+                <span class="ba-label">Alur Sebelum Sistem</span>
+                <p>PO supplier via chat, kartu stok gudang di Excel terpisah, dan HPP produksi baru dihitung manual setiap akhir bulan.</p>
+              </div>
+              <div class="ba-box ba-after">
+                <span class="ba-label">Alur Sesudah Sistem</span>
+                <p>PO otomatis memotong kuota anggaran, penerimaan barang menambah stok rak, dan Work Order langsung menghitung HPP.</p>
+              </div>
+            </div>
 
             <div class="project-detail-table">
               <div class="detail-line">
                 <strong>Kondisi Awal</strong>
-                <span>Pencatatan stok gudang, surat pesanan (PO), dan pemakaian bahan produksi masih terpisah di Excel sehingga sering terjadi selisih stok fisik dan keterlambatan belanja bahan.</span>
+                <span>Pencatatan stok gudang, surat pesanan (PO), dan pemakaian bahan produksi masih terpisah di Excel sehingga sering terjadi selisih stok fisik dan keterlambatan belanja bahan baku.</span>
               </div>
               <div class="detail-line">
-                <strong>Solusi Sistem</strong>
-                <span>Aplikasi web ERP dengan modul persetujuan PO, pemotongan bahan baku otomatis berdasarkan resep/komposisi produksi (BOM), serta pengingat stok minimum.</span>
+                <strong>Arsitektur Solusi</strong>
+                <span>Aplikasi web ERP terpusat dengan modul persetujuan PO berjenjang, pemotongan bahan baku otomatis berdasarkan resep produksi (BOM), pelacakan nomor batch, serta pengingat stok minimum.</span>
               </div>
               <div class="detail-line">
-                <strong>Hasil di Lapangan</strong>
-                <span>Alur keluar-masuk barang terlacak jelas, stok opname jauh lebih cepat, dan Harga Pokok Produksi (HPP) terhitung otomatis setiap produksi selesai.</span>
+                <strong>Dampak Lapangan</strong>
+                <span>Alur keluar-masuk barang terlacak jelas per lokasi gudang, proses stok opname jauh lebih singkat, dan Harga Pokok Produksi (HPP) terhitung otomatis setiap produksi selesai.</span>
               </div>
+            </div>
+
+            <div style="margin-top: 1.35rem; display: flex; gap: 1.25rem; flex-wrap: wrap;">
+              <a href="services.html#erp" class="link-arrow" style="margin-top: 0;">Lihat daftar modul ERP lengkap →</a>
+              <a href="contact.html" class="link-arrow" style="margin-top: 0; color: var(--text-primary); border-color: var(--text-primary);">Bangun sistem serupa →</a>
             </div>
           </div>
         </article>
 
-        <!-- PROYEK 02: POS -->
-        <article class="project-row-block reveal-on-scroll" id="pos">
-          <div class="showcase-media">
-            <img src="assets/pos-complex-v2.jpg" alt="Sistem Kasir (POS) Multi-Cabang" />
-          </div>
+        <!-- ==============================================================
+             PROYEK 02: POS & BACKOFFICE MULTI-CABANG
+             ============================================================== -->
+        <article class="project-row-block reveal-on-scroll" id="pos" data-case-cat="pos">
           <div>
-            <span class="section-index">02 / Sistem Kasir (POS)</span>
-            <h2 class="split-title" style="font-size: 2rem;">Sistem Kasir Terintegrasi &amp; Pantauan Multi-Cabang</h2>
+            <div class="showcase-media" style="margin-bottom: 1.25rem;">
+              <img src="assets/pos-complex-v2.jpg" alt="Sistem Kasir (POS) Multi-Cabang" />
+            </div>
+            <ul class="scope-list">
+              <li>Terminal Kasir Tablet &amp; Desktop</li>
+              <li>Harga Bertingkat (Ecer &amp; Grosir)</li>
+              <li>Auto-Deduct Stok &amp; Resep Cabang</li>
+              <li>Rekonsiliasi Kas Tutup Shift</li>
+            </ul>
+          </div>
+
+          <div>
+            <span class="section-index">Studi Kasus 02 · Jaringan Retail, Grosir &amp; F&amp;B (POS)</span>
+            <h2 class="split-title" style="font-size: 2rem;">Sistem Kasir Terintegrasi &amp; Konsolidasi Multi-Cabang</h2>
             <p class="split-desc">
-              Dirancang untuk bisnis retail, grosir, dan F&amp;B yang membutuhkan proses transaksi cepat di meja kasir sekaligus pengawasan stok dan omzet cabang secara terpusat.
+              Dirancang untuk bisnis multi-cabang yang membutuhkan kecepatan pelayanan di meja kasir sekaligus pengawasan stok, mutasi barang, dan setoran omzet harian secara terpusat.
             </p>
+
+            <div class="before-after-strip">
+              <div class="ba-box ba-before">
+                <span class="ba-label">Alur Sebelum Sistem</span>
+                <p>Rekap kasir dikirim manual malam hari, harga khusus grosir sering salah input, dan uang setoran shift kerap selisih.</p>
+              </div>
+              <div class="ba-box ba-after">
+                <span class="ba-label">Alur Sesudah Sistem</span>
+                <p>Transaksi kasir langsung memotong stok cabang detik itu juga, harga grosir otomatis teraplikasi, dan laporan pusat tersaji real-time.</p>
+              </div>
+            </div>
 
             <div class="project-detail-table">
               <div class="detail-line">
                 <strong>Kondisi Awal</strong>
-                <span>Pemilik usaha harus menunggu kiriman rekap manual dari tiap cabang pada malam hari, harga khusus grosir/member sering salah input, dan kas sering selisih.</span>
+                <span>Pemilik usaha harus menunggu kiriman rekap manual dari tiap cabang pada malam hari, harga khusus grosir/member sering salah input oleh kasir baru, dan kas laci sering selisih.</span>
               </div>
               <div class="detail-line">
-                <strong>Solusi Sistem</strong>
-                <span>Sistem POS untuk tablet dan komputer kasir yang langsung memotong stok cabang saat struk dicetak, mendukung harga bertingkat, serta pencocokan kas saat tutup shift.</span>
+                <strong>Arsitektur Solusi</strong>
+                <span>Sistem POS responsif untuk tablet dan komputer kasir yang langsung memotong stok cabang saat struk dicetak, mendukung aturan harga bertingkat otomatis, serta wajib hitung kas saat tutup shift.</span>
               </div>
               <div class="detail-line">
-                <strong>Hasil di Lapangan</strong>
-                <span>Omzet harian, stok tersisa, dan margin laba kotor dari seluruh cabang dapat dipantau langsung oleh pemilik kapan saja dari ponsel maupun laptop.</span>
+                <strong>Dampak Lapangan</strong>
+                <span>Omzet harian, rincian metode bayar (Tunai/QRIS/Transfer), stok tersisa, dan margin laba kotor dari seluruh cabang dapat dipantau langsung oleh pemilik kapan saja dari ponsel maupun laptop.</span>
               </div>
+            </div>
+
+            <div style="margin-top: 1.35rem; display: flex; gap: 1.25rem; flex-wrap: wrap;">
+              <a href="services.html#pos" class="link-arrow" style="margin-top: 0;">Lihat daftar modul POS lengkap →</a>
+              <a href="contact.html" class="link-arrow" style="margin-top: 0; color: var(--text-primary); border-color: var(--text-primary);">Bangun sistem serupa →</a>
             </div>
           </div>
         </article>
 
-        <!-- PROYEK 03: MANAJEMEN INTERNAL -->
-        <article class="project-row-block reveal-on-scroll" id="sim">
-          <div class="showcase-media">
-            <img src="assets/sim-complex-v2.jpg" alt="Sistem Informasi Manajemen Keuangan, Piutang (AR/AP) & HRIS Payroll" />
-          </div>
+        <!-- ==============================================================
+             PROYEK 03: MANAJEMEN INTERNAL (KEUANGAN, AR/AP & HRIS)
+             ============================================================== -->
+        <article class="project-row-block reveal-on-scroll" id="sim" data-case-cat="sim">
           <div>
-            <span class="section-index">03 / Manajemen Internal</span>
+            <div class="showcase-media" style="margin-bottom: 1.25rem;">
+              <img src="assets/sim-complex-v2.jpg" alt="Sistem Informasi Manajemen Keuangan, Piutang (AR/AP) & HRIS Payroll" />
+            </div>
+            <ul class="scope-list">
+              <li>Laporan Laba-Rugi &amp; Arus Kas</li>
+              <li>AR/AP Invoice Aging Schedule</li>
+              <li>Kontrol Anggaran per Divisi</li>
+              <li>HRIS Absensi &amp; Otomasi Payroll</li>
+            </ul>
+          </div>
+
+          <div>
+            <span class="section-index">Studi Kasus 03 · Administrasi Korporat (SIM &amp; HRIS)</span>
             <h2 class="split-title" style="font-size: 2rem;">Sistem Informasi Keuangan, Piutang (AR/AP), &amp; HRIS Internal</h2>
             <p class="split-desc">
-              Menyatukan administrasi internal perusahaan agar pemilik bisnis memiliki gambaran posisi keuangan yang jujur dan tim admin tidak lagi habis waktu untuk rekap bulanan.
+              Menyatukan administrasi internal perusahaan agar direksi memiliki gambaran posisi kas serta piutang yang akurat setiap hari, dan tim admin bebas dari lembur rekap bulanan.
             </p>
+
+            <div class="before-after-strip">
+              <div class="ba-box ba-before">
+                <span class="ba-label">Alur Sebelum Sistem</span>
+                <p>Invoice jatuh tempo sering terlupa ditagih dan rekap absensi, lembur, serta komisi gaji memakan waktu 4–5 hari kerja.</p>
+              </div>
+              <div class="ba-box ba-after">
+                <span class="ba-label">Alur Sesudah Sistem</span>
+                <p>Notifikasi umur piutang (AR Aging) muncul otomatis setiap pagi dan perhitungan slip gaji seluruh karyawan selesai dalam hitungan menit.</p>
+              </div>
+            </div>
 
             <div class="project-detail-table">
               <div class="detail-line">
                 <strong>Kondisi Awal</strong>
-                <span>Tagihan piutang pelanggan sering terlewat jatuh temponya, sementara perhitungan gaji, lembur, dan komisi karyawan memakan waktu berhari-hari setiap akhir bulan.</span>
+                <span>Tagihan piutang pelanggan B2B sering terlewat jatuh temponya karena tersebar di banyak file, sementara perhitungan gaji, lembur, dan komisi karyawan memakan waktu berhari-hari setiap akhir bulan.</span>
               </div>
               <div class="detail-line">
-                <strong>Solusi Sistem</strong>
-                <span>Portal manajemen internal dengan laporan Laba-Rugi &amp; arus kas, jadwal umur piutang (<em>AR Aging Schedule</em>), rekapitulasi absensi dan penggajian otomatis, serta pembagian hak akses tiap divisi.</span>
+                <strong>Arsitektur Solusi</strong>
+                <span>Portal manajemen internal dengan laporan Laba-Rugi &amp; arus kas otomatis, jadwal umur piutang (<em>AR Aging Schedule</em>), rekapitulasi absensi dan penggajian satu klik, serta pembagian hak akses tiap divisi.</span>
               </div>
               <div class="detail-line">
-                <strong>Hasil di Lapangan</strong>
-                <span>Tutup buku dan pembuatan slip gaji bulanan selesai jauh lebih singkat, serta posisi kas dan piutang perusahaan terpantau setiap hari.</span>
+                <strong>Dampak Lapangan</strong>
+                <span>Tutup buku dan penerbitan slip gaji bulanan selesai jauh lebih singkat, arus kas lebih sehat berkat penagihan tepat waktu, serta posisi keuangan perusahaan terpantau secara jujur setiap hari.</span>
               </div>
+            </div>
+
+            <div style="margin-top: 1.35rem; display: flex; gap: 1.25rem; flex-wrap: wrap;">
+              <a href="services.html#sim" class="link-arrow" style="margin-top: 0;">Lihat daftar modul SIM &amp; HRIS →</a>
+              <a href="contact.html" class="link-arrow" style="margin-top: 0; color: var(--text-primary); border-color: var(--text-primary);">Bangun sistem serupa →</a>
             </div>
           </div>
         </article>
 
+      </div>
+    </section>
+
+    <!-- CLOSING CTA -->
+    <section class="full-stage stage-closing" style="min-height: auto; padding: 5.5rem 0;">
+      <img src="assets/logo-mark.svg" alt="" class="closing-watermark" aria-hidden="true" />
+      <div class="container closing-grid reveal-on-scroll">
+        <div>
+          <span class="section-index section-index-light">Kustomisasi Sesuai Alur Anda</span>
+          <h2>Punya kendala operasional yang mirip dengan salah satu studi kasus di atas?</h2>
+          <p>
+            Setiap perusahaan memiliki detail SOP yang berbeda. Mari diskusikan bagaimana modul-modul di atas dapat disesuaikan dengan tepat untuk tim Anda.
+          </p>
+          <a href="contact.html" class="btn btn-amber btn-lg">Diskusikan Kebutuhan Sistem Anda →</a>
+        </div>
+        <div class="bento-card bento-dark" style="justify-content: center;">
+          <span class="bento-eyebrow">Transparansi Pengerjaan</span>
+          <h3 style="color: var(--text-on-dark);">Lihat bagaimana kami mendampingi tim Anda dari nol hingga Go-Live.</h3>
+          <p style="margin-top: 0.5rem;">
+            Pelajari 5 tahapan rekayasa kami—mulai dari pemetaan SOP lapangan, migrasi data Excel, hingga pelatihan staf operasional.
+          </p>
+          <div style="margin-top: 1.25rem;">
+            <a href="process.html" class="link-arrow" style="color: var(--amber); border-color: var(--amber);">Buka halaman Cara Kerja &amp; FAQ →</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>

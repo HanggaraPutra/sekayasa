@@ -1,5 +1,13 @@
 /**
- * SEKA YASA — Scroll Animations, Parallax & Executive WhatsApp Assessment Script
+ * SEKA YASA — Unified Software House Architecture & Interactive Engine
+ * Handles:
+ * 1. Single-source 5-Menu Oval Navbar + Interactive Mega-Menu + 4-Col Sitemap Footer
+ * 2. Session-once Intricate SVG Gunungan & Per-Letter SEKA YASA Intro Animation
+ * 3. Hero Interactive System Switcher & Drafting-Lamp Cursor Spotlight
+ * 4. Interactive Problem -> Solution Architecture Explorer
+ * 5. Services Page Interactive Industry Switcher
+ * 6. Case Studies Category Filter & Process Page FAQ Accordion
+ * 7. Contact Page 3-Click Configurator + Architecture Recommendation + WhatsApp Generator
  */
 
 const SEKA_CONFIG = {
@@ -13,32 +21,29 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initNavbarAndProgress();
   initHeroInteractiveBg();
+  initHeroPreviewSwitcher();
+  initProblemArchitectureExplorer();
+  initIndustrySwitcher();
+  initCaseStudyFilter();
+  initFaqAccordion();
   initDiagnosisWidget();
 });
 
 /* ==========================================================================
-   SHARED SINGLE-SOURCE LAYOUT (NAVBAR & FOOTER IDENTICAL ACROSS ALL PAGES)
+   1. SHARED SINGLE-SOURCE LAYOUT (5-MENU OVAL NAVBAR + MEGA-MENU + FOOTER)
    ========================================================================== */
 function initSharedLayout() {
   const path = window.location.pathname.split("/").pop() || "index.html";
   const currentPage = path === "" ? "index.html" : path.toLowerCase();
 
-  const navItems = [
-    { href: "index.html", label: "Beranda" },
-    { href: "projects.html", label: "Karya &amp; Sistem" },
-    { href: "about.html", label: "Tentang Kami" },
-    { href: "contact.html", label: "Konsultasi" }
-  ];
-
-  // 1. Render Unified Slim Centered Oval Navbar + Scroll Progress Bar
   const navMount = document.getElementById("seka-navbar");
   if (navMount) {
-    const linksHtml = navItems
-      .map((item) => {
-        const isActive = currentPage === item.href ? ' class="active"' : "";
-        return `<a href="${item.href}"${isActive}>${item.label}</a>`;
-      })
-      .join("");
+    const isHome = currentPage === "index.html" ? ' class="active"' : "";
+    const isServices = currentPage === "services.html" ? " active" : "";
+    const isProjects = currentPage === "projects.html" ? ' class="active"' : "";
+    const isProcess = currentPage === "process.html" ? ' class="active"' : "";
+    const isAbout = currentPage === "about.html" ? ' class="active"' : "";
+    const isContact = currentPage === "contact.html" ? " active-cta" : "";
 
     navMount.outerHTML = `
       <div class="scroll-progress-bar" id="scroll-progress"></div>
@@ -48,16 +53,94 @@ function initSharedLayout() {
             <img src="assets/logo-mark.svg" alt="Seka Yasa" class="nav-logo-mark" />
             <img src="assets/logo-text.svg" alt="SEKA YASA" class="nav-logo-text" />
           </a>
+
           <nav class="nav-links" aria-label="Menu Utama">
-            ${linksHtml}
+            <a href="index.html"${isHome}>Beranda</a>
+
+            <div class="nav-item-wrap" id="nav-mega-wrap">
+              <a href="services.html" class="nav-dropdown-trigger${isServices}" aria-expanded="false">
+                <span>Layanan &amp; Solusi</span>
+                <span class="nav-caret">▾</span>
+              </a>
+
+              <!-- Interactive Software House Mega-Menu -->
+              <div class="mega-menu-panel" role="region" aria-label="Menu Layanan dan Solusi">
+                <div>
+                  <span class="mega-col-title">Sistem Inti yang Kami Bangun</span>
+                  <div class="mega-list">
+                    <a href="services.html#pos" class="mega-link">
+                      <strong>Sistem Kasir &amp; Multi-Outlet (POS)</strong>
+                      <span>Kasir tablet/desktop, harga grosir/retail &amp; konsolidasi cabang</span>
+                    </a>
+                    <a href="services.html#erp" class="mega-link">
+                      <strong>Sistem ERP Gudang &amp; Produksi</strong>
+                      <span>Multi-gudang, Purchasing (PO), resep/BOM &amp; HPP otomatis</span>
+                    </a>
+                    <a href="services.html#sim" class="mega-link">
+                      <strong>Manajemen Internal &amp; HRIS</strong>
+                      <span>Arus kas, umur piutang (AR/AP), absensi &amp; otomasi payroll</span>
+                    </a>
+                    <a href="services.html#custom" class="mega-link">
+                      <strong>Custom Web App &amp; Integrasi</strong>
+                      <span>Digitalisasi SOP khusus perusahaan &amp; integrasi sistem</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="mega-col-title">Solusi Sektor Industri</span>
+                  <div class="mega-list">
+                    <a href="services.html#sektor-industri" data-jump-ind="retail" class="mega-link">
+                      <strong>Retail, Grosir &amp; Distribusi</strong>
+                      <span>Kontrol ribuan SKU, tier harga &amp; stok lintas cabang</span>
+                    </a>
+                    <a href="services.html#sektor-industri" data-jump-ind="fnb" class="mega-link">
+                      <strong>F&amp;B, Restoran &amp; Jaringan Outlet</strong>
+                      <span>Potong stok resep otomatis &amp; tutup shift anti-selisih</span>
+                    </a>
+                    <a href="services.html#sektor-industri" data-jump-ind="manufaktur" class="mega-link">
+                      <strong>Manufaktur &amp; Pergudangan</strong>
+                      <span>Pelacakan batch produksi (SPK), PO supplier &amp; HPP</span>
+                    </a>
+                    <a href="services.html#sektor-industri" data-jump-ind="jasa" class="mega-link">
+                      <strong>Perusahaan Jasa &amp; Korporasi</strong>
+                      <span>Tagihan proyek, pengingat piutang jatuh tempo &amp; HR</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="mega-highlight-box">
+                  <div>
+                    <span class="mega-col-title" style="border:none; margin-bottom:0.4rem; padding:0;">Pendekatan Modular</span>
+                    <h4>Mulai dari modul yang paling mendesak dulu.</h4>
+                    <p>Tidak harus membangun sistem raksasa sekaligus. Sistem kami dirancang modular agar siap tumbuh mengikuti skala bisnis Anda.</p>
+                  </div>
+                  <div class="mega-highlight-links">
+                    <a href="services.html#perbandingan" class="mega-cta-inline">
+                      <span>SaaS Langganan vs Custom</span>
+                      <span>→</span>
+                    </a>
+                    <a href="contact.html" class="mega-cta-inline">
+                      <span>Asesmen Kebutuhan (1 Menit)</span>
+                      <span>→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="projects.html"${isProjects}>Studi Kasus</a>
+            <a href="process.html"${isProcess}>Cara Kerja</a>
+            <a href="about.html"${isAbout}>Perusahaan</a>
           </nav>
-          <a href="contact.html" class="btn btn-amber btn-sm">Hubungi Kami</a>
+
+          <a href="contact.html" class="btn btn-amber btn-sm${isContact}">Konsultasi</a>
         </div>
       </header>
     `;
   }
 
-  // 2. Render Unified Footer
+  // Render Unified 4-Column Software House Footer
   const footerMount = document.getElementById("seka-footer");
   if (footerMount) {
     footerMount.outerHTML = `
@@ -70,38 +153,52 @@ function initSharedLayout() {
                 <img src="assets/logo-text.svg" alt="SEKA YASA" class="nav-logo-text" />
               </a>
               <p class="footer-desc">
-                Seka Yasa — Software house, pengembangan aplikasi web, dan konsultan sistem informasi perusahaan di Surabaya.
+                Seka Yasa — Software house, pengembangan aplikasi web, dan konsultan sistem informasi perusahaan berbasis di Surabaya.
               </p>
             </div>
+
             <div class="footer-col">
-              <h4>Halaman</h4>
+              <h4>Perusahaan</h4>
               <ul>
                 <li><a href="index.html">Beranda</a></li>
-                <li><a href="projects.html">Karya &amp; Sistem</a></li>
-                <li><a href="about.html">Tentang Kami</a></li>
-                <li><a href="contact.html">Konsultasi &amp; Kontak</a></li>
+                <li><a href="about.html">Profil &amp; Filosofi</a></li>
+                <li><a href="process.html">Cara Kerja &amp; SLA</a></li>
+                <li><a href="process.html#faq">FAQ Pemilik Bisnis</a></li>
+                <li><a href="contact.html">Konsultasi &amp; Lokasi</a></li>
               </ul>
             </div>
+
             <div class="footer-col">
-              <h4>Layanan</h4>
+              <h4>Layanan &amp; Sistem</h4>
               <ul>
-                <li><a href="projects.html#pos">Sistem Kasir (POS)</a></li>
-                <li><a href="projects.html#erp">Inventori &amp; Produksi (ERP)</a></li>
-                <li><a href="projects.html#sim">Manajemen Internal</a></li>
-                <li><a href="contact.html">Pengembangan Aplikasi Web</a></li>
+                <li><a href="services.html#pos">Sistem Kasir &amp; Multi-Outlet (POS)</a></li>
+                <li><a href="services.html#erp">Inventori &amp; Produksi (ERP)</a></li>
+                <li><a href="services.html#sim">Manajemen Internal &amp; HRIS</a></li>
+                <li><a href="services.html#custom">Custom Web App &amp; Integrasi</a></li>
+                <li><a href="services.html#perbandingan">SaaS vs Sistem Custom</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Studi Kasus</h4>
+              <ul>
+                <li><a href="projects.html#erp">ERP Manufaktur &amp; Distribusi</a></li>
+                <li><a href="projects.html#pos">POS Retail &amp; F&amp;B Multi-Cabang</a></li>
+                <li><a href="projects.html#sim">Portal Keuangan, AR/AP &amp; HRIS</a></li>
               </ul>
             </div>
           </div>
+
           <div class="footer-bottom">
             <span>© 2026 Seka Yasa — Surabaya, Jawa Timur.</span>
-            <span>Tata • Titi • Tentrem</span>
+            <span>Tata Sistemé • Titi Datané • Tentrem Usahané</span>
           </div>
         </div>
       </footer>
     `;
   }
 
-  // 3. Inject Matching Blueprint Grid & Kawung Layers on Inner Page Headers
+  // Inject Matching Blueprint Grid & Kawung Layers on Inner Page Headers
   const innerHeader = document.querySelector(".inner-header");
   if (innerHeader && !innerHeader.querySelector(".hero-blueprint-grid")) {
     const bgFragment = document.createRange().createContextualFragment(`
@@ -110,10 +207,16 @@ function initSharedLayout() {
     `);
     innerHeader.prepend(bgFragment);
   }
+
+  // Close mega-menu on Escape key
+  const megaWrap = document.getElementById("nav-mega-wrap");
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") megaWrap?.classList.remove("mega-open");
+  });
 }
 
 /* ==========================================================================
-   0. OPENING INTRO / SPLASH CURTAIN (SEKA YASA LOGO REVEAL)
+   2. OPENING INTRO / SPLASH CURTAIN (SESSION-ONCE SVG LOGO REVEAL)
    ========================================================================== */
 function initOpeningIntro() {
   const intro = document.getElementById("seka-intro");
@@ -124,17 +227,14 @@ function initOpeningIntro() {
     return;
   }
 
-  // If already shown in this browsing session, remove intro immediately without replaying
   if (sessionStorage.getItem("seka_intro_seen") === "1") {
     intro.classList.add("is-done");
     document.body.classList.remove("intro-active");
     return;
   }
 
-  // Mark as seen so returning to Beranda (index.html) won't replay the splash screen
   sessionStorage.setItem("seka_intro_seen", "1");
 
-  // 1. Choreograph all 25 amber & 25 dark Gunungan pieces bottom-to-top & center-outward
   function choreographPieces(selector, className, baseDelay, stepMs) {
     const els = Array.from(document.querySelectorAll(selector));
     if (!els.length) return;
@@ -150,7 +250,6 @@ function initOpeningIntro() {
       return { el, cx, cy };
     });
 
-    // Sort bottom-to-top (higher cy first), then center-to-outward
     measured.sort((a, b) => {
       const rowDiff = Math.round((b.cy - a.cy) / 18);
       if (rowDiff !== 0) return rowDiff;
@@ -162,7 +261,6 @@ function initOpeningIntro() {
       const dy = item.cy > 165 ? 14 : -12;
       const delay = (baseDelay + idx * stepMs).toFixed(3);
 
-      // Wrap elements that have an SVG transform="matrix(...)" so CSS transform never overrides their matrix
       let targetEl = item.el;
       if (item.el.hasAttribute("transform") && item.el.parentNode) {
         const wrapper = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -178,10 +276,9 @@ function initOpeningIntro() {
     });
   }
 
-  choreographPieces(".svg-amber-aksara path, .svg-amber-aksara rect", "svg-piece-amber", 0.30, 0.026);
+  choreographPieces(".svg-amber-aksara path, .svg-amber-aksara rect", "svg-piece-amber", 0.3, 0.026);
   choreographPieces(".svg-dark-foreground path, .svg-dark-foreground rect", "svg-piece-dark", 1.12, 0.018);
 
-  // 2. Split SEKA YASA wordmark into individual calligraphic letter strokes sorted left-to-right
   const masterWordmark = document.getElementById("seka-wordmark-path");
   if (masterWordmark && masterWordmark.parentNode) {
     const svgNS = "http://www.w3.org/2000/svg";
@@ -203,10 +300,7 @@ function initOpeningIntro() {
         return { p, x, len };
       });
 
-      // Remove original merged path
       masterWordmark.remove();
-
-      // Sort strictly left-to-right so S -> E -> K -> A   Y -> A -> S -> A traces cleanly
       created.sort((a, b) => a.x - b.x);
 
       created.forEach((item, i) => {
@@ -221,19 +315,16 @@ function initOpeningIntro() {
   }
 
   let dismissed = false;
-
   function dismissIntro() {
     if (dismissed) return;
     dismissed = true;
     intro.classList.add("is-leaving");
     document.body.classList.remove("intro-active");
-
     setTimeout(() => {
       intro.classList.add("is-done");
     }, 900);
   }
 
-  // Auto-open curtain cleanly after intricate Gunungan construction + per-letter wordmark settle (~3.25s)
   const autoTimer = setTimeout(dismissIntro, 3250);
 
   skipBtn?.addEventListener("click", (e) => {
@@ -242,7 +333,6 @@ function initOpeningIntro() {
     dismissIntro();
   });
 
-  // Also allow clicking anywhere on splash to skip immediately
   intro.addEventListener("click", () => {
     clearTimeout(autoTimer);
     dismissIntro();
@@ -250,8 +340,51 @@ function initOpeningIntro() {
 }
 
 /* ==========================================================================
-   1B. HERO INTERACTIVE WARM SPOTLIGHT FOLLOWING CURSOR
+   3. SMOOTH SCROLL REVEAL & NAVBAR PROGRESS
    ========================================================================== */
+function initScrollReveal() {
+  const revealEls = document.querySelectorAll(".reveal-on-scroll");
+  if (!("IntersectionObserver" in window)) {
+    revealEls.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -36px 0px" }
+  );
+
+  revealEls.forEach((el) => observer.observe(el));
+}
+
+function initNavbarAndProgress() {
+  const nav = document.querySelector(".site-nav");
+  const progressBar = document.getElementById("scroll-progress");
+  const heroWatermark = document.querySelector(".hero-gunungan-bg");
+
+  function onScroll() {
+    const scrollY = window.scrollY;
+    if (nav) nav.classList.toggle("nav-scrolled", scrollY > 40);
+    if (progressBar) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, (scrollY / docHeight) * 100) : 0;
+      progressBar.style.width = `${pct}%`;
+    }
+    if (heroWatermark && scrollY < 900) {
+      heroWatermark.style.transform = `translateY(calc(-50% + ${scrollY * 0.15}px))`;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
 function initHeroInteractiveBg() {
   const hero = document.getElementById("hero-stage");
   const glow = document.getElementById("hero-cursor-glow");
@@ -267,65 +400,173 @@ function initHeroInteractiveBg() {
 }
 
 /* ==========================================================================
-   1. SMOOTH SCROLL REVEAL (INTERSECTION OBSERVER)
+   4. HERO INTERACTIVE SYSTEM PREVIEW SWITCHER (ON INDEX.HTML)
    ========================================================================== */
-function initScrollReveal() {
-  const revealEls = document.querySelectorAll(".reveal-on-scroll");
+function initHeroPreviewSwitcher() {
+  const tabs = document.querySelectorAll("[data-hero-sys]");
+  const imgEl = document.getElementById("hero-preview-img");
+  const titleEl = document.getElementById("hero-frame-title");
+  const metaEl = document.getElementById("hero-frame-meta");
 
-  if (!("IntersectionObserver" in window)) {
-    revealEls.forEach((el) => el.classList.add("is-visible"));
-    return;
-  }
+  if (!tabs.length || !imgEl) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-        }
-      });
+  const sysData = {
+    erp: {
+      src: "assets/erp-complex-v2.jpg",
+      alt: "Tampilan Sistem ERP Gudang, Purchasing (PO) & Produksi Seka Yasa",
+      title: "Modul ERP Inventori Multi-Gudang, PO Supplier & Kalkulasi HPP Produksi",
+      meta: "Multi-Warehouse · BOM & Batch Tracking"
     },
-    {
-      threshold: 0.14,
-      rootMargin: "0px 0px -40px 0px"
+    pos: {
+      src: "assets/pos-complex-v2.jpg",
+      alt: "Tampilan Sistem POS Kasir & Backoffice Multi-Cabang Seka Yasa",
+      title: "Modul POS Terminal Kasir & Konsolidasi Penjualan Multi-Cabang",
+      meta: "Retail & F&B · Tier Harga & Shift Lock"
+    },
+    sim: {
+      src: "assets/sim-complex-v2.jpg",
+      alt: "Tampilan Portal Manajemen Keuangan, Piutang (AR/AP) & HRIS Payroll",
+      title: "Portal Manajemen Internal: Arus Kas, Umur Piutang (AR) & Otomasi Payroll",
+      meta: "Financial Ledger · AR Aging & HRIS"
     }
-  );
+  };
 
-  revealEls.forEach((el) => observer.observe(el));
+  tabs.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const key = btn.getAttribute("data-hero-sys");
+      const info = sysData[key];
+      if (!info) return;
+
+      tabs.forEach((b) => b.classList.toggle("active", b === btn));
+      imgEl.src = info.src;
+      imgEl.alt = info.alt;
+      if (titleEl) titleEl.textContent = info.title;
+      if (metaEl) metaEl.textContent = info.meta;
+    });
+  });
 }
 
 /* ==========================================================================
-   2. NAVBAR SCROLL STATE, TOP PROGRESS BAR & SUBTLE HERO PARALLAX
+   5. INTERACTIVE PROBLEM -> SOLUTION ARCHITECTURE EXPLORER (ON INDEX.HTML)
    ========================================================================== */
-function initNavbarAndProgress() {
-  const nav = document.querySelector(".site-nav");
-  const progressBar = document.getElementById("scroll-progress");
-  const heroWatermark = document.querySelector(".hero-gunungan-bg");
+function initProblemArchitectureExplorer() {
+  const cards = document.querySelectorAll("[data-prob-key]");
+  const tagEl = document.getElementById("arch-sol-tag");
+  const titleEl = document.getElementById("arch-sol-title");
+  const inputEl = document.getElementById("arch-node-input");
+  const procEl = document.getElementById("arch-node-process");
+  const outEl = document.getElementById("arch-node-output");
+  const linkEl = document.getElementById("arch-sol-link");
 
-  function onScroll() {
-    const scrollY = window.scrollY;
+  if (!cards.length || !titleEl) return;
 
-    if (nav) {
-      nav.classList.toggle("nav-scrolled", scrollY > 40);
+  const solutions = {
+    pos: {
+      tag: "Arsitektur Solusi 01 · Sistem Kasir & Multi-Outlet (POS)",
+      title: "Menghubungkan setiap struk penjualan cabang langsung ke stok gudang dan kas utama.",
+      input: "Kasir scan/input pesanan di tablet atau PC (mendukung harga Retail, Grosir, & Reseller serta QRIS/Tunai).",
+      process: "Sistem otomatis memotong stok barang atau takaran resep cabang detik itu juga & mengunci hitungan kas per shift.",
+      output: "Pemilik memantau omzet, margin laba kotor, dan sisa stok seluruh cabang secara real-time tanpa menunggu rekap malam.",
+      href: "projects.html#pos"
+    },
+    erp: {
+      tag: "Arsitektur Solusi 02 · Inventori & Produksi (ERP)",
+      title: "Mengunci akurasi barang dari PO supplier datang, mutasi rak gudang, hingga HPP produksi.",
+      input: "Penerimaan barang dari supplier diverifikasi terhadap Purchase Order (PO) dan ditempatkan ke zona rak gudang.",
+      process: "Saat Surat Perintah Kerja (SPK) produksi berjalan, sistem memotong bahan baku sesuai komposisi BOM & menghitung HPP batch.",
+      output: "Selisih stok fisik hilang, peringatan stok minimum muncul otomatis sebelum bahan habis, dan HPP per produk akurat.",
+      href: "projects.html#erp"
+    },
+    sim: {
+      tag: "Arsitektur Solusi 03 · Manajemen Internal (Keuangan & HRIS)",
+      title: "Menyatukan arus kas, jadwal penagihan piutang jatuh tempo, dan penggajian dalam satu portal.",
+      input: "Data tagihan penjualan, pengeluaran operasional, serta log kehadiran/lembur staf tercatat di satu database.",
+      process: "Sistem mengelompokkan umur piutang (AR Aging 0–30 / >60 hari), memberi pengingat tagihan, dan mengakumulasi komponen gaji.",
+      output: "Tutup buku bulanan dan pembuatan slip gaji selesai dalam hitungan menit dengan hak akses yang aman per divisi.",
+      href: "projects.html#sim"
     }
+  };
 
-    if (progressBar) {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? Math.min(100, (scrollY / docHeight) * 100) : 0;
-      progressBar.style.width = `${pct}%`;
-    }
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const key = card.getAttribute("data-prob-key");
+      const sol = solutions[key];
+      if (!sol) return;
 
-    if (heroWatermark && scrollY < 900) {
-      heroWatermark.style.transform = `translateY(calc(-50% + ${scrollY * 0.15}px))`;
-    }
+      cards.forEach((c) => c.classList.toggle("active", c === card));
+      if (tagEl) tagEl.textContent = sol.tag;
+      if (titleEl) titleEl.textContent = sol.title;
+      if (inputEl) inputEl.textContent = sol.input;
+      if (procEl) procEl.textContent = sol.process;
+      if (outEl) outEl.textContent = sol.output;
+      if (linkEl) linkEl.setAttribute("href", sol.href);
+    });
+  });
+}
+
+/* ==========================================================================
+   6. INTERACTIVE INDUSTRY SOLUTIONS SWITCHER (ON SERVICES.HTML)
+   ========================================================================== */
+function initIndustrySwitcher() {
+  const buttons = document.querySelectorAll("[data-ind-tab]");
+  const panels = document.querySelectorAll("[data-ind-panel]");
+  if (!buttons.length) return;
+
+  function activateIndustry(key) {
+    buttons.forEach((btn) => btn.classList.toggle("active", btn.getAttribute("data-ind-tab") === key));
+    panels.forEach((panel) => panel.classList.toggle("hidden", panel.getAttribute("data-ind-panel") !== key));
   }
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const key = btn.getAttribute("data-ind-tab");
+      if (key) activateIndustry(key);
+    });
+  });
+
+  // Support clicking industry links from the Mega-Menu
+  document.querySelectorAll("[data-jump-ind]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const key = link.getAttribute("data-jump-ind");
+      if (key) activateIndustry(key);
+    });
+  });
 }
 
 /* ==========================================================================
-   3. 3-CLICK WHATSAPP ASSESSMENT WIDGET (ON CONTACT PAGE)
+   7. CASE STUDY CATEGORY FILTER (ON PROJECTS.HTML) & FAQ ACCORDION (PROCESS.HTML)
+   ========================================================================== */
+function initCaseStudyFilter() {
+  const filterBtns = document.querySelectorAll("[data-case-filter]");
+  const items = document.querySelectorAll("[data-case-cat]");
+  if (!filterBtns.length) return;
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cat = btn.getAttribute("data-case-filter");
+      filterBtns.forEach((b) => b.classList.toggle("active", b === btn));
+      items.forEach((item) => {
+        const match = cat === "all" || item.getAttribute("data-case-cat") === cat;
+        item.classList.toggle("hidden", !match);
+      });
+    });
+  });
+}
+
+function initFaqAccordion() {
+  const items = document.querySelectorAll(".faq-item");
+  items.forEach((item) => {
+    const trigger = item.querySelector(".faq-trigger");
+    trigger?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
+      items.forEach((other) => other.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    });
+  });
+}
+
+/* ==========================================================================
+   8. 3-CLICK CONFIGURATOR + ARCHITECTURE RECOMMENDATION + WA BUILDER
    ========================================================================== */
 function initDiagnosisWidget() {
   const industryGroup = document.getElementById("diag-industry");
@@ -333,6 +574,7 @@ function initDiagnosisWidget() {
   const scaleGroup = document.getElementById("diag-scale");
   const nameInput = document.getElementById("diag-name");
   const previewEl = document.getElementById("wa-preview-text");
+  const archRecEl = document.getElementById("diag-arch-recommendation");
   const btnSendWa = document.getElementById("btn-send-wa");
 
   if (!industryGroup || !needsGroup) return;
@@ -372,6 +614,12 @@ function initDiagnosisWidget() {
     const scale =
       scaleGroup?.querySelector(".choice-chip.active")?.getAttribute("data-val") || "Sedang berkembang";
     const userName = nameInput?.value.trim();
+
+    if (archRecEl) {
+      archRecEl.textContent = `Untuk sektor ${industry} (${scale}), kami menyarankan implementasi bertahap dimulai dari modul ${needs[0]} sebagai fondasi data utama${
+        needs.length > 1 ? `, lalu diintegrasikan langsung dengan ${needs.slice(1).join(" & ")}` : ""
+      }.`;
+    }
 
     const greeting = userName
       ? `Halo Tim Konsultan Seka Yasa Surabaya, saya ${userName}.`

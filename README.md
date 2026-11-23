@@ -11,3 +11,4 @@ Website portofolio multi-halaman untuk **Seka Yasa (Surabaya)** — Software Hou
 
 ## Konfigurasi
 Untuk mengganti nomor WhatsApp tujuan konsultasi, edit `SEKA_CONFIG.whatsappNumber` di dalam file `app.js`.
+

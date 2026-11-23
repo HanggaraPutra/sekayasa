@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
   <script>
     if (sessionStorage.getItem("seka_intro_seen") === "1") {
       document.documentElement.classList.add("intro-seen");
@@ -252,111 +252,135 @@
     </section>
 
     <!-- ==================================================================
-         BAGIAN 2 / 6: KEUNGGULAN BERSAMA SEKA YASA (TENANG, JELAS & HUMANIZED)
+         BAGIAN 2 / 6: KEUNGGULAN BERSAMA SEKA YASA
+         (LIVE PREVIEW SWITCHER: OPSI 1 FOTO MANUSIA vs OPSI 2 EDITORIAL TENANG)
          ================================================================== -->
     <section class="full-stage stage-problems" id="masalah-operasional">
       <div class="container">
-        <div class="benefits-header-split reveal-on-scroll">
-          <div>
+        <!-- Tombol Ganti Pratinjau Sementara (Agar Mudah Membandingkan Opsi 1 & Opsi 2) -->
+        <div class="s01-preview-bar" role="tablist" aria-label="Bandingkan Gaya Seksi 01">
+          <span class="s01-preview-label">Bandingkan Tampilan Seksi 01:</span>
+          <div class="s01-preview-pills">
+            <button type="button" class="s01-opt-btn active" data-s01-opt="1" aria-selected="true">Opsi 1 · Foto Manusia &amp; Terbuka</button>
+            <button type="button" class="s01-opt-btn" data-s01-opt="2" aria-selected="false">Opsi 2 · Editorial Tenang</button>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             OPSI 1: TERBUKA TANPA KOTAK AI + FOTO MANUSIA NATURAL & DAFTAR BERNOMOR
+             ============================================================ -->
+        <div class="s01-variant" data-s01-panel="1">
+          <!-- Bagian Atas: 3 Poin Terbuka Tanpa Border/Kotak -->
+          <div class="human-open-top reveal-on-scroll is-visible">
+            <h2 class="human-open-title">Satu sistem yang bikin kerja tim jauh lebih tenang.</h2>
+            <div class="human-open-cols">
+              <div class="human-open-col">
+                <span class="human-open-kicker">01 · Fleksibel untuk Skala Usaha</span>
+                <h3>Mulai dari yang paling dibutuhkan</h3>
+                <p>Bisa mulai dari kasir atau gudang terlebih dahulu, lalu diperluas kapan saja saat cabang dan tim Anda bertumbuh.</p>
+              </div>
+              <div class="human-open-col">
+                <span class="human-open-kicker">02 · Satu Ekosistem Terhubung</span>
+                <h3>Semua bagian bicara dalam satu data</h3>
+                <p>Kasir, gudang, produksi, sampai keuangan saling memperbarui otomatis—tidak ada lagi salin ulang ke Excel tiap malam.</p>
+              </div>
+              <div class="human-open-col">
+                <span class="human-open-kicker">03 · Efisien Jangka Panjang</span>
+                <h3>Bebas biaya langganan per-akun</h3>
+                <p>Tambah staf baru atau buka cabang berikutnya dengan lega tanpa tagihan lisensi bulanan yang ikut membengkak.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bagian Bawah: Foto Manusia Hangat (Kiri) + 3 Poin Bernomor Bersih (Kanan) -->
+          <div class="human-split-feature reveal-on-scroll is-visible">
+            <div class="human-photo-wrap">
+              <img src="assets/human-workspace.jpg" alt="Suasana tim dan pemilik usaha memantau operasional dengan tenang" class="human-photo-img" />
+              <!-- 1 Kartu Ringkas Tenang di Sudut Foto -->
+              <div class="human-photo-card">
+                <div class="hpc-head">
+                  <span>Ringkasan Hari Ini</span>
+                  <span class="hpc-status">● Tersinkron</span>
+                </div>
+                <div class="hpc-main-row">
+                  <span class="hpc-label">Omzet 4 Cabang</span>
+                  <strong class="hpc-val">Rp 46.850.000</strong>
+                </div>
+                <div class="hpc-sub-grid">
+                  <div>
+                    <small>Faktur Lunas</small>
+                    <span>Rp 38.400.000</span>
+                  </div>
+                  <div>
+                    <small>Stok &amp; Kas Shift</small>
+                    <span class="hpc-ok">Cocok 100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="human-feature-copy">
+              <span class="section-index">01 · Lebih dari sekadar aplikasi pencatatan</span>
+              <h2 class="split-title">Semua urusan operasional, rapi di satu tempat.</h2>
+              <p class="split-desc">
+                Dari transaksi kasir harian sampai laporan bulanan, kami bantu rapikan alur kerja agar tim tidak lembur dan Anda bisa mengambil keputusan dengan data yang jujur.
+              </p>
+
+              <div class="human-numbered-list">
+                <div class="human-num-row">
+                  <span class="human-num-circle">1</span>
+                  <div>
+                    <h3>Penjualan &amp; Kasir Cabang</h3>
+                    <p>Transaksi cepat di meja kasir, harga grosir dan member otomatis, serta tutup shift tanpa selisih kas.</p>
+                  </div>
+                </div>
+
+                <div class="human-num-row">
+                  <span class="human-num-circle">2</span>
+                  <div>
+                    <h3>Stok Gudang &amp; Produksi</h3>
+                    <p>Barang masuk dari supplier, mutasi rak, dan pemakaian bahan produksi tercatat akurat tanpa tebak-tebakan.</p>
+                  </div>
+                </div>
+
+                <div class="human-num-row">
+                  <span class="human-num-circle">3</span>
+                  <div>
+                    <h3>Kas, Piutang &amp; Gaji Tim</h3>
+                    <p>Posisi arus kas harian, pengingat piutang jatuh tempo, hingga slip gaji karyawan siap dalam hitungan menit.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             OPSI 2: EDITORIAL TENANG TANPA KARTU (JIWA ODOO · MINIMALIS)
+             ============================================================ -->
+        <div class="s01-variant hidden" data-s01-panel="2">
+          <div class="editorial-calm-wrap">
             <span class="section-index">01 · Keunggulan Bersama Seka Yasa</span>
-            <h2 class="split-title">
-              Bebaskan waktu Anda dari urusan rekap manual dan data yang tercecer.
+            <h2 class="editorial-calm-headline">
+              Bayangkan setiap orang di usaha Anda punya alat yang tepat untuk pekerjaannya.
             </h2>
-          </div>
-          <p class="split-desc">
-            Bisnis yang terus berkembang tidak seharusnya membuat Anda makin sibuk mengecek nota satu per satu. Kami bantu rapikan alur kasir, gudang, produksi, sampai keuangan agar tim bekerja lebih ringan dan Anda bisa memantau usaha dengan tenang.
-          </p>
-        </div>
-
-        <!-- 4 Kartu Manfaat Utama (Grid 2x2 Lega, Ikon Monoline Tenang) -->
-        <div class="benefits-grid-2x2">
-          <!-- Manfaat 1 -->
-          <article class="benefit-card reveal-on-scroll">
-            <div class="benefit-icon-box" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-                <path d="M3 3v5h5"/>
-                <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
-                <path d="M16 16h5v5"/>
-              </svg>
-            </div>
-            <h3>Kerja tim lebih ringan, tanpa input berulang</h3>
-            <p>
-              Begitu kasir mencetak struk atau gudang menerima barang, stok dan catatan keuangan otomatis ikut berubah. Staf Anda tidak perlu lagi menyalin ulang angka dari nota ke Excel setiap malam.
+            <p class="editorial-calm-lead">
+              Kasir tidak lagi salah menghitung harga grosir. Admin gudang tidak lagi lembur mencari selisih stok. Dan Anda tidak lagi harus menunggu foto rekap WhatsApp setiap malam hanya untuk tahu kondisi usaha sendiri.
             </p>
-          </article>
-
-          <!-- Manfaat 2 -->
-          <article class="benefit-card reveal-on-scroll delay-1">
-            <div class="benefit-icon-box" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="9"/>
-                <polyline points="12 7 12 12 15.5 14"/>
-              </svg>
-            </div>
-            <h3>Pantau usaha secara langsung, dari mana saja</h3>
-            <p>
-              Tidak perlu menunggu rekap akhir hari atau menelepon tiap cabang satu per satu. Omzet, sisa barang yang mulai menipis, hingga posisi kas bisa Anda cek sendiri kapan saja dari ponsel maupun laptop.
+            <p class="editorial-calm-body">
+              Kami tidak memaksa bisnis Anda mengikuti aplikasi yang kaku—justru kami merancang sistem yang menyesuaikan cara kerja Anda, lalu mendampingi tim dari migrasi Excel hingga benar-benar lancar dipakai setiap hari.
             </p>
-          </article>
 
-          <!-- Manfaat 3 -->
-          <article class="benefit-card reveal-on-scroll">
-            <div class="benefit-icon-box" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="4" y1="21" x2="4" y2="14"/>
-                <line x1="4" y1="10" x2="4" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="12"/>
-                <line x1="12" y1="8" x2="12" y2="3"/>
-                <line x1="20" y1="21" x2="20" y2="16"/>
-                <line x1="20" y1="12" x2="20" y2="3"/>
-                <line x1="2" y1="14" x2="6" y2="14"/>
-                <line x1="10" y1="8" x2="14" y2="8"/>
-                <line x1="18" y1="16" x2="22" y2="16"/>
-              </svg>
+            <div class="editorial-calm-meta">
+              <span>Tanpa input berulang</span>
+              <i aria-hidden="true">·</i>
+              <span>Bebas biaya per-akun</span>
+              <i aria-hidden="true">·</i>
+              <span>Didampingi langsung tim Surabaya</span>
             </div>
-            <h3>Sistem mengikuti cara kerja Anda, bukan sebaliknya</h3>
-            <p>
-              Setiap usaha punya aturan main sendiri—entah itu harga grosir bertingkat, takaran resep dapur, atau hitungan komisi tim. Kami bangun sistemnya mengikuti kebiasaan baik yang sudah berjalan di bisnis Anda.
-            </p>
-          </article>
 
-          <!-- Manfaat 4 -->
-          <article class="benefit-card reveal-on-scroll delay-1">
-            <div class="benefit-icon-box" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <polyline points="9 12 11 14 15 10"/>
-              </svg>
-            </div>
-            <h3>Angka lebih jujur, data terjaga, dan didampingi penuh</h3>
-            <p>
-              Setiap staf hanya membuka data sesuai bagiannya dan seluruh data dicadangkan otomatis. Tim kami di Surabaya juga ikut mendampingi langsung—dari merapikan data Excel lama sampai staf Anda benar-benar lancar.
-            </p>
-          </article>
-        </div>
-
-        <!-- Strip 3 Poin Ringkas Tenang di Bawah -->
-        <div class="benefits-trust-strip reveal-on-scroll">
-          <div class="trust-strip-item">
-            <span class="trust-strip-num">01</span>
-            <div>
-              <h4>Mulai dari yang paling dibutuhkan</h4>
-              <p>Bisa mulai dari kasir atau gudang dulu, lalu ditambah saat bisnis berkembang.</p>
-            </div>
-          </div>
-          <div class="trust-strip-item">
-            <span class="trust-strip-num">02</span>
-            <div>
-              <h4>Semua bagian bicara dalam satu data</h4>
-              <p>Kasir, gudang, produksi, dan keuangan saling terhubung agar angka selalu sejalan.</p>
-            </div>
-          </div>
-          <div class="trust-strip-item">
-            <span class="trust-strip-num">03</span>
-            <div>
-              <h4>Bebas biaya langganan per-akun</h4>
-              <p>Tambah staf baru atau buka cabang berikutnya tanpa biaya bulanan yang membengkak.</p>
+            <div class="editorial-calm-action">
+              <a href="services.html" class="link-arrow">Lihat seluruh layanan &amp; modul kami →</a>
             </div>
           </div>
         </div>
@@ -699,6 +723,6 @@
   <!-- SHARED FOOTER (RENDERED AUTOMATICALLY BY app.js) -->
   <div id="seka-footer"></div>
 
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>

@@ -2282,120 +2282,330 @@ button, input, textarea {
 }
 
 /* ==========================================================================
-   STAGE 2: KEUNGGULAN BERSAMA SEKA YASA (CALM, HUMANIZED 2x2 BENEFIT GRID)
+   STAGE 2: HUMAN-CENTERED SECTION 01 (OPSI 1 FOTO MANUSIA vs OPSI 2 EDITORIAL)
    ========================================================================== */
-.benefits-header-split {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 3.5rem;
-  align-items: end;
-  margin-bottom: 3.5rem;
-}
-
-.benefits-header-split .split-title {
-  margin-bottom: 0;
-  max-width: 580px;
-}
-
-.benefits-header-split .split-desc {
-  max-width: 540px;
-  margin-bottom: 0.25rem;
-}
-
-.benefits-grid-2x2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-.benefit-card {
-  background-color: var(--white);
-  border: 1px solid var(--line-light);
-  border-radius: var(--radius-md);
-  padding: 2.25rem 2.4rem;
-  transition: border-color 0.22s ease, box-shadow 0.22s ease;
-}
-
-.benefit-card:hover {
-  border-color: rgba(119, 82, 41, 0.42);
-  box-shadow: 0 14px 36px rgba(26, 18, 8, 0.06);
-}
-
-.benefit-icon-box {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background-color: var(--soga-tint);
-  border: 1px solid rgba(119, 82, 41, 0.16);
-  color: var(--soga);
-  display: inline-flex;
+.s01-preview-bar {
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.35rem;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-bottom: 3.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed rgba(119, 82, 41, 0.25);
 }
 
-.benefit-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.24rem;
+.s01-preview-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.s01-preview-pills {
+  display: inline-flex;
+  gap: 0.4rem;
+  padding: 0.3rem;
+  border-radius: 999px;
+  background-color: var(--cream-alt);
+  border: 1px solid var(--line-light);
+}
+
+.s01-opt-btn {
+  border: none;
+  background: transparent;
+  padding: 0.48rem 1.05rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.3;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.s01-opt-btn:hover {
   color: var(--text-primary);
+}
+
+.s01-opt-btn.active {
+  background-color: var(--espresso);
+  color: var(--amber);
+  font-weight: 600;
+}
+
+/* --- OPSI 1: OPEN TOP 3 COLUMNS (NO BOXES / NO BORDERS) --- */
+.human-open-top {
+  margin-bottom: 5.5rem;
+}
+
+.human-open-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 2.8vw, 2.55rem);
+  font-weight: 500;
+  letter-spacing: -0.024em;
+  line-height: 1.18;
+  text-align: center;
+  color: var(--text-primary);
+  max-width: 680px;
+  margin: 0 auto 3.25rem;
+}
+
+.human-open-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.25rem;
+}
+
+.human-open-col {
+  padding-top: 1.25rem;
+  border-top: 1.5px solid rgba(119, 82, 41, 0.22);
+}
+
+.human-open-kicker {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--soga);
+  letter-spacing: 0.04em;
   margin-bottom: 0.65rem;
 }
 
-.benefit-card p {
-  font-size: 0.92rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  line-height: 1.68;
-  max-width: 520px;
-}
-
-.benefits-trust-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.25rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--line-light);
-}
-
-.trust-strip-item {
-  display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: 0.85rem;
-  align-items: baseline;
-}
-
-.trust-strip-num {
+.human-open-col h3 {
   font-family: var(--font-display);
-  font-size: 0.88rem;
+  font-size: 1.16rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.human-open-col p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.66;
+}
+
+/* --- OPSI 1: HUMAN PHOTO (LEFT) + NUMBERED LIST (RIGHT) --- */
+.human-split-feature {
+  display: grid;
+  grid-template-columns: 0.96fr 1.04fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.human-photo-wrap {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: var(--cream-alt);
+  aspect-ratio: 4 / 4.35;
+  box-shadow: 0 22px 54px rgba(26, 18, 8, 0.09);
+}
+
+.human-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.human-photo-card {
+  position: absolute;
+  left: 1.35rem;
+  bottom: 1.35rem;
+  width: min(300px, calc(100% - 2.7rem));
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(119, 82, 41, 0.16);
+  border-radius: 12px;
+  padding: 1.05rem 1.2rem;
+  box-shadow: 0 16px 36px rgba(26, 18, 8, 0.14);
+}
+
+.hpc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: var(--soga);
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+}
+
+.hpc-status {
+  color: #157347;
+}
+
+.hpc-main-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 0.65rem;
+  margin-bottom: 0.65rem;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.hpc-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.hpc-val {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
   font-variant-numeric: tabular-nums;
 }
 
-.trust-strip-item h4 {
-  font-family: var(--font-display);
-  font-size: 1.02rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 0.35rem;
+.hpc-sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
 }
 
-.trust-strip-item p {
-  font-size: 0.86rem;
+.hpc-sub-grid small {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.hpc-sub-grid span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.hpc-sub-grid span.hpc-ok {
+  color: var(--soga);
+}
+
+.human-feature-copy .split-title {
+  margin-bottom: 0.85rem;
+}
+
+.human-feature-copy .split-desc {
+  margin-bottom: 2rem;
+  max-width: 540px;
+}
+
+.human-numbered-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.human-num-row {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 1.05rem;
+  align-items: start;
+  padding: 1.25rem 1.45rem;
+  border-radius: 12px;
+  background-color: var(--white);
+  border: 1px solid rgba(119, 82, 41, 0.12);
+}
+
+.human-num-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--espresso);
+  color: var(--amber);
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.human-num-row h3 {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.human-num-row p {
+  font-size: 0.88rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.62;
+}
+
+/* --- OPSI 2: PURE CALM EDITORIAL STATEMENT (NO CARDS, NO ICONS) --- */
+.editorial-calm-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3.5rem 0 2.5rem;
+}
+
+.editorial-calm-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 3.6vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: -0.028em;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+}
+
+.editorial-calm-lead {
+  font-size: 1.12rem;
+  font-weight: 400;
+  line-height: 1.78;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.editorial-calm-body {
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.78;
+  color: var(--text-secondary);
+  max-width: 660px;
+  margin: 0 auto 2.5rem;
+}
+
+.editorial-calm-meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--soga);
+  padding: 0.85rem 1.6rem;
+  border-top: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
+  margin-bottom: 2rem;
+}
+
+.editorial-calm-meta i {
+  font-style: normal;
+  opacity: 0.5;
+}
+
+.editorial-calm-action {
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 960px) {
-  .benefits-header-split,
-  .benefits-grid-2x2,
-  .benefits-trust-strip {
+  .human-open-cols,
+  .human-split-feature {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2.25rem;
+  }
+
+  .human-photo-wrap {
+    aspect-ratio: 4 / 3;
   }
 }
 

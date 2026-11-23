@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroInteractiveBg();
   initHeroPreviewSwitcher();
   initProblemArchitectureExplorer();
+  initSection01PreviewSwitch();
   initShowcaseGalleries();
   initShowcaseScrollZoom();
   initIndustrySwitcher();
@@ -615,6 +616,26 @@ function initProblemArchitectureExplorer() {
         linkEl.setAttribute("href", sol.href);
         linkEl.textContent = sol.linkText;
       }
+    });
+  });
+}
+
+function initSection01PreviewSwitch() {
+  const btns = document.querySelectorAll("[data-s01-opt]");
+  const panels = document.querySelectorAll("[data-s01-panel]");
+  if (!btns.length || !panels.length) return;
+
+  btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-s01-opt");
+      btns.forEach((b) => {
+        const isMatch = b === btn;
+        b.classList.toggle("active", isMatch);
+        b.setAttribute("aria-selected", isMatch ? "true" : "false");
+      });
+      panels.forEach((p) => {
+        p.classList.toggle("hidden", p.getAttribute("data-s01-panel") !== target);
+      });
     });
   });
 }

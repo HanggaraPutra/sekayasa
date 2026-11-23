@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroInteractiveBg();
   initHeroPreviewSwitcher();
   initProblemArchitectureExplorer();
+  initShowcaseGalleries();
+  initShowcaseScrollZoom();
   initIndustrySwitcher();
   initCaseStudyFilter();
   initFaqAccordion();
@@ -695,4 +697,200 @@ function initDiagnosisWidget() {
   }
 
   updateMessage();
+}
+
+/* ==========================================================================
+   9. INTERACTIVE 3-IMAGE SHOWCASE GALLERIES + FULLSCREEN LIGHTBOX (INDEX.HTML)
+   ========================================================================== */
+function initShowcaseGalleries() {
+  const galleries = document.querySelectorAll("[data-showcase-gallery]");
+  if (!galleries.length) return;
+
+  // Create shared Fullscreen Lightbox modal once
+  let lightbox = document.getElementById("seka-lightbox");
+  if (!lightbox) {
+    lightbox = document.createElement("div");
+    lightbox.id = "seka-lightbox";
+    lightbox.className = "seka-lightbox";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "Pratinjau Layar Penuh Sistem Seka Yasa");
+    lightbox.innerHTML = `
+      <div class="seka-lightbox-dialog">
+        <div class="seka-lightbox-head">
+          <div class="showcase-bar-meta">
+            <span class="showcase-slide-count" id="lb-count">01 / 03</span>
+            <span id="lb-title">Tampilan Sistem</span>
+          </div>
+          <div class="showcase-bar-actions">
+            <button type="button" class="showcase-icon-btn" id="lb-prev" aria-label="Layar sebelumnya">‹</button>
+            <button type="button" class="showcase-icon-btn" id="lb-next" aria-label="Layar berikutnya">›</button>
+            <button type="button" class="showcase-zoom-btn" id="lb-close" aria-label="Tutup">✕ Tutup</button>
+          </div>
+        </div>
+        <div class="seka-lightbox-body">
+          <img id="lb-img" src="" alt="" />
+        </div>
+      </div>
+    `;
+    document.body.appendChild(lightbox);
+  }
+
+  const lbImg = document.getElementById("lb-img");
+  const lbTitle = document.getElementById("lb-title");
+  const lbCount = document.getElementById("lb-count");
+  let activeGalleryCtrl = null;
+
+  function syncLightbox() {
+    if (!activeGalleryCtrl) return;
+    const item = activeGalleryCtrl.getCurrent();
+    if (!item) return;
+    lbImg.src = item.src;
+    lbImg.alt = item.title;
+    lbTitle.textContent = item.title;
+    lbCount.textContent = `${String(item.idx + 1).padStart(2, "0")} / ${String(item.total).padStart(2, "0")}`;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    document.body.style.overflow = "";
+    activeGalleryCtrl = null;
+  }
+
+  document.getElementById("lb-close")?.addEventListener("click", closeLightbox);
+  document.getElementById("lb-prev")?.addEventListener("click", () => {
+    activeGalleryCtrl?.step(-1);
+    syncLightbox();
+  });
+  document.getElementById("lb-next")?.addEventListener("click", () => {
+    activeGalleryCtrl?.step(1);
+    syncLightbox();
+  });
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") {
+      activeGalleryCtrl?.step(-1);
+      syncLightbox();
+    }
+    if (e.key === "ArrowRight") {
+      activeGalleryCtrl?.step(1);
+      syncLightbox();
+    }
+  });
+
+  galleries.forEach((gallery) => {
+    const thumbs = Array.from(gallery.querySelectorAll("[data-gal-thumb]"));
+    const mainImg = gallery.querySelector("[data-gal-main]");
+    const countEl = gallery.querySelector("[data-gal-count]");
+    const titleEl = gallery.querySelector("[data-gal-title]");
+    const prevBtn = gallery.querySelector("[data-gal-prev]");
+    const nextBtn = gallery.querySelector("[data-gal-next]");
+    const zoomTriggers = gallery.querySelectorAll("[data-gal-zoom]");
+
+    if (!thumbs.length || !mainImg) return;
+
+    let currentIdx = Math.max(0, thumbs.findIndex((t) => t.classList.contains("active")));
+
+    function selectSlide(nextIdx) {
+      currentIdx = (nextIdx + thumbs.length) % thumbs.length;
+      const target = thumbs[currentIdx];
+      const src = target.getAttribute("data-src");
+      const title = target.getAttribute("data-title") || "";
+
+      thumbs.forEach((btn, i) => btn.classList.toggle("active", i === currentIdx));
+
+      if (mainImg.getAttribute("src") !== src) {
+        mainImg.classList.add("is-switching");
+        setTimeout(() => {
+          mainImg.src = src;
+          mainImg.alt = title;
+          mainImg.classList.remove("is-switching");
+        }, 120);
+      }
+      if (countEl) {
+        countEl.textContent = `${String(currentIdx + 1).padStart(2, "0")} / ${String(thumbs.length).padStart(2, "0")}`;
+      }
+      if (titleEl) titleEl.textContent = title;
+    }
+
+    const ctrl = {
+      step(delta) {
+        selectSlide(currentIdx + delta);
+      },
+      getCurrent() {
+        const t = thumbs[currentIdx];
+        return {
+          idx: currentIdx,
+          total: thumbs.length,
+          src: t.getAttribute("data-src"),
+          title: t.getAttribute("data-title") || ""
+        };
+      }
+    };
+
+    thumbs.forEach((btn, idx) => {
+      btn.addEventListener("click", () => selectSlide(idx));
+    });
+    prevBtn?.addEventListener("click", () => selectSlide(currentIdx - 1));
+    nextBtn?.addEventListener("click", () => selectSlide(currentIdx + 1));
+
+    zoomTriggers.forEach((el) => {
+      el.addEventListener("click", () => {
+        activeGalleryCtrl = ctrl;
+        syncLightbox();
+        lightbox.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      });
+    });
+  });
+}
+
+/* ==========================================================================
+   10. SMOOTH SCROLL-DRIVEN SCALE-UP (ZOOM) ANIMATION FOR 3 SHOWCASE BLOCKS
+   ========================================================================== */
+function initShowcaseScrollZoom() {
+  const targets = document.querySelectorAll("[data-scroll-zoom]");
+  if (!targets.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let ticking = false;
+
+  function updateZoom() {
+    ticking = false;
+    const vh = window.innerHeight || 800;
+
+    targets.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      // Progress: 0 when top enters bottom of viewport, 1 when card center reaches ~52% of viewport height
+      const cardCenter = rect.top + rect.height * 0.45;
+      const startY = vh * 1.08;
+      const endY = vh * 0.5;
+      const raw = (startY - cardCenter) / (startY - endY);
+      const progress = Math.max(0, Math.min(1, raw));
+
+      // Smooth ease-out curve for tactile scale-up
+      const eased = 1 - Math.pow(1 - progress, 2.2);
+      const scale = 0.87 + eased * 0.16; // 0.87 -> 1.03
+      const shiftY = (1 - eased) * 26;   // 26px -> 0px
+
+      el.style.setProperty("--zoom-scale", scale.toFixed(4));
+      el.style.setProperty("--zoom-y", `${shiftY.toFixed(1)}px`);
+      el.classList.toggle("is-zoomed", progress > 0.72);
+    });
+  }
+
+  function requestUpdate() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(updateZoom);
+    }
+  }
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate, { passive: true });
+  updateZoom();
 }

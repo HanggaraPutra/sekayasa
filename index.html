@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=3" />
   <script>
     if (sessionStorage.getItem("seka_intro_seen") === "1") {
       document.documentElement.classList.add("intro-seen");
@@ -202,32 +202,56 @@
           </div>
         </div>
 
-        <div class="hero-visual-center reveal-on-scroll delay-1 is-visible">
-          <!-- Interactive System Preview Switcher Tabs -->
+        <div class="hero-visual-center reveal-on-scroll delay-1 is-visible" id="hero-visual-center">
+          <!-- Interactive System Preview Switcher Tabs (3 Bagian Utama) -->
           <div class="hero-preview-tabs" role="tablist" aria-label="Pilih Pratinjau Sistem Seka Yasa">
             <button type="button" class="hero-tab-btn active" data-hero-sys="erp" role="tab" aria-selected="true">
               <span class="tab-dot"></span>
-              <span>ERP Gudang &amp; Produksi</span>
+              <span>ERP Gudang &amp; Produksi (3 Layar)</span>
             </button>
             <button type="button" class="hero-tab-btn" data-hero-sys="pos" role="tab" aria-selected="false">
               <span class="tab-dot"></span>
-              <span>Sistem Kasir (POS) Multi-Cabang</span>
+              <span>Sistem Kasir POS (3 Layar)</span>
             </button>
             <button type="button" class="hero-tab-btn" data-hero-sys="sim" role="tab" aria-selected="false">
               <span class="tab-dot"></span>
-              <span>Manajemen Internal (Keuangan &amp; HRIS)</span>
+              <span>Manajemen &amp; HRIS (3 Layar)</span>
             </button>
           </div>
 
-          <div class="hero-image-box">
+          <div class="hero-image-box hero-scroll-zoom" id="hero-image-box">
             <div class="hero-frame-bar">
-              <div class="hero-frame-dots" aria-hidden="true">
-                <span></span><span></span><span></span>
+              <div class="showcase-bar-meta">
+                <div class="hero-frame-dots" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+                <span class="showcase-slide-count" id="hero-slide-count">01 / 03</span>
+                <span class="hero-frame-title" id="hero-frame-title">Overview Multi-Gudang, Rak &amp; Produksi (ERP)</span>
               </div>
-              <span class="hero-frame-title" id="hero-frame-title">Sistem Inventori, Gudang &amp; Produksi (ERP)</span>
-              <span class="hero-frame-meta" id="hero-frame-meta">Multi-Warehouse · BOM &amp; HPP Tracking</span>
+              <div class="showcase-bar-actions">
+                <span class="hero-frame-meta" id="hero-frame-meta">Multi-Warehouse · BOM &amp; HPP</span>
+                <button type="button" class="showcase-icon-btn" id="hero-slide-prev" aria-label="Layar sebelumnya">‹</button>
+                <button type="button" class="showcase-icon-btn" id="hero-slide-next" aria-label="Layar berikutnya">›</button>
+                <button type="button" class="showcase-zoom-btn" id="hero-slide-zoom" aria-label="Perbesar layar">⤢ Perbesar</button>
+              </div>
             </div>
-            <img id="hero-preview-img" src="assets/erp-complex-v2.jpg" alt="Tampilan Dashboard Inventori & Produksi (ERP) Seka Yasa" />
+            <div class="hero-stage-main" id="hero-stage-main" title="Klik untuk memperbesar tampilan layar">
+              <img id="hero-preview-img" src="assets/erp-complex-v2.jpg" alt="Tampilan Dashboard Inventori & Produksi (ERP) Seka Yasa" />
+            </div>
+            <div class="showcase-thumb-strip hero-sub-thumbs" id="hero-sub-thumbs" role="tablist" aria-label="3 Layar Modul Aktif">
+              <button type="button" class="showcase-thumb-btn active" data-hero-sub="0">
+                <img src="assets/erp-complex-v2.jpg" alt="Multi-Gudang ERP" />
+                <span>01 · Multi-Gudang &amp; Rak</span>
+              </button>
+              <button type="button" class="showcase-thumb-btn" data-hero-sub="1">
+                <img src="assets/erp-purchasing-po.png" alt="Purchasing PO ERP" />
+                <span>02 · Purchasing &amp; PO Supplier</span>
+              </button>
+              <button type="button" class="showcase-thumb-btn" data-hero-sub="2">
+                <img src="assets/erp-bom-hpp.png" alt="Work Order BOM & HPP ERP" />
+                <span>03 · Work Order, BOM &amp; HPP</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -716,6 +740,6 @@
   <!-- SHARED FOOTER (RENDERED AUTOMATICALLY BY app.js) -->
   <div id="seka-footer"></div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

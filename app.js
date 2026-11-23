@@ -402,50 +402,176 @@ function initHeroInteractiveBg() {
 }
 
 /* ==========================================================================
-   4. HERO INTERACTIVE SYSTEM PREVIEW SWITCHER (ON INDEX.HTML)
+   4. HERO INTERACTIVE 3-SYSTEM x 3-SCREEN PREVIEW SWITCHER (ON INDEX.HTML)
    ========================================================================== */
 function initHeroPreviewSwitcher() {
   const tabs = document.querySelectorAll("[data-hero-sys]");
   const imgEl = document.getElementById("hero-preview-img");
   const titleEl = document.getElementById("hero-frame-title");
   const metaEl = document.getElementById("hero-frame-meta");
+  const countEl = document.getElementById("hero-slide-count");
+  const thumbsWrap = document.getElementById("hero-sub-thumbs");
+  const prevBtn = document.getElementById("hero-slide-prev");
+  const nextBtn = document.getElementById("hero-slide-next");
+  const zoomBtn = document.getElementById("hero-slide-zoom");
+  const stageMain = document.getElementById("hero-stage-main");
 
   if (!tabs.length || !imgEl) return;
 
   const sysData = {
     erp: {
-      src: "assets/erp-complex-v2.jpg",
-      alt: "Tampilan Sistem ERP Gudang, Purchasing (PO) & Produksi Seka Yasa",
-      title: "Modul ERP Inventori Multi-Gudang, PO Supplier & Kalkulasi HPP Produksi",
-      meta: "Multi-Warehouse · BOM & Batch Tracking"
+      meta: "Multi-Warehouse · PO & BOM",
+      slides: [
+        {
+          src: "assets/erp-complex-v2.jpg",
+          short: "01 · Multi-Gudang & Rak",
+          title: "Overview Multi-Gudang, Rak & Produksi (ERP)"
+        },
+        {
+          src: "assets/erp-purchasing-po.png",
+          short: "02 · Purchasing & PO Supplier",
+          title: "Purchasing, Purchase Order (PO) & Penerimaan Barang"
+        },
+        {
+          src: "assets/erp-bom-hpp.png",
+          short: "03 · Work Order, BOM & HPP",
+          title: "Work Order Produksi, Resep (BOM) & Kalkulasi HPP"
+        }
+      ]
     },
     pos: {
-      src: "assets/pos-complex-v2.jpg",
-      alt: "Tampilan Sistem POS Kasir & Backoffice Multi-Cabang Seka Yasa",
-      title: "Modul POS Terminal Kasir & Konsolidasi Penjualan Multi-Cabang",
-      meta: "Retail & F&B · Tier Harga & Shift Lock"
+      meta: "Penjualan · Pembelian & Shift",
+      slides: [
+        {
+          src: "assets/pos-kasir-penjualan.png",
+          short: "01 · Kasir Penjualan & Grosir",
+          title: "Terminal Kasir Penjualan (POS), Harga Grosir & QRIS"
+        },
+        {
+          src: "assets/pos-pembelian-shift.png",
+          short: "02 · Pembelian & Tutup Shift",
+          title: "Pembelian Stok Cabang, Mutasi Barang & Tutup Shift"
+        },
+        {
+          src: "assets/pos-complex-v2.jpg",
+          short: "03 · Analitik Multi-Cabang",
+          title: "Overview Backoffice & Analitik Penjualan Multi-Cabang"
+        }
+      ]
     },
     sim: {
-      src: "assets/sim-complex-v2.jpg",
-      alt: "Tampilan Portal Manajemen Keuangan, Piutang (AR/AP) & HRIS Payroll",
-      title: "Portal Manajemen Internal: Arus Kas, Umur Piutang (AR) & Otomasi Payroll",
-      meta: "Financial Ledger · AR Aging & HRIS"
+      meta: "Arus Kas · AR Aging & Payroll",
+      slides: [
+        {
+          src: "assets/sim-complex-v2.jpg",
+          short: "01 · Arus Kas & Laba-Rugi",
+          title: "Dashboard Arus Kas, Laba-Rugi & Keuangan Korporat"
+        },
+        {
+          src: "assets/sim-piutang-ar.png",
+          short: "02 · Faktur & Piutang (AR)",
+          title: "Faktur Penjualan & Jadwal Umur Piutang (AR/AP Aging)"
+        },
+        {
+          src: "assets/sim-hris-payroll.png",
+          short: "03 · HRIS & Otomasi Payroll",
+          title: "HRIS Absensi, Lembur & Otomasi Penggajian (Payroll)"
+        }
+      ]
     }
   };
+
+  let activeSysKey = "erp";
+  let activeSlideIdx = 0;
+
+  function renderSubThumbs() {
+    if (!thumbsWrap) return;
+    const slides = sysData[activeSysKey].slides;
+    thumbsWrap.innerHTML = slides
+      .map(
+        (s, i) => `
+          <button type="button" class="showcase-thumb-btn ${i === activeSlideIdx ? "active" : ""}" data-hero-sub="${i}">
+            <img src="${s.src}" alt="${s.short}" />
+            <span>${s.short}</span>
+          </button>
+        `
+      )
+      .join("");
+
+    thumbsWrap.querySelectorAll("[data-hero-sub]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = Number(btn.getAttribute("data-hero-sub"));
+        selectSubSlide(idx);
+      });
+    });
+  }
+
+  function selectSubSlide(idx, instant = false) {
+    const group = sysData[activeSysKey];
+    const total = group.slides.length;
+    activeSlideIdx = (idx + total) % total;
+    const slide = group.slides[activeSlideIdx];
+
+    if (instant || imgEl.getAttribute("src") === slide.src) {
+      imgEl.src = slide.src;
+      imgEl.alt = slide.title;
+    } else {
+      imgEl.classList.add("is-switching");
+      setTimeout(() => {
+        imgEl.src = slide.src;
+        imgEl.alt = slide.title;
+        imgEl.classList.remove("is-switching");
+      }, 115);
+    }
+
+    if (titleEl) titleEl.textContent = slide.title;
+    if (metaEl) metaEl.textContent = group.meta;
+    if (countEl) countEl.textContent = `${String(activeSlideIdx + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+
+    thumbsWrap?.querySelectorAll("[data-hero-sub]").forEach((btn, i) => {
+      btn.classList.toggle("active", i === activeSlideIdx);
+    });
+  }
 
   tabs.forEach((btn) => {
     btn.addEventListener("click", () => {
       const key = btn.getAttribute("data-hero-sys");
-      const info = sysData[key];
-      if (!info) return;
-
-      tabs.forEach((b) => b.classList.toggle("active", b === btn));
-      imgEl.src = info.src;
-      imgEl.alt = info.alt;
-      if (titleEl) titleEl.textContent = info.title;
-      if (metaEl) metaEl.textContent = info.meta;
+      if (!sysData[key]) return;
+      activeSysKey = key;
+      activeSlideIdx = 0;
+      tabs.forEach((b) => {
+        const isMatch = b === btn;
+        b.classList.toggle("active", isMatch);
+        b.setAttribute("aria-selected", isMatch ? "true" : "false");
+      });
+      renderSubThumbs();
+      selectSubSlide(0);
     });
   });
+
+  prevBtn?.addEventListener("click", () => selectSubSlide(activeSlideIdx - 1));
+  nextBtn?.addEventListener("click", () => selectSubSlide(activeSlideIdx + 1));
+
+  // Connect Hero preview to the shared Lightbox modal
+  const openHeroLightbox = () => {
+    if (window.__sekaOpenLightbox) {
+      window.__sekaOpenLightbox({
+        step(delta) {
+          selectSubSlide(activeSlideIdx + delta, true);
+        },
+        getCurrent() {
+          const slides = sysData[activeSysKey].slides;
+          const s = slides[activeSlideIdx];
+          return { idx: activeSlideIdx, total: slides.length, src: s.src, title: s.title };
+        }
+      });
+    }
+  };
+  zoomBtn?.addEventListener("click", openHeroLightbox);
+  stageMain?.addEventListener("click", openHeroLightbox);
+
+  renderSubThumbs();
+  selectSubSlide(0, true);
 }
 
 /* ==========================================================================
@@ -757,6 +883,13 @@ function initShowcaseGalleries() {
     activeGalleryCtrl = null;
   }
 
+  window.__sekaOpenLightbox = (ctrl) => {
+    activeGalleryCtrl = ctrl;
+    syncLightbox();
+    lightbox.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  };
+
   document.getElementById("lb-close")?.addEventListener("click", closeLightbox);
   document.getElementById("lb-prev")?.addEventListener("click", () => {
     activeGalleryCtrl?.step(-1);
@@ -853,8 +986,9 @@ function initShowcaseGalleries() {
    10. SMOOTH SCROLL-DRIVEN SCALE-UP (ZOOM) ANIMATION FOR 3 SHOWCASE BLOCKS
    ========================================================================== */
 function initShowcaseScrollZoom() {
+  const heroBox = document.getElementById("hero-image-box");
   const targets = document.querySelectorAll("[data-scroll-zoom]");
-  if (!targets.length) return;
+  if (!targets.length && !heroBox) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   let ticking = false;
@@ -863,16 +997,25 @@ function initShowcaseScrollZoom() {
     ticking = false;
     const vh = window.innerHeight || 800;
 
+    // 1. Hero 3-Tab Showcase Scroll-Down Zoom (expands smoothly as user scrolls down)
+    if (heroBox) {
+      const scrollY = window.scrollY || 0;
+      const heroProg = Math.max(0, Math.min(1, scrollY / 380));
+      const heroEased = 1 - Math.pow(1 - heroProg, 2);
+      const heroScale = 0.91 + heroEased * 0.17; // 0.91 -> 1.08
+      heroBox.style.setProperty("--hero-zoom", heroScale.toFixed(4));
+      heroBox.classList.toggle("is-expanded", heroProg > 0.45);
+    }
+
+    // 2. Section 03 Three Project Galleries Scroll-Down Zoom
     targets.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      // Progress: 0 when top enters bottom of viewport, 1 when card center reaches ~52% of viewport height
       const cardCenter = rect.top + rect.height * 0.45;
       const startY = vh * 1.08;
       const endY = vh * 0.5;
       const raw = (startY - cardCenter) / (startY - endY);
       const progress = Math.max(0, Math.min(1, raw));
 
-      // Smooth ease-out curve for tactile scale-up
       const eased = 1 - Math.pow(1 - progress, 2.2);
       const scale = 0.87 + eased * 0.16; // 0.87 -> 1.03
       const shiftY = (1 - eased) * 26;   // 26px -> 0px

@@ -1172,8 +1172,13 @@ button, input, textarea {
 
 .centered-header {
   text-align: center;
-  max-width: 680px;
-  margin-bottom: 3.5rem;
+  max-width: 740px;
+  margin: 0 auto 3.5rem;
+}
+
+.centered-header .split-desc {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .split-title {
